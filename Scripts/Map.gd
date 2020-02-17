@@ -168,3 +168,16 @@ func _on_smooth_button_pressed():
 func _on_apply_settings_button_pressed():
 	sea_level = get_parent().get_sea_level()
 	color_nodes("sea")
+
+func _on_size_button_pressed(size):
+	match size:
+		"small":
+			width = 64
+			height = 48
+		"medium":
+			width = 116
+			height = 76
+		"large":
+			width = 156
+			height = 112
+

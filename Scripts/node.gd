@@ -41,16 +41,16 @@ func set_conflict_type(other_node):
 	if slide_direction == 1: retreat_dir.append(8)
 	else: retreat_dir.append(slide_direction-1)
 	if collission_dir.has(neighbours.find(other_node)):
-		elevation += 2
-		other_node.elevation += 2
+		elevation += 4
+		other_node.elevation += 4
 	if retreat_dir.has(neighbours.find(other_node)):
-		elevation -= 2
-		other_node.elevation -= 2
+		elevation -= 4
+		other_node.elevation -= 4
 
 func find_neighbours():
 	var nodes = get_parent().get_quarter(quarter)
-	var quarterX = fmod(X,58)
-	var quarterY = fmod(Y,38)
+	var quarterX = fmod(X,get_parent().width/2)
+	var quarterY = fmod(Y,get_parent().height/2)
 	#unless is left row
 	if (quarterX != 0):  
 		var row = nodes[quarterX-1]
@@ -151,6 +151,8 @@ func color_mode(mode):
 				8: set_self_modulate(Color(0,0,1.94,1))
 				9: set_self_modulate(Color(0,1,1.94,1))
 				10: set_self_modulate(Color(0,1,0.94,1))
+				11: set_self_modulate(Color(0.25,1,1.94,1))
+				12: set_self_modulate(Color(0,1,0.25,1))
 		"continentconflict":
 			if conflictzone:
 				set_self_modulate(Color(1,0.1,0.1,1))
