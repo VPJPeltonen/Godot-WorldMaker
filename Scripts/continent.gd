@@ -13,7 +13,12 @@ func _ready():
 
 func init(new_id,new_source):
 	id_number = new_id
-	base_elevation = rng.randi_range(7,9)
+	var highlow = rng.randi_range(1,3)
+	if highlow > 1:
+		base_elevation = rng.randf_range(5.5,6)
+	else:
+		base_elevation = rng.randi_range(8.5,9)
+	#base_elevation = rng.randi_range(6,9)
 	nodes.append(new_source)
 	spreadable_nodes.append(new_source)
 	new_source.elevation += base_elevation

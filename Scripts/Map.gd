@@ -41,12 +41,9 @@ func get_node_elevation(nodeX,nodeY):
 		elif nodeX >= width/2 and nodeY < height/2-1:
 			nodeX = nodeX - width/2
 			quarter = get_quarter(2)
-			
 		elif nodeX < width/2 and nodeY >= height/2-1:
 			nodeY = nodeY - (height/2)
 			quarter = get_quarter(3)
-			
-			
 		else:
 			nodeX = nodeX - width/2
 			nodeY = nodeY - height/2
@@ -90,22 +87,52 @@ func make_nodes():
 	nodes_4 = make_quarter((width/2),(height/2),4)
 	set_neighbours()
 	make_continents()
-	#smooth_elevations()
 	
-func smooth_elevations():
+func smooth_elevations_differences():
+	for i in range(0,30):
+		var min_ele = 20-i-0.5
+		var max_ele = 20-i+0.5
+		for row in nodes:
+			for node in row:
+				node.smooth_elevation_differences(min_ele,max_ele)
+		for row in nodes_2:
+			for node in row:
+				node.smooth_elevation_differences(min_ele,max_ele)
+		for row in nodes_3:
+			for node in row:
+				node.smooth_elevation_differences(min_ele,max_ele)
+		for row in nodes_4:
+			for node in row:
+				node.smooth_elevation_differences(min_ele,max_ele)
+				
+func erosion():
 	for row in nodes:
 		for node in row:
-			node.smooth_elevation()
+			node.erosion()
 	for row in nodes_2:
 		for node in row:
-			node.smooth_elevation()
+			node.erosion()
 	for row in nodes_3:
 		for node in row:
-			node.smooth_elevation()
+			node.erosion()
 	for row in nodes_4:
 		for node in row:
-			node.smooth_elevation()
-	
+			node.erosion()
+
+func water_erosion():
+	for row in nodes:
+		for node in row:
+			node.water_erosion()
+	for row in nodes_2:
+		for node in row:
+			node.water_erosion()
+	for row in nodes_3:
+		for node in row:
+			node.water_erosion()
+	for row in nodes_4:
+		for node in row:
+			node.water_erosion()
+
 func set_neighbours():
 	quarter_neighbours(nodes)
 	quarter_neighbours(nodes_2)
@@ -122,7 +149,7 @@ func make_quarter(imod,jmod,quarter):
 	for i in range(width/2):
 		var slice = []
 		for j in range(height/2):
-			var elevation = rng.randi_range(0,2)
+			var elevation = rng.randf_range(0,2)
 			var new_node = node.instance()
 			add_child(new_node)
 			new_node.init(i+imod,j+jmod,node_scale,quarter,elevation)
@@ -152,8 +179,12 @@ func _on_generate_button_pressed():
 		get_tree().reload_current_scene()
 	else:
 		make_nodes()
-		for i in range(0,2):
-			smooth_elevations()
+		smooth_elevations_differences()
+		for i in range(3):
+			erosion()
+		for i in range(5):
+			water_erosion()
+		erosion()
 		color_nodes("sea")
 		map_generated = true
 		emit_signal("map_generated")
@@ -185,9 +216,17 @@ func color_nodes(mode):
 			node.color_mode(mode)
 
 func _on_smooth_button_pressed():
-	smooth_elevations()
+	erosion()
 	color_nodes("elevation")
-
+	
+func _on_smooth_ele_button_pressed():
+	smooth_elevations_differences()
+	color_nodes("elevation")
+	
+func _on_water_erosion_button_pressed():
+	water_erosion()
+	color_nodes("sea")
+	
 func _on_apply_settings_button_pressed():
 	sea_level = get_parent().get_sea_level()
 	color_nodes("sea")
@@ -203,4 +242,5 @@ func _on_size_button_pressed(size):
 		"large":
 			width = 156
 			height = 112
+			
 

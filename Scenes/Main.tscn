@@ -18,22 +18,20 @@ position = Vector2( 104, 0 )
 continent = ExtResource( 3 )
 
 [node name="UI_container" type="VBoxContainer" parent="."]
-margin_left = 1.89075
-margin_top = -1.52588e-05
-margin_right = 75.8907
-margin_bottom = 228.0
+margin_right = 101.0
+margin_bottom = 446.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="map_size_label" type="Label" parent="UI_container"]
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 14.0
 text = "Map Size"
 
 [node name="small_size_button" type="Button" parent="UI_container"]
 margin_top = 18.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 38.0
 toggle_mode = true
 group = ExtResource( 6 )
@@ -44,7 +42,7 @@ __meta__ = {
 
 [node name="medium_size_button" type="Button" parent="UI_container"]
 margin_top = 42.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 62.0
 toggle_mode = true
 pressed = true
@@ -56,7 +54,7 @@ __meta__ = {
 
 [node name="large_size_button" type="Button" parent="UI_container"]
 margin_top = 66.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 86.0
 toggle_mode = true
 group = ExtResource( 6 )
@@ -67,52 +65,66 @@ __meta__ = {
 
 [node name="continents_label" type="Label" parent="UI_container"]
 margin_top = 90.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 104.0
 text = "Continents"
 
 [node name="continents_box" type="SpinBox" parent="UI_container"]
 margin_top = 108.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 132.0
 min_value = 2.0
 value = 12.0
 
 [node name="generate_button" type="Button" parent="UI_container"]
 margin_top = 136.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 156.0
 text = "Generate"
 script = ExtResource( 2 )
 
 [node name="smooth_button" type="Button" parent="UI_container"]
 margin_top = 160.0
-margin_right = 74.0
+margin_right = 101.0
 margin_bottom = 180.0
+text = "Erosion"
+script = ExtResource( 2 )
+
+[node name="smooth_ele_button" type="Button" parent="UI_container"]
+margin_top = 184.0
+margin_right = 101.0
+margin_bottom = 204.0
 text = "Smooth"
 script = ExtResource( 2 )
 
+[node name="water_erosion_button" type="Button" parent="UI_container"]
+margin_top = 208.0
+margin_right = 101.0
+margin_bottom = 228.0
+text = "Water Erosion"
+script = ExtResource( 2 )
+
 [node name="HSeparator2" type="HSeparator" parent="UI_container"]
-margin_top = 184.0
-margin_right = 74.0
-margin_bottom = 188.0
+margin_top = 232.0
+margin_right = 101.0
+margin_bottom = 236.0
 
 [node name="settings_label" type="Label" parent="UI_container"]
-margin_top = 192.0
-margin_right = 74.0
-margin_bottom = 206.0
+margin_top = 240.0
+margin_right = 101.0
+margin_bottom = 254.0
 text = "Settings"
 
 [node name="Sea_level_label" type="Label" parent="UI_container"]
-margin_top = 210.0
-margin_right = 74.0
-margin_bottom = 224.0
+margin_top = 258.0
+margin_right = 101.0
+margin_bottom = 272.0
 text = "Sea Level"
 
 [node name="sea_level_box" type="SpinBox" parent="UI_container"]
-margin_top = 228.0
-margin_right = 74.0
-margin_bottom = 252.0
+margin_top = 276.0
+margin_right = 101.0
+margin_bottom = 300.0
 min_value = 2.0
 value = 9.0
 __meta__ = {
@@ -120,9 +132,9 @@ __meta__ = {
 }
 
 [node name="apply_settings_button" type="Button" parent="UI_container"]
-margin_top = 256.0
-margin_right = 74.0
-margin_bottom = 276.0
+margin_top = 304.0
+margin_right = 101.0
+margin_bottom = 324.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Apply"
@@ -131,45 +143,45 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="UI_container"]
-margin_top = 280.0
-margin_right = 74.0
-margin_bottom = 284.0
+margin_top = 328.0
+margin_right = 101.0
+margin_bottom = 332.0
 
 [node name="modes_label" type="Label" parent="UI_container"]
-margin_top = 288.0
-margin_right = 74.0
-margin_bottom = 302.0
+margin_top = 336.0
+margin_right = 101.0
+margin_bottom = 350.0
 text = "Map Modes"
 
 [node name="Continent_mode_button" type="Button" parent="UI_container"]
-margin_top = 306.0
-margin_right = 74.0
-margin_bottom = 326.0
+margin_top = 354.0
+margin_right = 101.0
+margin_bottom = 374.0
 toggle_mode = true
 pressed = true
 group = ExtResource( 4 )
 text = "Continent"
 
 [node name="Conflict_mode_button" type="Button" parent="UI_container"]
-margin_top = 330.0
-margin_right = 74.0
-margin_bottom = 350.0
+margin_top = 378.0
+margin_right = 101.0
+margin_bottom = 398.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Conflict"
 
 [node name="Elevation_mode_button" type="Button" parent="UI_container"]
-margin_top = 354.0
-margin_right = 74.0
-margin_bottom = 374.0
+margin_top = 402.0
+margin_right = 101.0
+margin_bottom = 422.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Elevation"
 
 [node name="Sea_mode_button" type="Button" parent="UI_container"]
-margin_top = 378.0
-margin_right = 74.0
-margin_bottom = 398.0
+margin_top = 426.0
+margin_right = 101.0
+margin_bottom = 446.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Sea"
@@ -183,10 +195,10 @@ script = ExtResource( 8 )
 [node name="Camera2D" type="Camera2D" parent="cursor"]
 
 [node name="Node_info" type="VBoxContainer" parent="."]
-margin_left = 0.949982
-margin_top = 424.65
-margin_right = 63.95
-margin_bottom = 464.65
+margin_left = 2.00259
+margin_top = 526.755
+margin_right = 65.0026
+margin_bottom = 594.755
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -254,6 +266,8 @@ text = "0"
 [connection signal="pressed" from="UI_container/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
 [connection signal="pressed" from="UI_container/generate_button" to="Map" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI_container/smooth_button" to="Map" method="_on_smooth_button_pressed"]
+[connection signal="pressed" from="UI_container/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
+[connection signal="pressed" from="UI_container/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
 [connection signal="pressed" from="UI_container/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
 [connection signal="pressed" from="UI_container/Continent_mode_button" to="Map" method="_on_Continent_mode_button_pressed"]
 [connection signal="pressed" from="UI_container/Conflict_mode_button" to="Map" method="_on_Conflict_mode_button_pressed"]

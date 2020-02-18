@@ -6,6 +6,7 @@ var conflictzone = false
 var conflict_type = "none"
 var elevation = 0.0
 var ground_level = 0.0
+var sea_level = 0.0
 
 var X
 var Y
@@ -23,12 +24,26 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	quarter = Quarter
 	elevation = new_elevation
 
-func smooth_elevation():
+func erosion():
 	var average_elevation = 0
 	for node in neighbours:
 		average_elevation += node.elevation
 	average_elevation = average_elevation/neighbours.size()
 	elevation = (elevation+elevation+average_elevation)/3
+
+func water_erosion():
+	if ground_level <= 0.2:
+		var average_elevation = 0
+		for node in neighbours:
+			average_elevation += node.elevation
+		average_elevation = average_elevation/neighbours.size()
+		elevation = (elevation+elevation+average_elevation)/3
+		
+func smooth_elevation_differences(elevation_checked_min,elevation_checked_max):
+	if elevation > elevation_checked_min and elevation <= elevation_checked_max:
+		for node in neighbours:
+			if node.elevation < elevation:
+				node.elevation = max(elevation - 3,node.elevation)
 
 func set_conflictzone():
 	for node in neighbours:
@@ -42,11 +57,11 @@ func set_conflict_type(other_node):
 	if slide_direction == 1: retreat_dir.append(8)
 	else: retreat_dir.append(slide_direction-1)
 	if collission_dir.has(neighbours.find(other_node)):
-		elevation += 8
-		other_node.elevation += 8
+		elevation += 6
+		other_node.elevation += 6
 	if retreat_dir.has(neighbours.find(other_node)):
-		elevation -= 8
-		other_node.elevation -= 8
+		elevation -= 6
+		other_node.elevation -= 6
 
 func find_neighbours():
 	var nodes = get_parent().get_quarter(quarter)
@@ -179,36 +194,39 @@ func color_mode(mode):
 				15.0: set_self_modulate(Color("662506"))
 				16.0: set_self_modulate(Color("fff7fb"))		
 		"sea":
-			var sea_level = get_parent().get_sea_level()
+			sea_level = get_parent().get_sea_level()
 			ground_level = elevation-sea_level
 			if ground_level >= 0:
-				if ground_level < 1:
-					if ground_level < 0.01:
+				if ground_level < 3:
+					if ground_level < 0.2:
 						set_self_modulate(Color("005a32"))
-					elif ground_level < 0.5:
+					elif ground_level < 0.4:
 						set_self_modulate(Color("238443"))
-					else:
+					elif ground_level < 0.6:
 						set_self_modulate(Color("41ab5d"))
-						
+					elif ground_level < 1.0:
+						set_self_modulate(Color("78c679"))
+					elif ground_level < 1.5:
+						set_self_modulate(Color("addd8e"))
+					elif ground_level < 2.2:
+						set_self_modulate(Color("d9f0a3"))
+					else:
+						set_self_modulate(Color("f7fcb9"))
 				else:
-					if ground_level > 14.0:
+					if ground_level > 12.0:
 						set_self_modulate(Color("fff7fb"))
 					match round(ground_level): 
-						1.0: set_self_modulate(Color("78c679"))
-						2.0: set_self_modulate(Color("addd8e"))
-						3.0: set_self_modulate(Color("d9f0a3"))
-						4.0: set_self_modulate(Color("f7fcb9"))
-						5.0: set_self_modulate(Color("ffffe5"))
-						6.0: set_self_modulate(Color("fff7bc"))
-						7.0: set_self_modulate(Color("fee391"))
-						8.0: set_self_modulate(Color("fec44f"))
-						9.0: set_self_modulate(Color("fe9929"))
-						10.0: set_self_modulate(Color("ec7014"))
-						11.0: set_self_modulate(Color("cc4c02"))		
-						12.0: set_self_modulate(Color("993404"))
-						13.0: set_self_modulate(Color("662506"))
-						14.0: set_self_modulate(Color("fff7fb"))		
-			elif ground_level >= -1:
+						3.0: set_self_modulate(Color("ffffe5"))
+						4.0: set_self_modulate(Color("fff7bc"))
+						5.0: set_self_modulate(Color("fee391"))
+						6.0: set_self_modulate(Color("fec44f"))
+						7.0: set_self_modulate(Color("fe9929"))
+						8.0: set_self_modulate(Color("ec7014"))
+						9.0: set_self_modulate(Color("cc4c02"))		
+						10.0: set_self_modulate(Color("993404"))
+						11.0: set_self_modulate(Color("662506"))
+						12.0: set_self_modulate(Color("fff7fb"))		
+			elif ground_level >= -0.5:
 				set_self_modulate(Color("74a9cf"))
 			else:
 				set_self_modulate(Color("0570b0"))
