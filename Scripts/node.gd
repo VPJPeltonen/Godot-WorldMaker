@@ -4,6 +4,9 @@ var continent
 var slide_direction = 0
 var conflictzone = false
 var conflict_type = "none"
+
+var rainfall = 0.0
+
 var elevation = 0.0
 var ground_level = 0.0
 var sea_level = 0.0
@@ -23,6 +26,15 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	Y = y_pos
 	quarter = Quarter
 	elevation = new_elevation
+
+func set_ground_level():
+	sea_level = get_parent().get_sea_level()
+	ground_level = elevation-sea_level
+
+func set_rainfall():
+	for node in neighbours:
+		if node.ground_level < 0:
+			rainfall += 1.0
 
 func erosion():
 	var average_elevation = 0
@@ -194,9 +206,23 @@ func color_mode(mode):
 				14.0: set_self_modulate(Color("993404"))
 				15.0: set_self_modulate(Color("662506"))
 				16.0: set_self_modulate(Color("fff7fb"))		
+		"rainfall":
+			if ground_level < 0:
+				return
+			match round(rainfall):
+				0.0: set_self_modulate(Color("543005"))
+				1.0: set_self_modulate(Color("8c510a"))
+				2.0: set_self_modulate(Color("bf812d"))
+				3.0: set_self_modulate(Color("dfc27d"))
+				4.0: set_self_modulate(Color("f6e8c3"))
+				5.0: set_self_modulate(Color("f5f5f5"))
+				6.0: set_self_modulate(Color("c7eae5"))
+				7.0: set_self_modulate(Color("80cdc1"))
+				8.0: set_self_modulate(Color("35978f"))
+				9.0: set_self_modulate(Color("01665e"))
+				10.0: set_self_modulate(Color("003c30"))
 		"sea":
-			sea_level = get_parent().get_sea_level()
-			ground_level = elevation-sea_level
+			set_ground_level()
 			if ground_level >= 0:
 				if ground_level < 3:
 					if ground_level < 0.2:
@@ -233,3 +259,20 @@ func color_mode(mode):
 				set_self_modulate(Color("3182bd"))
 			else:
 				set_self_modulate(Color("08519c"))
+
+func _on_node_action(action,data):
+	match action:
+		"find_neighbours":
+			find_neighbours()
+		"change_color_mode":
+			color_mode(data)
+		"set_conflictzone":
+			set_conflictzone()
+		"set_rainfall":
+			set_rainfall()
+		"water_erosion":
+			water_erosion()
+		"erosion":
+			erosion()
+		"smooth_elevation_differences":
+			smooth_elevation_differences(data[0],data[1])

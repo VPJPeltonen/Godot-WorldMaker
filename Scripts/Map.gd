@@ -1,6 +1,7 @@
 extends Node2D
 
 signal map_generated
+signal node_action(action,data)
 
 export(Resource) var node
 export(Resource) var continent
@@ -52,7 +53,37 @@ func get_node_elevation(nodeX,nodeY):
 		return row[nodeY+1].ground_level
 	else:
 		return 0
-
+		
+func find_empty(i):
+	while true:
+		var quarter = rng.randi_range(1,4)
+		var a = rng.randi_range(0,width/2-1)
+		var b = rng.randi_range(0,height/2-1)
+		var row 
+		match quarter:
+			1: row = nodes[a]
+			2: row = nodes_2[a]
+			3: row = nodes_3[a]
+			4: row = nodes_4[a]
+		var node = row[b]
+		if node.continent == null:
+			node.set_continent(i)
+			return node
+			
+func make_quarter(imod,jmod,quarter):
+	var quarter_nodes = []
+	for i in range(width/2):
+		var slice = []
+		for j in range(height/2):
+			var elevation = rng.randf_range(0,2)
+			var new_node = node.instance()
+			add_child(new_node)
+			new_node.init(i+imod,j+jmod,node_scale,quarter,elevation)
+			connect('node_action', new_node, '_on_node_action')
+			slice.append(new_node)
+		quarter_nodes.append(slice)
+	return quarter_nodes
+				
 func make_continents():
 	continents = get_parent().get_continent_amount()
 	for i in range(continents):
@@ -69,18 +100,7 @@ func make_continents():
 				spreading = true
 	for continent in continents_array:
 			continent.set_height()
-	for row in nodes:
-		for node in row:
-			node.set_conflictzone()
-	for row in nodes_2:
-		for node in row:
-			node.set_conflictzone()
-	for row in nodes_3:
-		for node in row:
-			node.set_conflictzone()
-	for row in nodes_4:
-		for node in row:
-			node.set_conflictzone()
+	emit_signal("node_action","set_conflictzone","none")
 
 func make_nodes():
 	nodes = make_quarter(0,0,1)
@@ -94,87 +114,23 @@ func smooth_elevations_differences():
 	for i in range(0,30):
 		var min_ele = 20-i-0.5
 		var max_ele = 20-i+0.5
-		for row in nodes:
-			for node in row:
-				node.smooth_elevation_differences(min_ele,max_ele)
-		for row in nodes_2:
-			for node in row:
-				node.smooth_elevation_differences(min_ele,max_ele)
-		for row in nodes_3:
-			for node in row:
-				node.smooth_elevation_differences(min_ele,max_ele)
-		for row in nodes_4:
-			for node in row:
-				node.smooth_elevation_differences(min_ele,max_ele)
-				
+		emit_signal("node_action","smooth_elevation_differences",[min_ele,max_ele])
+
 func erosion():
-	for row in nodes:
-		for node in row:
-			node.erosion()
-	for row in nodes_2:
-		for node in row:
-			node.erosion()
-	for row in nodes_3:
-		for node in row:
-			node.erosion()
-	for row in nodes_4:
-		for node in row:
-			node.erosion()
+	emit_signal("node_action","erosion","none")
 
 func water_erosion():
-	for row in nodes:
-		for node in row:
-			node.water_erosion()
-	for row in nodes_2:
-		for node in row:
-			node.water_erosion()
-	for row in nodes_3:
-		for node in row:
-			node.water_erosion()
-	for row in nodes_4:
-		for node in row:
-			node.water_erosion()
+	emit_signal("node_action","water_erosion","none")
+
+func set_sea_rainfall():
+	emit_signal("node_action","set_rainfall","none")
 
 func set_neighbours():
-	quarter_neighbours(nodes)
-	quarter_neighbours(nodes_2)
-	quarter_neighbours(nodes_3)
-	quarter_neighbours(nodes_4)
+	emit_signal("node_action","find_neighbours","none")
 
-func quarter_neighbours(array):
-	for row in array:
-		for node in row:
-			node.find_neighbours()
-
-func make_quarter(imod,jmod,quarter):
-	var quarter_nodes = []
-	for i in range(width/2):
-		var slice = []
-		for j in range(height/2):
-			var elevation = rng.randf_range(0,2)
-			var new_node = node.instance()
-			add_child(new_node)
-			new_node.init(i+imod,j+jmod,node_scale,quarter,elevation)
-			slice.append(new_node)
-		quarter_nodes.append(slice)
-	return quarter_nodes
-
-func find_empty(i):
-	while true:
-		var quarter = rng.randi_range(1,4)
-		var a = rng.randi_range(0,width/2-1)
-		var b = rng.randi_range(0,height/2-1)
-		var row 
-		match quarter:
-			1: row = nodes[a]
-			2: row = nodes_2[a]
-			3: row = nodes_3[a]
-			4: row = nodes_4[a]
-		var node = row[b]
-		if node.continent == null:
-			node.set_continent(i)
-			return node
-
+func color_nodes(mode):
+	emit_signal("node_action","change_color_mode",mode)
+	
 func _on_generate_button_pressed():
 	#clear_map()
 	if map_generated:
@@ -184,39 +140,18 @@ func _on_generate_button_pressed():
 		smooth_elevations_differences()
 		for i in range(3):
 			erosion()
+		color_nodes("sea")
 		for i in range(5):
 			water_erosion()
 		erosion()
+		set_sea_rainfall()
 		color_nodes("sea")
 		map_generated = true
 		emit_signal("map_generated")
 
-func _on_Continent_mode_button_pressed():
-	color_nodes("continent")
-
-func _on_Conflict_mode_button_pressed():
-	color_nodes("continentconflict")
+func _on_color_mode_button_pressed(mode):
+	color_nodes(mode)
 	
-func _on_Elevation_mode_button_pressed():
-	color_nodes("elevation")
-	
-func _on_Sea_mode_button_pressed():
-	color_nodes("sea")
-	
-func color_nodes(mode):
-	for row in nodes:
-		for node in row:
-			node.color_mode(mode)
-	for row in nodes_2:
-		for node in row:
-			node.color_mode(mode)
-	for row in nodes_3:
-		for node in row:
-			node.color_mode(mode)
-	for row in nodes_4:
-		for node in row:
-			node.color_mode(mode)
-
 func _on_smooth_button_pressed():
 	erosion()
 	color_nodes("elevation")
