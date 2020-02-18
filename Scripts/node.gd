@@ -52,16 +52,17 @@ func set_conflictzone():
 			set_conflict_type(node)
 
 func set_conflict_type(other_node):
-	var collission_dir = [(slide_direction+2)%8+1,(slide_direction+3)%8+1,(slide_direction+4)%8+1]
+	#var collission_dir = [(slide_direction+2)%8+1,(slide_direction+3)%8+1,(slide_direction+4)%8+1]
+	var collission_dir = [(slide_direction+3)%8+1]
 	var retreat_dir = [slide_direction,slide_direction%8+1]
 	if slide_direction == 1: retreat_dir.append(8)
 	else: retreat_dir.append(slide_direction-1)
 	if collission_dir.has(neighbours.find(other_node)):
-		elevation += 6
-		other_node.elevation += 6
+		elevation += 8
+		other_node.elevation += 8
 	if retreat_dir.has(neighbours.find(other_node)):
-		elevation -= 6
-		other_node.elevation -= 6
+		elevation -= 8
+		other_node.elevation -= 8
 
 func find_neighbours():
 	var nodes = get_parent().get_quarter(quarter)
@@ -226,7 +227,9 @@ func color_mode(mode):
 						10.0: set_self_modulate(Color("993404"))
 						11.0: set_self_modulate(Color("662506"))
 						12.0: set_self_modulate(Color("fff7fb"))		
-			elif ground_level >= -0.5:
-				set_self_modulate(Color("74a9cf"))
+			elif ground_level >= -1:
+				set_self_modulate(Color("6baed6"))
+			elif ground_level >= -2:
+				set_self_modulate(Color("3182bd"))
 			else:
-				set_self_modulate(Color("0570b0"))
+				set_self_modulate(Color("08519c"))

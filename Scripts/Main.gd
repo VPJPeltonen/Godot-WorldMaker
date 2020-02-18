@@ -7,7 +7,7 @@ func get_continent_amount():
 	return $UI_container/continents_box.value
 
 func get_sea_level():
-	return $UI_container/sea_level_box.value
+	return $UI_container/map_settings/sea_level_box.value
 
 func get_map_width():
 	return $Map.width

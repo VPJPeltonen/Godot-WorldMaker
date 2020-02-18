@@ -24,6 +24,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Node2D2" type="Node2D" parent="UI_container"]
+
 [node name="map_size_label" type="Label" parent="UI_container"]
 margin_right = 101.0
 margin_bottom = 14.0
@@ -83,58 +85,66 @@ margin_bottom = 156.0
 text = "Generate"
 script = ExtResource( 2 )
 
-[node name="smooth_button" type="Button" parent="UI_container"]
+[node name="HSeparator2" type="HSeparator" parent="UI_container"]
 margin_top = 160.0
 margin_right = 101.0
-margin_bottom = 180.0
-text = "Erosion"
+margin_bottom = 164.0
+
+[node name="map_settings" type="Node2D" parent="UI_container"]
+
+[node name="adjustment_label" type="Label" parent="UI_container/map_settings"]
+margin_top = 168.0
+margin_right = 101.0
+margin_bottom = 182.0
+text = "Adjust"
+
+[node name="smooth_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 186.0
+margin_right = 101.0
+margin_bottom = 206.0
+text = "Erode"
 script = ExtResource( 2 )
 
-[node name="smooth_ele_button" type="Button" parent="UI_container"]
-margin_top = 184.0
+[node name="smooth_ele_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 210.0
 margin_right = 101.0
-margin_bottom = 204.0
+margin_bottom = 230.0
 text = "Smooth"
 script = ExtResource( 2 )
 
-[node name="water_erosion_button" type="Button" parent="UI_container"]
-margin_top = 208.0
-margin_right = 101.0
-margin_bottom = 228.0
-text = "Water Erosion"
-script = ExtResource( 2 )
-
-[node name="HSeparator2" type="HSeparator" parent="UI_container"]
-margin_top = 232.0
-margin_right = 101.0
-margin_bottom = 236.0
-
-[node name="settings_label" type="Label" parent="UI_container"]
-margin_top = 240.0
+[node name="water_erosion_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 234.0
 margin_right = 101.0
 margin_bottom = 254.0
-text = "Settings"
+text = "Sea Erode"
+script = ExtResource( 2 )
 
-[node name="Sea_level_label" type="Label" parent="UI_container"]
+[node name="settings_label" type="Label" parent="UI_container/map_settings"]
 margin_top = 258.0
 margin_right = 101.0
 margin_bottom = 272.0
-text = "Sea Level"
+text = "Settings"
 
-[node name="sea_level_box" type="SpinBox" parent="UI_container"]
+[node name="Sea_level_label" type="Label" parent="UI_container/map_settings"]
 margin_top = 276.0
 margin_right = 101.0
-margin_bottom = 300.0
+margin_bottom = 290.0
+text = "Sea Level"
+
+[node name="sea_level_box" type="SpinBox" parent="UI_container/map_settings"]
+margin_top = 294.0
+margin_right = 101.0
+margin_bottom = 318.0
 min_value = 2.0
 value = 9.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="apply_settings_button" type="Button" parent="UI_container"]
-margin_top = 304.0
+[node name="apply_settings_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 322.0
 margin_right = 101.0
-margin_bottom = 324.0
+margin_bottom = 342.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Apply"
@@ -142,46 +152,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="UI_container"]
-margin_top = 328.0
-margin_right = 101.0
-margin_bottom = 332.0
-
-[node name="modes_label" type="Label" parent="UI_container"]
-margin_top = 336.0
+[node name="HSeparator" type="HSeparator" parent="UI_container/map_settings"]
+margin_top = 346.0
 margin_right = 101.0
 margin_bottom = 350.0
-text = "Map Modes"
 
-[node name="Continent_mode_button" type="Button" parent="UI_container"]
+[node name="modes_label" type="Label" parent="UI_container/map_settings"]
 margin_top = 354.0
 margin_right = 101.0
-margin_bottom = 374.0
+margin_bottom = 368.0
+text = "Map Modes"
+
+[node name="Continent_mode_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 372.0
+margin_right = 101.0
+margin_bottom = 392.0
 toggle_mode = true
 pressed = true
 group = ExtResource( 4 )
 text = "Continent"
 
-[node name="Conflict_mode_button" type="Button" parent="UI_container"]
-margin_top = 378.0
+[node name="Conflict_mode_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 396.0
 margin_right = 101.0
-margin_bottom = 398.0
+margin_bottom = 416.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Conflict"
 
-[node name="Elevation_mode_button" type="Button" parent="UI_container"]
-margin_top = 402.0
+[node name="Elevation_mode_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 420.0
 margin_right = 101.0
-margin_bottom = 422.0
+margin_bottom = 440.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Elevation"
 
-[node name="Sea_mode_button" type="Button" parent="UI_container"]
-margin_top = 426.0
+[node name="Sea_mode_button" type="Button" parent="UI_container/map_settings"]
+margin_top = 444.0
 margin_right = 101.0
-margin_bottom = 446.0
+margin_bottom = 464.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Sea"
@@ -265,12 +275,12 @@ text = "0"
 [connection signal="pressed" from="UI_container/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI_container/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
 [connection signal="pressed" from="UI_container/generate_button" to="Map" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI_container/smooth_button" to="Map" method="_on_smooth_button_pressed"]
-[connection signal="pressed" from="UI_container/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
-[connection signal="pressed" from="UI_container/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
-[connection signal="pressed" from="UI_container/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
-[connection signal="pressed" from="UI_container/Continent_mode_button" to="Map" method="_on_Continent_mode_button_pressed"]
-[connection signal="pressed" from="UI_container/Conflict_mode_button" to="Map" method="_on_Conflict_mode_button_pressed"]
-[connection signal="pressed" from="UI_container/Elevation_mode_button" to="Map" method="_on_Elevation_mode_button_pressed"]
-[connection signal="pressed" from="UI_container/Sea_mode_button" to="Map" method="_on_Sea_mode_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/smooth_button" to="Map" method="_on_smooth_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/Continent_mode_button" to="Map" method="_on_Continent_mode_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/Conflict_mode_button" to="Map" method="_on_Conflict_mode_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/Elevation_mode_button" to="Map" method="_on_Elevation_mode_button_pressed"]
+[connection signal="pressed" from="UI_container/map_settings/Sea_mode_button" to="Map" method="_on_Sea_mode_button_pressed"]
 [connection signal="node_info" from="cursor" to="Node_info" method="_on_cursor_node_info"]

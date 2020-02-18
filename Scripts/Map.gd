@@ -67,6 +67,8 @@ func make_continents():
 		for continent in continents_array:
 			if continent.spread():
 				spreading = true
+	for continent in continents_array:
+			continent.set_height()
 	for row in nodes:
 		for node in row:
 			node.set_conflictzone()
@@ -242,5 +244,3 @@ func _on_size_button_pressed(size):
 		"large":
 			width = 156
 			height = 112
-			
-
