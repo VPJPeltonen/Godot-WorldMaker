@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/generate_button.gd" type="Script" id=2]
@@ -6,6 +6,9 @@
 [ext_resource path="res://UI/map_mode_group.tres" type="ButtonGroup" id=4]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=5]
 [ext_resource path="res://UI/map_size_buttongroup.tres" type="ButtonGroup" id=6]
+[ext_resource path="res://Sprites/cursor.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/cursor.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Node_info.gd" type="Script" id=9]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
@@ -170,6 +173,81 @@ margin_bottom = 398.0
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Sea"
+
+[node name="cursor" type="Sprite" parent="."]
+modulate = Color( 1, 0, 0, 1 )
+position = Vector2( 346, 314 )
+texture = ExtResource( 7 )
+script = ExtResource( 8 )
+
+[node name="Camera2D" type="Camera2D" parent="cursor"]
+
+[node name="Node_info" type="VBoxContainer" parent="."]
+margin_left = 0.949982
+margin_top = 424.65
+margin_right = 63.95
+margin_bottom = 464.65
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="node_info_label" type="Label" parent="Node_info"]
+margin_right = 63.0
+margin_bottom = 14.0
+text = "Node Info"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="nodeheight" type="HBoxContainer" parent="Node_info"]
+margin_top = 18.0
+margin_right = 63.0
+margin_bottom = 32.0
+
+[node name="height_label" type="Label" parent="Node_info/nodeheight"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Height:"
+
+[node name="height_number" type="Label" parent="Node_info/nodeheight"]
+margin_left = 50.0
+margin_right = 58.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="nodeX" type="HBoxContainer" parent="Node_info"]
+margin_top = 36.0
+margin_right = 63.0
+margin_bottom = 50.0
+
+[node name="x_label" type="Label" parent="Node_info/nodeX"]
+margin_right = 12.0
+margin_bottom = 14.0
+text = "X:"
+
+[node name="x_number" type="Label" parent="Node_info/nodeX"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="nodeY" type="HBoxContainer" parent="Node_info"]
+margin_top = 54.0
+margin_right = 63.0
+margin_bottom = 68.0
+
+[node name="y_label" type="Label" parent="Node_info/nodeY"]
+margin_right = 11.0
+margin_bottom = 14.0
+text = "Y:"
+
+[node name="y_number" type="Label" parent="Node_info/nodeY"]
+margin_left = 15.0
+margin_right = 23.0
+margin_bottom = 14.0
+text = "0"
+[connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI_container/generate_button" method="_on_Map_map_generated"]
 [connection signal="pressed" from="UI_container/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI_container/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
@@ -181,3 +259,4 @@ text = "Sea"
 [connection signal="pressed" from="UI_container/Conflict_mode_button" to="Map" method="_on_Conflict_mode_button_pressed"]
 [connection signal="pressed" from="UI_container/Elevation_mode_button" to="Map" method="_on_Elevation_mode_button_pressed"]
 [connection signal="pressed" from="UI_container/Sea_mode_button" to="Map" method="_on_Sea_mode_button_pressed"]
+[connection signal="node_info" from="cursor" to="Node_info" method="_on_cursor_node_info"]

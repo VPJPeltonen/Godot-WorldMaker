@@ -32,6 +32,29 @@ func get_quarter(quarter):
 
 func get_sea_level():
 	return sea_level
+	
+func get_node_elevation(nodeX,nodeY):
+	if map_generated:
+		var quarter
+		if nodeX < width/2 and nodeY < height/2-1:
+			quarter = get_quarter(1)
+		elif nodeX >= width/2 and nodeY < height/2-1:
+			nodeX = nodeX - width/2
+			quarter = get_quarter(2)
+			
+		elif nodeX < width/2 and nodeY >= height/2-1:
+			nodeY = nodeY - (height/2)
+			quarter = get_quarter(3)
+			
+			
+		else:
+			nodeX = nodeX - width/2
+			nodeY = nodeY - height/2
+			quarter = get_quarter(4)
+		var row = quarter[nodeX]
+		return row[nodeY+1].ground_level
+	else:
+		return 0
 
 func make_continents():
 	continents = get_parent().get_continent_amount()
