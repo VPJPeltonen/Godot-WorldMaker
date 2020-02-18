@@ -10,7 +10,7 @@ func _process(delta):
 	if !map_generated:
 		hide()
 		return
-	position.x = get_viewport().get_mouse_position().x - fmod(get_viewport().get_mouse_position().x,8) + 4
+	position.x = get_viewport().get_mouse_position().x - fmod(get_viewport().get_mouse_position().x,8) 
 	position.y = get_viewport().get_mouse_position().y - fmod(get_viewport().get_mouse_position().y,8) + 4
 	var X = (position.x-100)/8
 	var Y = (position.y-4)/8

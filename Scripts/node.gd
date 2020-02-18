@@ -6,6 +6,7 @@ var conflictzone = false
 var conflict_type = "none"
 
 var rainfall = 0.0
+var wind_direction = 0
 
 var elevation = 0.0
 var ground_level = 0.0
@@ -27,15 +28,41 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	quarter = Quarter
 	elevation = new_elevation
 
+func set_wind():
+	var map_height = get_parent().height
+	if Y < map_height/4:
+		wind_direction = 2
+	elif Y < map_height/2:
+		wind_direction = 6
+	elif Y < map_height - map_height/4:
+		wind_direction = 8
+	else:
+		wind_direction = 4
+	set_wind_arrow()
+
+func set_wind_arrow():
+	$wind_arrow.set_direction(wind_direction)
+
 func set_ground_level():
 	sea_level = get_parent().get_sea_level()
 	ground_level = elevation-sea_level
 
-func set_rainfall():
+func set_sea_rainfall():
 	for node in neighbours:
 		if node.ground_level < 0:
 			rainfall += 1.0
 
+func set_mountain_rainfall():
+	var higher_neighbours = 0
+	for node in neighbours:
+		if node.elevation > elevation+0.5:
+			rainfall += 1
+
+func set_wind_rain(min_value,max_value):
+	if rainfall > min_value and rainfall < max_value:
+		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
+		wind_node.rainfall += rainfall/2
+	
 func erosion():
 	var average_elevation = 0
 	for node in neighbours:
@@ -268,11 +295,19 @@ func _on_node_action(action,data):
 			color_mode(data)
 		"set_conflictzone":
 			set_conflictzone()
-		"set_rainfall":
-			set_rainfall()
+		"set_mountain_rainfall":
+			set_mountain_rainfall()
+		"set_sea_rainfall":
+			set_sea_rainfall()
+		"set_wind_rainfall":
+			set_wind_rain(data[0],data[1])
+		"set_winds":
+			set_wind()
 		"water_erosion":
 			water_erosion()
 		"erosion":
 			erosion()
 		"smooth_elevation_differences":
 			smooth_elevation_differences(data[0],data[1])
+		"show_wind":
+			$wind_arrow.visible = !$wind_arrow.visible

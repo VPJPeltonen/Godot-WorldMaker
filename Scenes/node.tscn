@@ -1,10 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/node.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/node.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/arrow.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/wind_arrow.gd" type="Script" id=4]
+[ext_resource path="res://Sprites/arrow_diagonal.png" type="Texture" id=5]
 
 [node name="node" type="Sprite"]
-position = Vector2( 389, 249 )
-scale = Vector2( 8, 8 )
+scale = Vector2( 4, 4 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+
+[node name="wind_arrow" type="Sprite" parent="."]
+visible = false
+rotation = -6.28319
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 5 )
+script = ExtResource( 4 )
+arrow = ExtResource( 3 )
+diagonal_arrow = ExtResource( 5 )

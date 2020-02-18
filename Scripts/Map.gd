@@ -112,9 +112,18 @@ func make_nodes():
 	
 func smooth_elevations_differences():
 	for i in range(0,30):
-		var min_ele = 20-i-0.5
-		var max_ele = 20-i+0.5
+		var min_ele = 30-i-0.5
+		var max_ele = 30-i+0.5
 		emit_signal("node_action","smooth_elevation_differences",[min_ele,max_ele])
+
+func set_wind_rainfall():
+	for i in range(0,20):
+		var min_value = 20-i-0.5
+		var max_value = 20-i+0.5
+		emit_signal("node_action","set_wind_rainfall",[min_value,max_value])
+
+func set_winds():
+	emit_signal("node_action","set_winds","none")
 
 func erosion():
 	emit_signal("node_action","erosion","none")
@@ -123,7 +132,10 @@ func water_erosion():
 	emit_signal("node_action","water_erosion","none")
 
 func set_sea_rainfall():
-	emit_signal("node_action","set_rainfall","none")
+	emit_signal("node_action","set_sea_rainfall","none")
+
+func set_mountain_rainfall():
+	emit_signal("node_action","set_mountain_rainfall","none")
 
 func set_neighbours():
 	emit_signal("node_action","find_neighbours","none")
@@ -145,6 +157,9 @@ func _on_generate_button_pressed():
 			water_erosion()
 		erosion()
 		set_sea_rainfall()
+		set_mountain_rainfall()
+		set_winds()
+		set_wind_rainfall()
 		color_nodes("sea")
 		map_generated = true
 		emit_signal("map_generated")
@@ -179,3 +194,6 @@ func _on_size_button_pressed(size):
 		"large":
 			width = 156
 			height = 112
+
+func _on_Wind_mode_button_pressed():
+	emit_signal("node_action","show_wind","none")
