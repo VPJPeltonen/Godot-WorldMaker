@@ -63,6 +63,11 @@ func set_wind_rain(min_value,max_value):
 	if rainfall > min_value and rainfall < max_value:
 		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
 		wind_node.rainfall += rainfall/2
+
+func set_wind_temperature(min_value,max_value):
+	if temperature > min_value and temperature < max_value:
+		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
+		wind_node.temperature = (temperature+wind_node.temperature)/2
 	
 func erosion():
 	var average_elevation = 0
@@ -217,95 +222,12 @@ func set_continent(new_continent):
 
 func color_mode(mode):
 	match mode:
-		"continent":
-			match continent:
-				0: set_self_modulate(Color(0.94,0.1,1,1))
-				1: set_self_modulate(Color(0,1,1,1))
-				2: set_self_modulate(Color(0.65,0.16,0.16,1))
-				3: set_self_modulate(Color(0.86,0.08,0.24,1))
-				4: set_self_modulate(Color(0.55,0,0,1))
-				5: set_self_modulate(Color(1,0.84,0,1))
-				6: set_self_modulate(Color(1,1,0.94,1))
-				7: set_self_modulate(Color(1,0.1,0.94,1))
-				8: set_self_modulate(Color(0,0,1.94,1))
-				9: set_self_modulate(Color(0,1,1.94,1))
-				10: set_self_modulate(Color(0,1,0.94,1))
-				11: set_self_modulate(Color(0.25,1,1.94,1))
-				12: set_self_modulate(Color(0,1,0.25,1))
-		"continentconflict":
-			if conflictzone: set_self_modulate(Color(1,0.1,0.1,1))
-			else: set_self_modulate(Color(0.1,0.1,0.1,1))
-		"elevation":
-			match round(elevation):
-				0.0: set_self_modulate(Color("005a32"))
-				1.0: set_self_modulate(Color("238443"))
-				2.0: set_self_modulate(Color("41ab5d"))
-				3.0: set_self_modulate(Color("78c679"))
-				4.0: set_self_modulate(Color("addd8e"))
-				5.0: set_self_modulate(Color("d9f0a3"))
-				6.0: set_self_modulate(Color("f7fcb9"))
-				7.0: set_self_modulate(Color("ffffe5"))
-				8.0: set_self_modulate(Color("fff7bc"))
-				9.0: set_self_modulate(Color("fee391"))
-				10.0: set_self_modulate(Color("fec44f"))
-				11.0: set_self_modulate(Color("fe9929"))
-				12.0: set_self_modulate(Color("ec7014"))
-				13.0: set_self_modulate(Color("cc4c02"))		
-				14.0: set_self_modulate(Color("993404"))
-				15.0: set_self_modulate(Color("662506"))
-				16.0: set_self_modulate(Color("fff7fb"))		
-		"rainfall":
-			if ground_level < 0:
-				return
-			match round(rainfall):
-				0.0: set_self_modulate(Color("543005"))
-				1.0: set_self_modulate(Color("8c510a"))
-				2.0: set_self_modulate(Color("bf812d"))
-				3.0: set_self_modulate(Color("dfc27d"))
-				4.0: set_self_modulate(Color("f6e8c3"))
-				5.0: set_self_modulate(Color("f5f5f5"))
-				6.0: set_self_modulate(Color("c7eae5"))
-				7.0: set_self_modulate(Color("80cdc1"))
-				8.0: set_self_modulate(Color("35978f"))
-				9.0: set_self_modulate(Color("01665e"))
-				10.0: set_self_modulate(Color("003c30"))
-		"sea":
-			set_ground_level()
-			if ground_level >= 0:
-				if ground_level < 3:
-					if ground_level < 0.2: set_self_modulate(Color("005a32"))
-					elif ground_level < 0.4: set_self_modulate(Color("238443"))
-					elif ground_level < 0.6: set_self_modulate(Color("41ab5d"))
-					elif ground_level < 1.0: set_self_modulate(Color("78c679"))
-					elif ground_level < 1.5: set_self_modulate(Color("addd8e"))
-					elif ground_level < 2.2: set_self_modulate(Color("d9f0a3"))
-					else: set_self_modulate(Color("f7fcb9"))
-				else:
-					if ground_level > 12.0: set_self_modulate(Color("fff7fb"))
-					match round(ground_level): 
-						3.0: set_self_modulate(Color("ffffe5"))
-						4.0: set_self_modulate(Color("fff7bc"))
-						5.0: set_self_modulate(Color("fee391"))
-						6.0: set_self_modulate(Color("fec44f"))
-						7.0: set_self_modulate(Color("fe9929"))
-						8.0: set_self_modulate(Color("ec7014"))
-						9.0: set_self_modulate(Color("cc4c02"))		
-						10.0: set_self_modulate(Color("993404"))
-						11.0: set_self_modulate(Color("662506"))
-						12.0: set_self_modulate(Color("fff7fb"))		
-			elif ground_level >= -1: set_self_modulate(Color("6baed6"))
-			elif ground_level >= -2: set_self_modulate(Color("3182bd"))
-			else: set_self_modulate(Color("08519c"))
-		"temperature":
-			if ground_level < 0: return
-			if temperature <= 0.0: set_self_modulate(Color("4575b4"))
-			match round(temperature):
-				1.0: set_self_modulate(Color("91bfdb"))
-				2.0: set_self_modulate(Color("e0f3f8"))
-				3.0: set_self_modulate(Color("ffffbf"))
-				4.0: set_self_modulate(Color("fee090"))
-				5.0: set_self_modulate(Color("fc8d59"))
-				6.0: set_self_modulate(Color("d73027"))
+		"continent": $node_sprite.color_mode("continent",continent)
+		"continentconflict": $node_sprite.color_mode("continentconflict",conflictzone)
+		"elevation": $node_sprite.color_mode("elevation",elevation)	
+		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
+		"sea": $node_sprite.color_mode("sea",ground_level)
+		"temperature": $node_sprite.color_mode("temperature",temperature)
 
 func _on_node_action(action,data):
 	match action:
@@ -313,9 +235,11 @@ func _on_node_action(action,data):
 		"change_color_mode": color_mode(data)
 		"set_basic_temperature": set_basic_temperature()
 		"set_conflictzone": set_conflictzone()
+		"set_ground_level": set_ground_level()
 		"set_mountain_rainfall": set_mountain_rainfall()
 		"set_sea_rainfall": set_sea_rainfall()
 		"set_wind_rainfall": set_wind_rain(data[0],data[1])
+		"set_wind_temperature": set_wind_temperature(data[0],data[1])
 		"set_winds": set_wind()
 		"water_erosion": water_erosion()
 		"erosion": erosion()

@@ -121,7 +121,13 @@ func set_wind_rainfall():
 		var min_value = 20-i-0.5
 		var max_value = 20-i+0.5
 		emit_signal("node_action","set_wind_rainfall",[min_value,max_value])
-
+		
+func set_wind_temperature():
+	for i in range(0,7):
+		var min_value = 7-i-0.5
+		var max_value = 7-i+0.5
+		emit_signal("node_action","set_wind_temperature",[min_value,max_value])
+		
 func set_winds():
 	emit_signal("node_action","set_winds","none")
 
@@ -146,6 +152,9 @@ func set_neighbours():
 func color_nodes(mode):
 	emit_signal("node_action","change_color_mode",mode)
 
+func set_ground_level():
+	emit_signal("node_action", "set_ground_level","none")
+
 func make_geology():
 	smooth_elevations_differences()
 	for i in range(3):
@@ -154,6 +163,7 @@ func make_geology():
 	for i in range(5):
 		water_erosion()
 	erosion()
+	set_ground_level()
 
 func make_climate():
 	set_sea_rainfall()
@@ -161,6 +171,7 @@ func make_climate():
 	set_winds()
 	set_wind_rainfall()
 	set_temperatures()
+	set_wind_temperature()
 
 func _on_generate_button_pressed():
 	if map_generated:
@@ -191,6 +202,7 @@ func _on_water_erosion_button_pressed():
 	
 func _on_apply_settings_button_pressed():
 	sea_level = get_parent().get_sea_level()
+	set_ground_level()
 	color_nodes("sea")
 
 func _on_size_button_pressed(size):
