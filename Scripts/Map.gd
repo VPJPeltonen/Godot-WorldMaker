@@ -137,30 +137,40 @@ func set_sea_rainfall():
 func set_mountain_rainfall():
 	emit_signal("node_action","set_mountain_rainfall","none")
 
+func set_temperatures():
+	emit_signal("node_action","set_basic_temperature","none")
+
 func set_neighbours():
 	emit_signal("node_action","find_neighbours","none")
 
 func color_nodes(mode):
 	emit_signal("node_action","change_color_mode",mode)
-	
+
+func make_geology():
+	smooth_elevations_differences()
+	for i in range(3):
+		erosion()
+	color_nodes("sea")
+	for i in range(5):
+		water_erosion()
+	erosion()
+
+func make_climate():
+	set_sea_rainfall()
+	set_mountain_rainfall()
+	set_winds()
+	set_wind_rainfall()
+	set_temperatures()
+
 func _on_generate_button_pressed():
-	#clear_map()
 	if map_generated:
 		get_tree().reload_current_scene()
 	else:
 		make_nodes()
-		smooth_elevations_differences()
-		for i in range(3):
-			erosion()
+		make_geology()
+		make_climate()
 		color_nodes("sea")
-		for i in range(5):
-			water_erosion()
-		erosion()
-		set_sea_rainfall()
-		set_mountain_rainfall()
-		set_winds()
-		set_wind_rainfall()
-		color_nodes("sea")
+		get_parent().view_mode()
 		map_generated = true
 		emit_signal("map_generated")
 

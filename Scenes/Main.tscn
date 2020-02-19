@@ -24,14 +24,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Node2D2" type="Node2D" parent="UI_container"]
+[node name="generation_UI" type="VBoxContainer" parent="UI_container"]
+margin_right = 101.0
+margin_bottom = 132.0
 
-[node name="map_size_label" type="Label" parent="UI_container"]
+[node name="map_size_label" type="Label" parent="UI_container/generation_UI"]
 margin_right = 101.0
 margin_bottom = 14.0
 text = "Map Size"
 
-[node name="small_size_button" type="Button" parent="UI_container"]
+[node name="small_size_button" type="Button" parent="UI_container/generation_UI"]
 margin_top = 18.0
 margin_right = 101.0
 margin_bottom = 38.0
@@ -42,7 +44,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="medium_size_button" type="Button" parent="UI_container"]
+[node name="medium_size_button" type="Button" parent="UI_container/generation_UI"]
 margin_top = 42.0
 margin_right = 101.0
 margin_bottom = 62.0
@@ -54,7 +56,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="large_size_button" type="Button" parent="UI_container"]
+[node name="large_size_button" type="Button" parent="UI_container/generation_UI"]
 margin_top = 66.0
 margin_right = 101.0
 margin_bottom = 86.0
@@ -65,13 +67,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="continents_label" type="Label" parent="UI_container"]
+[node name="continents_label" type="Label" parent="UI_container/generation_UI"]
 margin_top = 90.0
 margin_right = 101.0
 margin_bottom = 104.0
 text = "Continents"
 
-[node name="continents_box" type="SpinBox" parent="UI_container"]
+[node name="continents_box" type="SpinBox" parent="UI_container/generation_UI"]
 margin_top = 108.0
 margin_right = 101.0
 margin_bottom = 132.0
@@ -93,7 +95,7 @@ margin_bottom = 164.0
 [node name="map_settings" type="VBoxContainer" parent="UI_container"]
 margin_top = 168.0
 margin_right = 101.0
-margin_bottom = 520.0
+margin_bottom = 544.0
 
 [node name="adjustment_label" type="Label" parent="UI_container/map_settings"]
 margin_right = 101.0
@@ -206,18 +208,26 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Rainfall"
 
-[node name="HSeparator2" type="HSeparator" parent="UI_container/map_settings"]
+[node name="Temperature_mode_button" type="Button" parent="UI_container/map_settings"]
 margin_top = 324.0
 margin_right = 101.0
-margin_bottom = 328.0
+margin_bottom = 344.0
+toggle_mode = true
+group = ExtResource( 4 )
+text = "Temperature"
+
+[node name="HSeparator2" type="HSeparator" parent="UI_container/map_settings"]
+margin_top = 348.0
+margin_right = 101.0
+margin_bottom = 352.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wind_mode_button" type="Button" parent="UI_container/map_settings"]
-margin_top = 332.0
+margin_top = 356.0
 margin_right = 101.0
-margin_bottom = 352.0
+margin_bottom = 376.0
 toggle_mode = true
 text = "Show Wind"
 __meta__ = {
@@ -299,9 +309,9 @@ margin_bottom = 14.0
 text = "0"
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI_container/generate_button" method="_on_Map_map_generated"]
-[connection signal="pressed" from="UI_container/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
-[connection signal="pressed" from="UI_container/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
-[connection signal="pressed" from="UI_container/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
+[connection signal="pressed" from="UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
+[connection signal="pressed" from="UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
+[connection signal="pressed" from="UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
 [connection signal="pressed" from="UI_container/generate_button" to="Map" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI_container/map_settings/smooth_button" to="Map" method="_on_smooth_button_pressed"]
 [connection signal="pressed" from="UI_container/map_settings/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
@@ -312,5 +322,6 @@ text = "0"
 [connection signal="pressed" from="UI_container/map_settings/Elevation_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "elevation" ]]
 [connection signal="pressed" from="UI_container/map_settings/Sea_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "sea" ]]
 [connection signal="pressed" from="UI_container/map_settings/Rainfall_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "rainfall" ]]
+[connection signal="pressed" from="UI_container/map_settings/Temperature_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "temperature" ]]
 [connection signal="pressed" from="UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="node_info" from="cursor" to="Node_info" method="_on_cursor_node_info"]
