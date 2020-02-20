@@ -1,0 +1,122 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Node_info.gd" type="Script" id=1]
+
+[node name="Node_info" type="VBoxContainer"]
+margin_left = 2.00259
+margin_top = 526.755
+margin_right = 65.0026
+margin_bottom = 594.755
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="node_info_label" type="Label" parent="."]
+margin_right = 98.0
+margin_bottom = 14.0
+text = "Node Info"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 18.0
+margin_right = 98.0
+margin_bottom = 22.0
+
+[node name="climate_label" type="Label" parent="."]
+margin_top = 26.0
+margin_right = 98.0
+margin_bottom = 40.0
+text = "Climate:"
+align = 1
+
+[node name="climate_text" type="Label" parent="."]
+margin_top = 44.0
+margin_right = 98.0
+margin_bottom = 58.0
+text = "asd"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+margin_top = 62.0
+margin_right = 98.0
+margin_bottom = 66.0
+
+[node name="nodeheight" type="HBoxContainer" parent="."]
+margin_top = 70.0
+margin_right = 98.0
+margin_bottom = 84.0
+
+[node name="height_label" type="Label" parent="nodeheight"]
+margin_right = 46.0
+margin_bottom = 14.0
+text = "Height:"
+
+[node name="height_number" type="Label" parent="nodeheight"]
+margin_left = 50.0
+margin_right = 58.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="nodetemperature" type="HBoxContainer" parent="."]
+margin_top = 88.0
+margin_right = 98.0
+margin_bottom = 102.0
+
+[node name="temperature_label" type="Label" parent="nodetemperature"]
+margin_right = 86.0
+margin_bottom = 14.0
+text = "Temperature:"
+
+[node name="temperature_number" type="Label" parent="nodetemperature"]
+margin_left = 90.0
+margin_right = 98.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="noderainfall" type="HBoxContainer" parent="."]
+margin_top = 106.0
+margin_right = 98.0
+margin_bottom = 120.0
+
+[node name="rainfall_label" type="Label" parent="noderainfall"]
+margin_right = 50.0
+margin_bottom = 14.0
+text = "Rainfall:"
+
+[node name="rainfall_number" type="Label" parent="noderainfall"]
+margin_left = 54.0
+margin_right = 62.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="nodeXY" type="HBoxContainer" parent="."]
+margin_top = 124.0
+margin_right = 98.0
+margin_bottom = 138.0
+
+[node name="x_label" type="Label" parent="nodeXY"]
+margin_right = 12.0
+margin_bottom = 14.0
+text = "X:"
+
+[node name="x_number" type="Label" parent="nodeXY"]
+margin_left = 16.0
+margin_right = 24.0
+margin_bottom = 14.0
+text = "0"
+
+[node name="y_label" type="Label" parent="nodeXY"]
+margin_left = 28.0
+margin_right = 39.0
+margin_bottom = 14.0
+text = "Y:"
+
+[node name="y_number" type="Label" parent="nodeXY"]
+margin_left = 43.0
+margin_right = 51.0
+margin_bottom = 14.0
+text = "0"

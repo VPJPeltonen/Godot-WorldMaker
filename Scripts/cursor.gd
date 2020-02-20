@@ -16,8 +16,8 @@ func _process(delta):
 	var Y = (position.y-4)/8
 	if position.x > 96 and position.x < map_width and position.y < map_height:
 		show()
-		var elevation = get_parent().get_node_elevation(X,Y)
-		emit_signal("node_info", elevation, X, Y)
+		var info = get_parent().get_node_info(X,Y)
+		emit_signal("node_info", info, X, Y)
 	else:
 		hide()
 		

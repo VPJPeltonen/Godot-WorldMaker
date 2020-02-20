@@ -34,7 +34,7 @@ func get_quarter(quarter):
 func get_sea_level():
 	return sea_level
 	
-func get_node_elevation(nodeX,nodeY):
+func get_node_info(nodeX,nodeY):
 	if map_generated:
 		var quarter
 		if nodeX < width/2 and nodeY < height/2-1:
@@ -50,7 +50,7 @@ func get_node_elevation(nodeX,nodeY):
 			nodeY = nodeY - height/2
 			quarter = get_quarter(4)
 		var row = quarter[nodeX]
-		return row[nodeY+1].ground_level
+		return row[nodeY+1].get_info()
 	else:
 		return 0
 		
@@ -155,6 +155,9 @@ func color_nodes(mode):
 func set_ground_level():
 	emit_signal("node_action", "set_ground_level","none")
 
+func set_climate():
+	emit_signal("node_action", "set_climate", "none")
+
 func make_geology():
 	smooth_elevations_differences()
 	for i in range(3):
@@ -172,6 +175,7 @@ func make_climate():
 	set_wind_rainfall()
 	set_temperatures()
 	set_wind_temperature()
+	set_climate()
 
 func _on_generate_button_pressed():
 	if map_generated:

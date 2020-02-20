@@ -8,7 +8,7 @@
 [ext_resource path="res://UI/map_size_buttongroup.tres" type="ButtonGroup" id=6]
 [ext_resource path="res://Sprites/cursor.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/cursor.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Node_info.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/Node_info.tscn" type="PackedScene" id=9]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
@@ -95,7 +95,7 @@ margin_bottom = 164.0
 [node name="map_settings" type="VBoxContainer" parent="UI_container"]
 margin_top = 168.0
 margin_right = 101.0
-margin_bottom = 544.0
+margin_bottom = 568.0
 
 [node name="adjustment_label" type="Label" parent="UI_container/map_settings"]
 margin_right = 101.0
@@ -216,18 +216,26 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Temperature"
 
-[node name="HSeparator2" type="HSeparator" parent="UI_container/map_settings"]
+[node name="Climate_mode_button" type="Button" parent="UI_container/map_settings"]
 margin_top = 348.0
 margin_right = 101.0
-margin_bottom = 352.0
+margin_bottom = 368.0
+toggle_mode = true
+group = ExtResource( 4 )
+text = "Climate"
+
+[node name="HSeparator2" type="HSeparator" parent="UI_container/map_settings"]
+margin_top = 372.0
+margin_right = 101.0
+margin_bottom = 376.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wind_mode_button" type="Button" parent="UI_container/map_settings"]
-margin_top = 356.0
+margin_top = 380.0
 margin_right = 101.0
-margin_bottom = 376.0
+margin_bottom = 400.0
 toggle_mode = true
 text = "Show Wind"
 __meta__ = {
@@ -242,71 +250,11 @@ script = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="cursor"]
 
-[node name="Node_info" type="VBoxContainer" parent="."]
-margin_left = 2.00259
-margin_top = 526.755
-margin_right = 65.0026
-margin_bottom = 594.755
-script = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="node_info_label" type="Label" parent="Node_info"]
-margin_right = 63.0
-margin_bottom = 14.0
-text = "Node Info"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="nodeheight" type="HBoxContainer" parent="Node_info"]
-margin_top = 18.0
-margin_right = 63.0
-margin_bottom = 32.0
-
-[node name="height_label" type="Label" parent="Node_info/nodeheight"]
-margin_right = 46.0
-margin_bottom = 14.0
-text = "Height:"
-
-[node name="height_number" type="Label" parent="Node_info/nodeheight"]
-margin_left = 50.0
-margin_right = 58.0
-margin_bottom = 14.0
-text = "0"
-
-[node name="nodeX" type="HBoxContainer" parent="Node_info"]
-margin_top = 36.0
-margin_right = 63.0
-margin_bottom = 50.0
-
-[node name="x_label" type="Label" parent="Node_info/nodeX"]
-margin_right = 12.0
-margin_bottom = 14.0
-text = "X:"
-
-[node name="x_number" type="Label" parent="Node_info/nodeX"]
-margin_left = 16.0
-margin_right = 24.0
-margin_bottom = 14.0
-text = "0"
-
-[node name="nodeY" type="HBoxContainer" parent="Node_info"]
-margin_top = 54.0
-margin_right = 63.0
-margin_bottom = 68.0
-
-[node name="y_label" type="Label" parent="Node_info/nodeY"]
-margin_right = 11.0
-margin_bottom = 14.0
-text = "Y:"
-
-[node name="y_number" type="Label" parent="Node_info/nodeY"]
-margin_left = 15.0
-margin_right = 23.0
-margin_bottom = 14.0
-text = "0"
+[node name="Node_info" parent="." instance=ExtResource( 9 )]
+margin_left = 1.37234
+margin_top = 459.949
+margin_right = 99.3723
+margin_bottom = 597.949
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI_container/generate_button" method="_on_Map_map_generated"]
 [connection signal="pressed" from="UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
@@ -323,5 +271,6 @@ text = "0"
 [connection signal="pressed" from="UI_container/map_settings/Sea_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "sea" ]]
 [connection signal="pressed" from="UI_container/map_settings/Rainfall_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "rainfall" ]]
 [connection signal="pressed" from="UI_container/map_settings/Temperature_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "temperature" ]]
+[connection signal="pressed" from="UI_container/map_settings/Climate_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "climate" ]]
 [connection signal="pressed" from="UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="node_info" from="cursor" to="Node_info" method="_on_cursor_node_info"]

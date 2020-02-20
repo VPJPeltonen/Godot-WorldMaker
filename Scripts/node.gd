@@ -3,15 +3,14 @@ extends Sprite
 var continent
 var slide_direction = 0
 var conflictzone = false
-var conflict_type = "none"
 
 var rainfall = 0.0
 var wind_direction = 0
 var temperature = 0
-
 var elevation = 0.0
 var ground_level = 0.0
 var sea_level = 0.0
+var climate = ""
 
 var X
 var Y
@@ -21,6 +20,16 @@ var neighbours_directions = []
 
 func get_neighbours():
 	return neighbours
+
+func get_info():
+	var dict = {
+		"ground_level":ground_level,
+		"rainfall":rainfall,
+		"wind_direction":wind_direction,
+		"temperature":temperature,
+		"climate":climate
+	}
+	return dict
 
 func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	position = Vector2(x_pos*node_scale,y_pos*node_scale)
@@ -47,6 +56,8 @@ func set_wind_arrow():
 func set_ground_level():
 	sea_level = get_parent().get_sea_level()
 	ground_level = elevation-sea_level
+
+
 
 func set_sea_rainfall():
 	for node in neighbours:
@@ -130,7 +141,73 @@ func set_conflict_type(other_node):
 	if retreat_dir.has(neighbours.find(other_node)):
 		elevation -= 8
 		other_node.elevation -= 8
-
+		
+func set_climate():
+	if temperature == 0:
+		if rainfall <= 0: climate = "Polar Desert"
+		elif rainfall <= 1: climate = "Polar Desert"
+		elif rainfall <= 2: climate = "Polar Desert"
+		elif rainfall <= 3: climate = "Ice Cap"
+		elif rainfall <= 4: climate = "Ice Cap"
+		elif rainfall <= 5: climate = "Ice Cap"
+		elif rainfall <= 6: climate = "Ice Cap"	
+		else: climate = "Ice Cap"
+	elif temperature <= 1:
+		if rainfall <= 0: climate = "Polar Desert"
+		elif rainfall <= 1: climate = "Polar Desert"
+		elif rainfall <= 2: climate = "Polar Desert"
+		elif rainfall <= 3: climate = "Tundra"
+		elif rainfall <= 4: climate = "Tundra"
+		elif rainfall <= 5: climate = "Wet Tundra"
+		elif rainfall <= 6: climate = "Wet Tundra"	
+		else: climate = "Polar Wetlands"
+	elif temperature <= 2:
+		if rainfall <= 0: climate = "Cool Desert"
+		elif rainfall <= 1: climate = "Cool Desert"
+		elif rainfall <= 2: climate = "Steppe"
+		elif rainfall <= 3: climate = "Boreal Forest"
+		elif rainfall <= 4: climate = "Boreal Forest"
+		elif rainfall <= 5: climate = "Boreal Forest"
+		elif rainfall <= 6: climate = "Boreal Forest"	
+		else: climate = "Polar Wetlands"	
+	elif temperature <= 3:
+		if rainfall <= 0: climate = "Cool Desert"
+		elif rainfall <= 1: climate = "Cool Desert"
+		elif rainfall <= 2: climate = "Steppe"
+		elif rainfall <= 3: climate = "Temperate Woodlands"
+		elif rainfall <= 4: climate = "Temperate Woodlands"
+		elif rainfall <= 5: climate = "Temperate Forest"
+		elif rainfall <= 6: climate = "Temperate Wet Forest"
+		else: climate = "Temperate Wetlands"
+	elif temperature <= 4:
+		if rainfall <= 0: climate = "Extreme Desert"
+		elif rainfall <= 1: climate = "Desert"
+		elif rainfall <= 2: climate = "Subtropical Scrub"
+		elif rainfall <= 3: climate = "Subtropical Woodlands"
+		elif rainfall <= 4: climate = "Mediterranean"
+		elif rainfall <= 5: climate = "Temperate Forest"
+		elif rainfall <= 6: climate = "Temperate Wet Forest"
+		else: climate = "Temperate Wetlands"
+	elif temperature <= 5:
+		if rainfall <= 0: climate = "Extreme Desert"
+		elif rainfall <= 1: climate = "Desert"
+		elif rainfall <= 2: climate = "Subtropical Scrub"
+		elif rainfall <= 3: climate = "Subtropical Woodlands"
+		elif rainfall <= 4: climate = "Subtropical Dry Forest"
+		elif rainfall <= 5: climate = "Subtropical Forest"
+		elif rainfall <= 6: climate = "Subtropical Wet Forest"	
+		else: climate = "Subtropical Wetlands"
+	else:
+		if rainfall <= 0: climate = "Extreme Desert"
+		elif rainfall <= 1: climate = "Desert"
+		elif rainfall <= 2: climate = "Tropical Scrub"
+		elif rainfall <= 3: climate = "Tropical Woodlands"
+		elif rainfall <= 4: climate = "Tropical Dry Forest"
+		elif rainfall <= 5: climate = "Tropical Wet Forest"
+		elif rainfall <= 6: climate = "Tropical Wet Forest"	
+		else: climate = "Tropical Wetlands"
+		
+					
 func find_neighbours():
 	var nodes = get_parent().get_quarter(quarter)
 	var quarterX = fmod(X,get_parent().width/2)
@@ -228,12 +305,14 @@ func color_mode(mode):
 		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
 		"sea": $node_sprite.color_mode("sea",ground_level)
 		"temperature": $node_sprite.color_mode("temperature",temperature)
-
+		"climate": $node_sprite.color_mode("climate",climate)
+		
 func _on_node_action(action,data):
 	match action:
 		"find_neighbours": find_neighbours()
 		"change_color_mode": color_mode(data)
 		"set_basic_temperature": set_basic_temperature()
+		"set_climate": set_climate()
 		"set_conflictzone": set_conflictzone()
 		"set_ground_level": set_ground_level()
 		"set_mountain_rainfall": set_mountain_rainfall()

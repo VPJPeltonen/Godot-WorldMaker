@@ -19,6 +19,10 @@ config/name="World Maker"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[memory]
+
+limits/message_queue/max_size_kb=2048
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
