@@ -251,12 +251,14 @@ script = ExtResource( 8 )
 [node name="Camera2D" type="Camera2D" parent="cursor"]
 
 [node name="Node_info" parent="." instance=ExtResource( 9 )]
+visible = false
 margin_left = 1.37234
 margin_top = 459.949
 margin_right = 99.3723
 margin_bottom = 597.949
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI_container/generate_button" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="Node_info" method="_on_Map_map_generated"]
 [connection signal="pressed" from="UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]

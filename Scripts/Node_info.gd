@@ -8,3 +8,7 @@ func _on_cursor_node_info(info, X, Y):
 	$noderainfall/rainfall_number.text = str(stepify(info["rainfall"],0.1))
 	$nodeXY/x_number.text = str(X)
 	$nodeXY/y_number.text = str(Y)
+
+
+func _on_Map_map_generated():
+	show()

@@ -57,8 +57,6 @@ func set_ground_level():
 	sea_level = get_parent().get_sea_level()
 	ground_level = elevation-sea_level
 
-
-
 func set_sea_rainfall():
 	for node in neighbours:
 		if node.ground_level < 0:
@@ -301,11 +299,39 @@ func color_mode(mode):
 	match mode:
 		"continent": $node_sprite.color_mode("continent",continent)
 		"continentconflict": $node_sprite.color_mode("continentconflict",conflictzone)
-		"elevation": $node_sprite.color_mode("elevation",elevation)	
+		"elevation": 
+			set_z(ground_level)
+			$node_sprite.color_mode("elevation",elevation)	
 		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
-		"sea": $node_sprite.color_mode("sea",ground_level)
+		"sea": 
+			set_z(ground_level)
+			$node_sprite.color_mode("sea",ground_level)
 		"temperature": $node_sprite.color_mode("temperature",temperature)
-		"climate": $node_sprite.color_mode("climate",climate)
+		"climate": 
+			set_z(ground_level)
+			$node_sprite.color_mode("climate",climate)
+
+func set_z(value):
+	if ground_level < 0: return
+	var modifier
+	if value >= 0:
+		if value < 3:
+			if value < 0.2: modifier = 2.0
+			elif value < 0.4: modifier = 4.0
+			elif value < 0.6: modifier = 6.0
+			elif value < 1.0: modifier = 8.0
+			elif value < 1.5: modifier = 10.0
+			elif value < 2.2: modifier = 12.0
+			else: modifier = 14.0
+		else:
+			if value > 12.0: modifier = 32.0
+			else: modifier = value*2+8
+	elif value >= -1: modifier = 0.0
+	elif value >= -2: modifier = -2.0
+	else: modifier = -4.0
+	var alpha = 1-max(((modifier*2)/100)+0.4,0)
+	z_index = modifier
+	$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
 		
 func _on_node_action(action,data):
 	match action:

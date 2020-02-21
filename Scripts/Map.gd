@@ -53,22 +53,6 @@ func get_node_info(nodeX,nodeY):
 		return row[nodeY+1].get_info()
 	else:
 		return 0
-		
-func find_empty(i):
-	while true:
-		var quarter = rng.randi_range(1,4)
-		var a = rng.randi_range(0,width/2-1)
-		var b = rng.randi_range(0,height/2-1)
-		var row 
-		match quarter:
-			1: row = nodes[a]
-			2: row = nodes_2[a]
-			3: row = nodes_3[a]
-			4: row = nodes_4[a]
-		var node = row[b]
-		if node.continent == null:
-			node.set_continent(i)
-			return node
 			
 func make_quarter(imod,jmod,quarter):
 	var quarter_nodes = []
@@ -83,6 +67,14 @@ func make_quarter(imod,jmod,quarter):
 			slice.append(new_node)
 		quarter_nodes.append(slice)
 	return quarter_nodes
+	
+func make_nodes():
+	nodes = make_quarter(0,0,1)
+	nodes_2 = make_quarter((width/2),0,2)
+	nodes_3 = make_quarter(0,(height/2),3)
+	nodes_4 = make_quarter((width/2),(height/2),4)
+	set_neighbours()
+	make_continents()	
 				
 func make_continents():
 	continents = get_parent().get_continent_amount()
@@ -101,15 +93,24 @@ func make_continents():
 	for continent in continents_array:
 			continent.set_height()
 	emit_signal("node_action","set_conflictzone","none")
-
-func make_nodes():
-	nodes = make_quarter(0,0,1)
-	nodes_2 = make_quarter((width/2),0,2)
-	nodes_3 = make_quarter(0,(height/2),3)
-	nodes_4 = make_quarter((width/2),(height/2),4)
-	set_neighbours()
-	make_continents()
 	
+func find_empty(i):
+	while true:
+		var quarter = rng.randi_range(1,4)
+		var a = rng.randi_range(0,width/2-1)
+		var b = rng.randi_range(0,height/2-1)
+		var row 
+		match quarter:
+			1: row = nodes[a]
+			2: row = nodes_2[a]
+			3: row = nodes_3[a]
+			4: row = nodes_4[a]
+		var node = row[b]
+		if node.continent == null:
+			node.set_continent(i)
+			return node
+			
+
 func smooth_elevations_differences():
 	for i in range(0,30):
 		var min_ele = 30-i-0.5
@@ -162,7 +163,7 @@ func make_geology():
 	smooth_elevations_differences()
 	for i in range(3):
 		erosion()
-	color_nodes("sea")
+	#color_nodes("sea")
 	for i in range(5):
 		water_erosion()
 	erosion()
