@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/exporter.gd" type="Script" id=1]
+
+[node name="saveUI" type="Node2D"]
+
+[node name="exporter" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="warning" type="AcceptDialog" parent="exporter"]
+margin_left = 384.488
+margin_top = 233.796
+margin_right = 610.488
+margin_bottom = 291.796
+dialog_text = "You need to give the maps name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save_box" type="VBoxContainer" parent="exporter"]
+margin_left = 937.3
+margin_top = 6.22452
+margin_right = 1020.3
+margin_bottom = 72.2245
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="save_name_label" type="Label" parent="exporter/save_box"]
+margin_right = 83.0
+margin_bottom = 14.0
+text = "Map Name"
+
+[node name="map_name_input" type="LineEdit" parent="exporter/save_box"]
+margin_top = 18.0
+margin_right = 83.0
+margin_bottom = 42.0
+caret_blink = true
+caret_blink_speed = 0.5
+
+[node name="save_button" type="Button" parent="exporter/save_box"]
+margin_top = 46.0
+margin_right = 83.0
+margin_bottom = 66.0
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="exporter/save_box/save_button" to="exporter" method="_on_save_button_pressed"]
