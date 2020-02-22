@@ -50,7 +50,10 @@ func get_node_info(nodeX,nodeY):
 			nodeY = nodeY - height/2
 			quarter = get_quarter(4)
 		var row = quarter[nodeX]
-		return row[nodeY+1].get_info()
+		if nodeY+1 < row.size():
+			return row[nodeY+1].get_info()
+		else:
+			return 0
 	else:
 		return 0
 			

@@ -1,6 +1,6 @@
 extends Camera2D
 
-var scroll_speed = 5
+var scroll_speed = 25
 
 func _process(delta):
 	if get_viewport().get_mouse_position().x >= get_viewport().size.x-25:

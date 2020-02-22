@@ -10,11 +10,11 @@ func _process(delta):
 	if !map_generated:
 		hide()
 		return
-	position.x = get_viewport().get_mouse_position().x - fmod(get_viewport().get_mouse_position().x,8) 
-	position.y = get_viewport().get_mouse_position().y - fmod(get_viewport().get_mouse_position().y,8) + 4
-	var X = (position.x-100)/8
+	position.x = get_global_mouse_position().x - fmod(get_global_mouse_position().x,8)
+	position.y = get_global_mouse_position().y - fmod(get_global_mouse_position().y,8) + 4
+	var X = (position.x-104)/8
 	var Y = (position.y-4)/8
-	if position.x > 96 and position.x < map_width and position.y < map_height:
+	if position.x > 96 and global_position.x < map_width+1 and global_position.y < map_height-2 and global_position.y > 0:
 		show()
 		var info = get_parent().get_node_info(X,Y)
 		emit_signal("node_info", info, X, Y)
