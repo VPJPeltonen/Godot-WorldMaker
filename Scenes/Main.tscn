@@ -10,32 +10,35 @@
 [ext_resource path="res://Scripts/cursor.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Node_info.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/saveUI.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scripts/saveUI.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/camera_controller.gd" type="Script" id=11]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="Map" parent="." instance=ExtResource( 1 )]
-position = Vector2( 104, 4 )
-continent = ExtResource( 3 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 513.195, 300.919 )
+current = true
+script = ExtResource( 11 )
 
-[node name="UI_container" type="VBoxContainer" parent="."]
-margin_right = 101.0
-margin_bottom = 446.0
+[node name="UI_container" type="VBoxContainer" parent="Camera2D"]
+margin_left = -513.195
+margin_top = -300.919
+margin_right = -412.195
+margin_bottom = 267.081
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="generation_UI" type="VBoxContainer" parent="UI_container"]
+[node name="generation_UI" type="VBoxContainer" parent="Camera2D/UI_container"]
 margin_right = 101.0
 margin_bottom = 132.0
 
-[node name="map_size_label" type="Label" parent="UI_container/generation_UI"]
+[node name="map_size_label" type="Label" parent="Camera2D/UI_container/generation_UI"]
 margin_right = 101.0
 margin_bottom = 14.0
 text = "Map Size"
 
-[node name="small_size_button" type="Button" parent="UI_container/generation_UI"]
+[node name="small_size_button" type="Button" parent="Camera2D/UI_container/generation_UI"]
 margin_top = 18.0
 margin_right = 101.0
 margin_bottom = 38.0
@@ -46,7 +49,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="medium_size_button" type="Button" parent="UI_container/generation_UI"]
+[node name="medium_size_button" type="Button" parent="Camera2D/UI_container/generation_UI"]
 margin_top = 42.0
 margin_right = 101.0
 margin_bottom = 62.0
@@ -58,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="large_size_button" type="Button" parent="UI_container/generation_UI"]
+[node name="large_size_button" type="Button" parent="Camera2D/UI_container/generation_UI"]
 margin_top = 66.0
 margin_right = 101.0
 margin_bottom = 86.0
@@ -69,75 +72,75 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="continents_label" type="Label" parent="UI_container/generation_UI"]
+[node name="continents_label" type="Label" parent="Camera2D/UI_container/generation_UI"]
 margin_top = 90.0
 margin_right = 101.0
 margin_bottom = 104.0
 text = "Continents"
 
-[node name="continents_box" type="SpinBox" parent="UI_container/generation_UI"]
+[node name="continents_box" type="SpinBox" parent="Camera2D/UI_container/generation_UI"]
 margin_top = 108.0
 margin_right = 101.0
 margin_bottom = 132.0
 min_value = 2.0
 value = 12.0
 
-[node name="generate_button" type="Button" parent="UI_container"]
+[node name="generate_button" type="Button" parent="Camera2D/UI_container"]
 margin_top = 136.0
 margin_right = 101.0
 margin_bottom = 156.0
 text = "Generate"
 script = ExtResource( 2 )
 
-[node name="HSeparator2" type="HSeparator" parent="UI_container"]
+[node name="HSeparator2" type="HSeparator" parent="Camera2D/UI_container"]
 margin_top = 160.0
 margin_right = 101.0
 margin_bottom = 164.0
 
-[node name="map_settings" type="VBoxContainer" parent="UI_container"]
+[node name="map_settings" type="VBoxContainer" parent="Camera2D/UI_container"]
 margin_top = 168.0
 margin_right = 101.0
 margin_bottom = 568.0
 
-[node name="adjustment_label" type="Label" parent="UI_container/map_settings"]
+[node name="adjustment_label" type="Label" parent="Camera2D/UI_container/map_settings"]
 margin_right = 101.0
 margin_bottom = 14.0
 text = "Adjust"
 
-[node name="smooth_button" type="Button" parent="UI_container/map_settings"]
+[node name="smooth_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 18.0
 margin_right = 101.0
 margin_bottom = 38.0
 text = "Erode"
 script = ExtResource( 2 )
 
-[node name="smooth_ele_button" type="Button" parent="UI_container/map_settings"]
+[node name="smooth_ele_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 42.0
 margin_right = 101.0
 margin_bottom = 62.0
 text = "Smooth"
 script = ExtResource( 2 )
 
-[node name="water_erosion_button" type="Button" parent="UI_container/map_settings"]
+[node name="water_erosion_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 66.0
 margin_right = 101.0
 margin_bottom = 86.0
 text = "Sea Erode"
 script = ExtResource( 2 )
 
-[node name="settings_label" type="Label" parent="UI_container/map_settings"]
+[node name="settings_label" type="Label" parent="Camera2D/UI_container/map_settings"]
 margin_top = 90.0
 margin_right = 101.0
 margin_bottom = 104.0
 text = "Settings"
 
-[node name="Sea_level_label" type="Label" parent="UI_container/map_settings"]
+[node name="Sea_level_label" type="Label" parent="Camera2D/UI_container/map_settings"]
 margin_top = 108.0
 margin_right = 101.0
 margin_bottom = 122.0
 text = "Sea Level"
 
-[node name="sea_level_box" type="SpinBox" parent="UI_container/map_settings"]
+[node name="sea_level_box" type="SpinBox" parent="Camera2D/UI_container/map_settings"]
 margin_top = 126.0
 margin_right = 101.0
 margin_bottom = 150.0
@@ -147,7 +150,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="apply_settings_button" type="Button" parent="UI_container/map_settings"]
+[node name="apply_settings_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 154.0
 margin_right = 101.0
 margin_bottom = 174.0
@@ -158,18 +161,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="UI_container/map_settings"]
+[node name="HSeparator" type="HSeparator" parent="Camera2D/UI_container/map_settings"]
 margin_top = 178.0
 margin_right = 101.0
 margin_bottom = 182.0
 
-[node name="modes_label" type="Label" parent="UI_container/map_settings"]
+[node name="modes_label" type="Label" parent="Camera2D/UI_container/map_settings"]
 margin_top = 186.0
 margin_right = 101.0
 margin_bottom = 200.0
 text = "Map Modes"
 
-[node name="Continent_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Continent_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 204.0
 margin_right = 101.0
 margin_bottom = 224.0
@@ -178,7 +181,7 @@ pressed = true
 group = ExtResource( 4 )
 text = "Continent"
 
-[node name="Conflict_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Conflict_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 228.0
 margin_right = 101.0
 margin_bottom = 248.0
@@ -186,7 +189,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Conflict"
 
-[node name="Elevation_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Elevation_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 252.0
 margin_right = 101.0
 margin_bottom = 272.0
@@ -194,7 +197,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Elevation"
 
-[node name="Sea_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Sea_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 276.0
 margin_right = 101.0
 margin_bottom = 296.0
@@ -202,7 +205,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Sea"
 
-[node name="Rainfall_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Rainfall_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 300.0
 margin_right = 101.0
 margin_bottom = 320.0
@@ -210,7 +213,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Rainfall"
 
-[node name="Temperature_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Temperature_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 324.0
 margin_right = 101.0
 margin_bottom = 344.0
@@ -218,7 +221,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Temperature"
 
-[node name="Climate_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Climate_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 348.0
 margin_right = 101.0
 margin_bottom = 368.0
@@ -226,7 +229,7 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Climate"
 
-[node name="HSeparator2" type="HSeparator" parent="UI_container/map_settings"]
+[node name="HSeparator2" type="HSeparator" parent="Camera2D/UI_container/map_settings"]
 margin_top = 372.0
 margin_right = 101.0
 margin_bottom = 376.0
@@ -234,7 +237,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wind_mode_button" type="Button" parent="UI_container/map_settings"]
+[node name="Wind_mode_button" type="Button" parent="Camera2D/UI_container/map_settings"]
 margin_top = 380.0
 margin_right = 101.0
 margin_bottom = 400.0
@@ -244,41 +247,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Node_info" parent="Camera2D" instance=ExtResource( 9 )]
+visible = false
+margin_left = -511.823
+margin_top = 159.03
+margin_right = -413.823
+margin_bottom = 297.03
+
+[node name="saveUI" parent="Camera2D" instance=ExtResource( 10 )]
+visible = false
+position = Vector2( -512.087, -305.351 )
+
+[node name="Map" parent="." instance=ExtResource( 1 )]
+position = Vector2( 104, 4 )
+continent = ExtResource( 3 )
+
 [node name="cursor" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 346, 314 )
+z_index = 50
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="cursor"]
-
-[node name="Node_info" parent="." instance=ExtResource( 9 )]
-visible = false
-margin_left = 1.37234
-margin_top = 459.949
-margin_right = 99.3723
-margin_bottom = 597.949
-
-[node name="saveUI" parent="." instance=ExtResource( 10 )]
-position = Vector2( 1.10803, -4.43219 )
-script = ExtResource( 11 )
+[connection signal="pressed" from="Camera2D/UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
+[connection signal="pressed" from="Camera2D/UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
+[connection signal="pressed" from="Camera2D/UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
+[connection signal="pressed" from="Camera2D/UI_container/generate_button" to="Map" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/smooth_button" to="Map" method="_on_smooth_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Continent_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continent" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Conflict_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continentconflict" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Elevation_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "elevation" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Sea_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "sea" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Rainfall_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "rainfall" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Temperature_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "temperature" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Climate_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "climate" ]]
+[connection signal="pressed" from="Camera2D/UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI_container/generate_button" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="Node_info" method="_on_Map_map_generated"]
-[connection signal="pressed" from="UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
-[connection signal="pressed" from="UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
-[connection signal="pressed" from="UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
-[connection signal="pressed" from="UI_container/generate_button" to="Map" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI_container/map_settings/smooth_button" to="Map" method="_on_smooth_button_pressed"]
-[connection signal="pressed" from="UI_container/map_settings/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
-[connection signal="pressed" from="UI_container/map_settings/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
-[connection signal="pressed" from="UI_container/map_settings/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
-[connection signal="pressed" from="UI_container/map_settings/Continent_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continent" ]]
-[connection signal="pressed" from="UI_container/map_settings/Conflict_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continentconflict" ]]
-[connection signal="pressed" from="UI_container/map_settings/Elevation_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "elevation" ]]
-[connection signal="pressed" from="UI_container/map_settings/Sea_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "sea" ]]
-[connection signal="pressed" from="UI_container/map_settings/Rainfall_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "rainfall" ]]
-[connection signal="pressed" from="UI_container/map_settings/Temperature_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "temperature" ]]
-[connection signal="pressed" from="UI_container/map_settings/Climate_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "climate" ]]
-[connection signal="pressed" from="UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
-[connection signal="node_info" from="cursor" to="Node_info" method="_on_cursor_node_info"]
+[connection signal="map_generated" from="Map" to="Camera2D/UI_container/generate_button" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="Camera2D/Node_info" method="_on_Map_map_generated"]
+[connection signal="node_info" from="cursor" to="Camera2D/Node_info" method="_on_cursor_node_info"]

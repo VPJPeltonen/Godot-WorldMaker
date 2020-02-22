@@ -1,16 +1,7 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func get_map_size():
+	var map_scale = get_parent().get_node_scale()
+	var map_width = get_parent().get_map_width()*map_scale
+	var map_height = get_parent().get_map_height()*map_scale
+	return Vector2(map_width,map_height)
