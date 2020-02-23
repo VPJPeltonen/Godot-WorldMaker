@@ -50,8 +50,8 @@ func get_node_info(nodeX,nodeY):
 			nodeY = nodeY - height/2
 			quarter = get_quarter(4)
 		var row = quarter[nodeX]
-		if nodeY+1 < row.size():
-			return row[nodeY+1].get_info()
+		if nodeY+1 <= row.size():
+			return row[nodeY].get_info()
 		else:
 			return 0
 	else:
@@ -162,6 +162,12 @@ func set_ground_level():
 func set_climate():
 	emit_signal("node_action", "set_climate", "none")
 
+func spread_rainfall():
+	for i in range(0,12):
+		var min_value = 12-i-0.5
+		var max_value = 12-i+0.5
+		emit_signal("spread_rainfall", "spread_rainfall",[min_value,max_value])
+
 func make_geology():
 	smooth_elevations_differences()
 	for i in range(3):
@@ -177,6 +183,7 @@ func make_climate():
 	set_mountain_rainfall()
 	set_winds()
 	set_wind_rainfall()
+	spread_rainfall()
 	set_temperatures()
 	set_wind_temperature()
 	set_climate()

@@ -38,6 +38,7 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	quarter = Quarter
 	elevation = new_elevation
 
+# wind
 func set_wind():
 	var map_height = get_parent().height
 	if Y < map_height/4:
@@ -52,31 +53,11 @@ func set_wind():
 
 func set_wind_arrow():
 	$wind_arrow.set_direction(wind_direction)
-
+	
+# elevation
 func set_ground_level():
 	sea_level = get_parent().get_sea_level()
 	ground_level = elevation-sea_level
-
-func set_sea_rainfall():
-	for node in neighbours:
-		if node.ground_level < 0:
-			rainfall += 1.0
-
-func set_mountain_rainfall():
-	var higher_neighbours = 0
-	for node in neighbours:
-		if node.elevation > elevation+0.5:
-			rainfall += 1
-
-func set_wind_rain(min_value,max_value):
-	if rainfall > min_value and rainfall < max_value:
-		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
-		wind_node.rainfall += rainfall/2
-
-func set_wind_temperature(min_value,max_value):
-	if temperature > min_value and temperature < max_value:
-		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
-		wind_node.temperature = (temperature+wind_node.temperature)/2
 	
 func erosion():
 	var average_elevation = 0
@@ -105,6 +86,49 @@ func set_conflictzone():
 			conflictzone = true
 			set_conflict_type(node)
 			
+func set_conflict_type(other_node):
+	var collission_dir = [(slide_direction+3)%8+1]
+	var retreat_dir = [slide_direction,slide_direction%8+1]
+	if slide_direction == 1: retreat_dir.append(8)
+	else: retreat_dir.append(slide_direction-1)
+	if collission_dir.has(neighbours.find(other_node)):
+		elevation += 8
+		other_node.elevation += 8
+	if retreat_dir.has(neighbours.find(other_node)):
+		elevation -= 8
+		other_node.elevation -= 8
+			
+# rainfall
+func set_sea_rainfall():
+	if ground_level < 0:
+		for node in neighbours:
+			if node.ground_level > 0:
+				node.rainfall += 1.0
+				rainfall += 1.0
+
+func set_mountain_rainfall():
+	var higher_neighbours = 0
+	for node in neighbours:
+		if node.elevation > elevation+0.5:
+			rainfall += 1
+
+func set_wind_rain(min_value,max_value):
+	if rainfall > min_value and rainfall < max_value:
+		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
+		wind_node.rainfall += rainfall/2
+
+func spread_rainfall(rainfall_checked_min,rainfall_checked_max):
+	if rainfall > rainfall_checked_min and rainfall <= rainfall_checked_max:
+		for node in neighbours:
+			if node.rainfall < rainfall:
+				node.rainfall = max(rainfall - 1,node.rainfall)
+
+# temperature
+func set_wind_temperature(min_value,max_value):
+	if temperature > min_value and temperature <= max_value:
+		var wind_node = neighbours[neighbours_directions.find(wind_direction)]
+		wind_node.temperature = (temperature+wind_node.temperature)/2
+	
 func set_basic_temperature():
 	var world_height = get_parent().height
 	var slice = world_height/14
@@ -128,84 +152,76 @@ func elevation_temperature_adjustment():
 	if ground_level > 2:
 		temperature -= ground_level/2
 
-func set_conflict_type(other_node):
-	var collission_dir = [(slide_direction+3)%8+1]
-	var retreat_dir = [slide_direction,slide_direction%8+1]
-	if slide_direction == 1: retreat_dir.append(8)
-	else: retreat_dir.append(slide_direction-1)
-	if collission_dir.has(neighbours.find(other_node)):
-		elevation += 8
-		other_node.elevation += 8
-	if retreat_dir.has(neighbours.find(other_node)):
-		elevation -= 8
-		other_node.elevation -= 8
-		
+# climate
 func set_climate():
-	if temperature == 0:
-		if rainfall <= 0: climate = "Polar Desert"
-		elif rainfall <= 1: climate = "Polar Desert"
-		elif rainfall <= 2: climate = "Polar Desert"
-		elif rainfall <= 3: climate = "Ice Cap"
-		elif rainfall <= 4: climate = "Ice Cap"
-		elif rainfall <= 5: climate = "Ice Cap"
-		elif rainfall <= 6: climate = "Ice Cap"	
-		else: climate = "Ice Cap"
-	elif temperature <= 1:
-		if rainfall <= 0: climate = "Polar Desert"
-		elif rainfall <= 1: climate = "Polar Desert"
-		elif rainfall <= 2: climate = "Polar Desert"
-		elif rainfall <= 3: climate = "Tundra"
-		elif rainfall <= 4: climate = "Tundra"
-		elif rainfall <= 5: climate = "Wet Tundra"
-		elif rainfall <= 6: climate = "Wet Tundra"	
-		else: climate = "Polar Wetlands"
-	elif temperature <= 2:
-		if rainfall <= 0: climate = "Cool Desert"
-		elif rainfall <= 1: climate = "Cool Desert"
-		elif rainfall <= 2: climate = "Steppe"
-		elif rainfall <= 3: climate = "Boreal Forest"
-		elif rainfall <= 4: climate = "Boreal Forest"
-		elif rainfall <= 5: climate = "Boreal Forest"
-		elif rainfall <= 6: climate = "Boreal Forest"	
-		else: climate = "Polar Wetlands"	
-	elif temperature <= 3:
-		if rainfall <= 0: climate = "Cool Desert"
-		elif rainfall <= 1: climate = "Cool Desert"
-		elif rainfall <= 2: climate = "Steppe"
-		elif rainfall <= 3: climate = "Temperate Woodlands"
-		elif rainfall <= 4: climate = "Temperate Woodlands"
-		elif rainfall <= 5: climate = "Temperate Forest"
-		elif rainfall <= 6: climate = "Temperate Wet Forest"
-		else: climate = "Temperate Wetlands"
-	elif temperature <= 4:
-		if rainfall <= 0: climate = "Extreme Desert"
-		elif rainfall <= 1: climate = "Desert"
-		elif rainfall <= 2: climate = "Subtropical Scrub"
-		elif rainfall <= 3: climate = "Subtropical Woodlands"
-		elif rainfall <= 4: climate = "Mediterranean"
-		elif rainfall <= 5: climate = "Temperate Forest"
-		elif rainfall <= 6: climate = "Temperate Wet Forest"
-		else: climate = "Temperate Wetlands"
-	elif temperature <= 5:
-		if rainfall <= 0: climate = "Extreme Desert"
-		elif rainfall <= 1: climate = "Desert"
-		elif rainfall <= 2: climate = "Subtropical Scrub"
-		elif rainfall <= 3: climate = "Subtropical Woodlands"
-		elif rainfall <= 4: climate = "Subtropical Dry Forest"
-		elif rainfall <= 5: climate = "Subtropical Forest"
-		elif rainfall <= 6: climate = "Subtropical Wet Forest"	
-		else: climate = "Subtropical Wetlands"
+	if ground_level < 0:
+		climate = "Sea"
 	else:
-		if rainfall <= 0: climate = "Extreme Desert"
-		elif rainfall <= 1: climate = "Desert"
-		elif rainfall <= 2: climate = "Tropical Scrub"
-		elif rainfall <= 3: climate = "Tropical Woodlands"
-		elif rainfall <= 4: climate = "Tropical Dry Forest"
-		elif rainfall <= 5: climate = "Tropical Wet Forest"
-		elif rainfall <= 6: climate = "Tropical Wet Forest"	
-		else: climate = "Tropical Wetlands"
-		
-					
+		if temperature == 0:
+			if rainfall <= 0: climate = "Polar Desert"
+			elif rainfall <= 1: climate = "Polar Desert"
+			elif rainfall <= 2: climate = "Polar Desert"
+			elif rainfall <= 3: climate = "Ice Cap"
+			elif rainfall <= 4: climate = "Ice Cap"
+			elif rainfall <= 5: climate = "Ice Cap"
+			elif rainfall <= 6: climate = "Ice Cap"	
+			else: climate = "Ice Cap"
+		elif temperature <= 1:
+			if rainfall <= 0: climate = "Polar Desert"
+			elif rainfall <= 1: climate = "Polar Desert"
+			elif rainfall <= 2: climate = "Polar Desert"
+			elif rainfall <= 3: climate = "Tundra"
+			elif rainfall <= 4: climate = "Tundra"
+			elif rainfall <= 5: climate = "Wet Tundra"
+			elif rainfall <= 6: climate = "Wet Tundra"	
+			else: climate = "Polar Wetlands"
+		elif temperature <= 2:
+			if rainfall <= 0: climate = "Cool Desert"
+			elif rainfall <= 1: climate = "Cool Desert"
+			elif rainfall <= 2: climate = "Steppe"
+			elif rainfall <= 3: climate = "Boreal Forest"
+			elif rainfall <= 4: climate = "Boreal Forest"
+			elif rainfall <= 5: climate = "Boreal Forest"
+			elif rainfall <= 6: climate = "Boreal Forest"	
+			else: climate = "Polar Wetlands"	
+		elif temperature <= 3:
+			if rainfall <= 0: climate = "Cool Desert"
+			elif rainfall <= 1: climate = "Cool Desert"
+			elif rainfall <= 2: climate = "Steppe"
+			elif rainfall <= 3: climate = "Temperate Woodlands"
+			elif rainfall <= 4: climate = "Temperate Woodlands"
+			elif rainfall <= 5: climate = "Temperate Forest"
+			elif rainfall <= 6: climate = "Temperate Wet Forest"
+			else: climate = "Temperate Wetlands"
+		elif temperature <= 4:
+			if rainfall <= 0: climate = "Extreme Desert"
+			elif rainfall <= 1: climate = "Desert"
+			elif rainfall <= 2: climate = "Subtropical Scrub"
+			elif rainfall <= 3: climate = "Subtropical Woodlands"
+			elif rainfall <= 4: climate = "Mediterranean"
+			elif rainfall <= 5: climate = "Temperate Forest"
+			elif rainfall <= 6: climate = "Temperate Wet Forest"
+			else: climate = "Temperate Wetlands"
+		elif temperature <= 5:
+			if rainfall <= 0: climate = "Extreme Desert"
+			elif rainfall <= 1: climate = "Desert"
+			elif rainfall <= 2: climate = "Subtropical Scrub"
+			elif rainfall <= 3: climate = "Subtropical Woodlands"
+			elif rainfall <= 4: climate = "Subtropical Dry Forest"
+			elif rainfall <= 5: climate = "Subtropical Forest"
+			elif rainfall <= 6: climate = "Subtropical Wet Forest"	
+			else: climate = "Subtropical Wetlands"
+		else:
+			if rainfall <= 0: climate = "Extreme Desert"
+			elif rainfall <= 1: climate = "Desert"
+			elif rainfall <= 2: climate = "Tropical Scrub"
+			elif rainfall <= 3: climate = "Tropical Woodlands"
+			elif rainfall <= 4: climate = "Tropical Dry Forest"
+			elif rainfall <= 5: climate = "Tropical Wet Forest"
+			elif rainfall <= 6: climate = "Tropical Wet Forest"	
+			else: climate = "Tropical Wetlands"
+
+# node architecture
 func find_neighbours():
 	var nodes = get_parent().get_quarter(quarter)
 	var quarterX = fmod(X,get_parent().width/2)
@@ -291,9 +307,8 @@ func find_neighbours():
 		neighbours.append(row[0])
 		neighbours_directions.append(4)
 
-func set_continent(new_continent):	
+func set_continent(new_continent):
 	continent = new_continent
-	color_mode("continent")
 
 func color_mode(mode):
 	match mode:
@@ -346,6 +361,7 @@ func _on_node_action(action,data):
 		"set_wind_rainfall": set_wind_rain(data[0],data[1])
 		"set_wind_temperature": set_wind_temperature(data[0],data[1])
 		"set_winds": set_wind()
+		"spread_rainfall": spread_rainfall(data[0],data[1])
 		"water_erosion": water_erosion()
 		"erosion": erosion()
 		"smooth_elevation_differences": smooth_elevation_differences(data[0],data[1])

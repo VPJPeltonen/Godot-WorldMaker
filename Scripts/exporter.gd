@@ -22,9 +22,9 @@ func _on_screenshot_button_pressed():
 	screenshot()
 
 func _on_save_button_pressed():
-	var old_size = get_viewport().size
-	var map_size = get_parent().get_map_size()
-	get_viewport().size = map_size
+#	var old_size = get_viewport().size
+#	var map_size = get_parent().get_map_size()
+#	get_viewport().size = map_size
 	if $save_box/map_name_input.text == "":
 		$warning.dialog_text = "You need to give the map a name"
 		$warning.show()
@@ -33,4 +33,4 @@ func _on_save_button_pressed():
 		save_maps()
 		$warning.dialog_text = "Map saved succefully"
 		$warning.show()
-	get_viewport().size = old_size
+#	get_viewport().size = old_size
