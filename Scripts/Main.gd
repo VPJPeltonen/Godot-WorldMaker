@@ -15,6 +15,9 @@ func get_map_width():
 func get_map_height():
 	return $Map.height
 
+func get_map_size():
+	return Vector2($Map.width,$Map.height)
+
 func get_node_scale():
 	return $Map.node_scale
 
