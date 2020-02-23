@@ -166,7 +166,7 @@ func spread_rainfall():
 	for i in range(0,12):
 		var min_value = 12-i-0.5
 		var max_value = 12-i+0.5
-		emit_signal("spread_rainfall", "spread_rainfall",[min_value,max_value])
+		emit_signal("node_action", "spread_rainfall",[min_value,max_value])
 
 func make_geology():
 	smooth_elevations_differences()
@@ -223,14 +223,14 @@ func _on_apply_settings_button_pressed():
 func _on_size_button_pressed(size):
 	match size:
 		"small":
-			width = 64
-			height = 48
+			width = 80
+			height = 50
 		"medium":
-			width = 116
-			height = 76
+			width = 128
+			height = 80
 		"large":
-			width = 156
-			height = 112
+			width = 192
+			height = 120
 
 func _on_Wind_mode_button_pressed():
 	emit_signal("node_action","show_wind","none")

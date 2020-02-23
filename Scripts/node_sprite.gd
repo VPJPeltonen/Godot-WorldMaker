@@ -92,8 +92,9 @@ func color_mode(mode,value):
 				5.0: set_self_modulate(Color("fc8d59"))
 				6.0: set_self_modulate(Color("d73027"))
 		"climate":
-			if get_parent().ground_level < 0: return
+			#if get_parent().ground_level < 0: return
 			match value:
+				"Sea": return
 				"Polar Desert": set_self_modulate(Color("5a5a5a"))
 				"Ice Cap": set_self_modulate(Color("ffffff"))
 				"Tundra": set_self_modulate(Color("bfbfbf"))

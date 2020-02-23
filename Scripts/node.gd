@@ -121,7 +121,7 @@ func spread_rainfall(rainfall_checked_min,rainfall_checked_max):
 	if rainfall > rainfall_checked_min and rainfall <= rainfall_checked_max:
 		for node in neighbours:
 			if node.rainfall < rainfall:
-				node.rainfall = max(rainfall - 1,node.rainfall)
+				node.rainfall = max(rainfall - 1.5,node.rainfall)
 
 # temperature
 func set_wind_temperature(min_value,max_value):
@@ -155,7 +155,10 @@ func elevation_temperature_adjustment():
 # climate
 func set_climate():
 	if ground_level < 0:
-		climate = "Sea"
+		if temperature == 0 and rainfall >= 3:
+			climate = "Ice Cap"
+		else:
+			climate = "Sea"
 	else:
 		if temperature == 0:
 			if rainfall <= 0: climate = "Polar Desert"
