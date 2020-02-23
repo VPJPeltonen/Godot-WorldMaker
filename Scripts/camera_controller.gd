@@ -19,6 +19,18 @@ func _process(delta):
 	if mouse_vieport.y <= scroll_distance and mouse_position.y > 0:
 		position.y -= scroll_speed * ((scroll_distance-mouse_vieport.y)/scroll_distance)
 
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			# zoom in
+			if event.button_index == BUTTON_WHEEL_UP:
+				var value = get_zoom() - Vector2(0.1,0.1)
+				set_zoom(value)
+			# zoom out
+			if event.button_index == BUTTON_WHEEL_DOWN:
+				var value = get_zoom() + Vector2(0.1,0.1)
+				set_zoom(value)
+			
 func _on_Map_map_generated():
 	var main = get_parent()
 	var map_size = main.get_map_size()
