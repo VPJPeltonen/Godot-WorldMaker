@@ -25,30 +25,21 @@ __meta__ = {
 }
 
 [node name="save_name_label" type="Label" parent="save_box"]
-margin_right = 122.0
+margin_right = 83.0
 margin_bottom = 14.0
 text = "Map Name"
 
 [node name="map_name_input" type="LineEdit" parent="save_box"]
 margin_top = 18.0
-margin_right = 122.0
+margin_right = 83.0
 margin_bottom = 42.0
 caret_blink = true
 caret_blink_speed = 0.5
 
-[node name="move_to_position" type="Button" parent="save_box"]
-margin_top = 46.0
-margin_right = 122.0
-margin_bottom = 66.0
-text = "Move To Position"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="save_button" type="Button" parent="save_box"]
-margin_top = 70.0
-margin_right = 122.0
-margin_bottom = 90.0
+margin_top = 46.0
+margin_right = 83.0
+margin_bottom = 66.0
 text = "Save"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,6 +48,5 @@ __meta__ = {
 [node name="hide_timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
-[connection signal="pressed" from="save_box/move_to_position" to="." method="_on_move_to_position_pressed"]
 [connection signal="pressed" from="save_box/save_button" to="." method="_on_save_button_pressed"]
 [connection signal="timeout" from="hide_timer" to="." method="_on_hide_timer_timeout"]

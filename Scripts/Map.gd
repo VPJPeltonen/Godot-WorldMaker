@@ -162,6 +162,9 @@ func set_ground_level():
 func set_climate():
 	emit_signal("node_action", "set_climate", "none")
 
+func toggle_shadows(on):
+	emit_signal("node_action", "toggle_shadows", on)
+
 func spread_rainfall():
 	for i in range(0,12):
 		var min_value = 12-i-0.5

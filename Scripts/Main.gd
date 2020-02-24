@@ -21,6 +21,12 @@ func get_map_size():
 func get_node_scale():
 	return $Map.node_scale
 
+func color_nodes(mode):
+	$Map.color_nodes(mode)
+
+func toggle_shadows(on):
+	$Map.toggle_shadows(on)
+
 func hide_UI():
 	$UI/UI_container.hide()
 	$UI/saveUI.hide()

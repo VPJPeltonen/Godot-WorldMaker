@@ -21,6 +21,10 @@ var neighbours_directions = []
 func get_neighbours():
 	return neighbours
 
+func toggle_shadows(on):
+	if on: $elevation_shadow.show()
+	else: $elevation_shadow.hide()
+
 func get_info():
 	var dict = {
 		"ground_level":ground_level,
@@ -367,6 +371,7 @@ func _on_node_action(action,data):
 		"set_wind_temperature": set_wind_temperature(data[0],data[1])
 		"set_winds": set_wind()
 		"spread_rainfall": spread_rainfall(data[0],data[1])
+		"toggle_shadows": toggle_shadows(data)
 		"water_erosion": water_erosion()
 		"erosion": erosion()
 		"smooth_elevation_differences": smooth_elevation_differences(data[0],data[1])
