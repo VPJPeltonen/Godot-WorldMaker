@@ -103,8 +103,8 @@ func set_sea_rainfall():
 	if ground_level < 0:
 		for node in neighbours:
 			if node.ground_level > 0:
-				node.rainfall += 1.0
-				rainfall += 1.0
+				node.rainfall += 0.9
+				rainfall += 0.9
 
 func set_mountain_rainfall():
 	var higher_neighbours = 0
@@ -161,67 +161,67 @@ func set_climate():
 			climate = "Sea"
 	else:
 		if temperature == 0:
-			if rainfall <= 0: climate = "Polar Desert"
-			elif rainfall <= 1: climate = "Polar Desert"
+			if rainfall <= 1: climate = "Polar Desert"
 			elif rainfall <= 2: climate = "Polar Desert"
-			elif rainfall <= 3: climate = "Ice Cap"
+			elif rainfall <= 3: climate = "Polar Desert"
 			elif rainfall <= 4: climate = "Ice Cap"
 			elif rainfall <= 5: climate = "Ice Cap"
-			elif rainfall <= 6: climate = "Ice Cap"	
+			elif rainfall <= 6: climate = "Ice Cap"
+			elif rainfall <= 7: climate = "Ice Cap"	
 			else: climate = "Ice Cap"
 		elif temperature <= 1:
-			if rainfall <= 0: climate = "Polar Desert"
-			elif rainfall <= 1: climate = "Polar Desert"
+			if rainfall <= 1: climate = "Polar Desert"
 			elif rainfall <= 2: climate = "Polar Desert"
-			elif rainfall <= 3: climate = "Tundra"
+			elif rainfall <= 3: climate = "Polar Desert"
 			elif rainfall <= 4: climate = "Tundra"
-			elif rainfall <= 5: climate = "Wet Tundra"
-			elif rainfall <= 6: climate = "Wet Tundra"	
+			elif rainfall <= 5: climate = "Tundra"
+			elif rainfall <= 6: climate = "Wet Tundra"
+			elif rainfall <= 7: climate = "Wet Tundra"	
 			else: climate = "Polar Wetlands"
 		elif temperature <= 2:
-			if rainfall <= 0: climate = "Cool Desert"
-			elif rainfall <= 1: climate = "Cool Desert"
-			elif rainfall <= 2: climate = "Steppe"
-			elif rainfall <= 3: climate = "Boreal Forest"
+			if rainfall <= 1: climate = "Cool Desert"
+			elif rainfall <= 2: climate = "Cool Desert"
+			elif rainfall <= 3: climate = "Steppe"
 			elif rainfall <= 4: climate = "Boreal Forest"
 			elif rainfall <= 5: climate = "Boreal Forest"
-			elif rainfall <= 6: climate = "Boreal Forest"	
+			elif rainfall <= 6: climate = "Boreal Forest"
+			elif rainfall <= 7: climate = "Boreal Forest"	
 			else: climate = "Polar Wetlands"	
 		elif temperature <= 3:
-			if rainfall <= 0: climate = "Cool Desert"
-			elif rainfall <= 1: climate = "Cool Desert"
-			elif rainfall <= 2: climate = "Steppe"
-			elif rainfall <= 3: climate = "Temperate Woodlands"
+			if rainfall <= 1: climate = "Cool Desert"
+			elif rainfall <= 2: climate = "Cool Desert"
+			elif rainfall <= 3: climate = "Steppe"
 			elif rainfall <= 4: climate = "Temperate Woodlands"
-			elif rainfall <= 5: climate = "Temperate Forest"
-			elif rainfall <= 6: climate = "Temperate Wet Forest"
+			elif rainfall <= 5: climate = "Temperate Woodlands"
+			elif rainfall <= 6: climate = "Temperate Forest"
+			elif rainfall <= 7: climate = "Temperate Wet Forest"
 			else: climate = "Temperate Wetlands"
 		elif temperature <= 4:
-			if rainfall <= 0: climate = "Extreme Desert"
-			elif rainfall <= 1: climate = "Desert"
-			elif rainfall <= 2: climate = "Subtropical Scrub"
-			elif rainfall <= 3: climate = "Subtropical Woodlands"
-			elif rainfall <= 4: climate = "Mediterranean"
-			elif rainfall <= 5: climate = "Temperate Forest"
-			elif rainfall <= 6: climate = "Temperate Wet Forest"
+			if rainfall <= 1: climate = "Extreme Desert"
+			elif rainfall <= 2: climate = "Desert"
+			elif rainfall <= 3: climate = "Subtropical Scrub"
+			elif rainfall <= 4: climate = "Subtropical Woodlands"
+			elif rainfall <= 5: climate = "Mediterranean"
+			elif rainfall <= 6: climate = "Temperate Forest"
+			elif rainfall <= 7: climate = "Temperate Wet Forest"
 			else: climate = "Temperate Wetlands"
 		elif temperature <= 5:
-			if rainfall <= 0: climate = "Extreme Desert"
-			elif rainfall <= 1: climate = "Desert"
-			elif rainfall <= 2: climate = "Subtropical Scrub"
-			elif rainfall <= 3: climate = "Subtropical Woodlands"
-			elif rainfall <= 4: climate = "Subtropical Dry Forest"
-			elif rainfall <= 5: climate = "Subtropical Forest"
-			elif rainfall <= 6: climate = "Subtropical Wet Forest"	
+			if rainfall <= 1: climate = "Extreme Desert"
+			elif rainfall <= 2: climate = "Desert"
+			elif rainfall <= 3: climate = "Subtropical Scrub"
+			elif rainfall <= 4: climate = "Subtropical Woodlands"
+			elif rainfall <= 5: climate = "Subtropical Dry Forest"
+			elif rainfall <= 6: climate = "Subtropical Forest"
+			elif rainfall <= 7: climate = "Subtropical Wet Forest"	
 			else: climate = "Subtropical Wetlands"
 		else:
-			if rainfall <= 0: climate = "Extreme Desert"
-			elif rainfall <= 1: climate = "Desert"
-			elif rainfall <= 2: climate = "Tropical Scrub"
-			elif rainfall <= 3: climate = "Tropical Woodlands"
-			elif rainfall <= 4: climate = "Tropical Dry Forest"
-			elif rainfall <= 5: climate = "Tropical Wet Forest"
-			elif rainfall <= 6: climate = "Tropical Wet Forest"	
+			if rainfall <= 1: climate = "Extreme Desert"
+			elif rainfall <= 2: climate = "Desert"
+			elif rainfall <= 3: climate = "Tropical Scrub"
+			elif rainfall <= 4: climate = "Tropical Woodlands"
+			elif rainfall <= 5: climate = "Tropical Dry Forest"
+			elif rainfall <= 6: climate = "Tropical Wet Forest"
+			elif rainfall <= 7: climate = "Tropical Wet Forest"	
 			else: climate = "Tropical Wetlands"
 
 # node architecture
@@ -328,6 +328,8 @@ func color_mode(mode):
 		"climate": 
 			set_z(ground_level)
 			$node_sprite.color_mode("climate",climate)
+		"satellite":
+			$node_sprite.color_mode("satellite",climate)
 
 func set_z(value):
 	if ground_level < 0: return

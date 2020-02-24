@@ -19,6 +19,10 @@ func _process(delta):
 	if mouse_vieport.y <= scroll_distance and mouse_position.y > 0:
 		position.y -= scroll_speed * ((scroll_distance-mouse_vieport.y)/scroll_distance)
 
+func move_to_export_pos(map_pos):
+	set_zoom(Vector2(1,1))
+	position = Vector2(map_pos.x+(get_viewport().size.x/2)-4,map_pos.y+(get_viewport().size.y/2)-4)
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.is_pressed():

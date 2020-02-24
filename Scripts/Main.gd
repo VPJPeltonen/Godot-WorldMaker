@@ -21,5 +21,20 @@ func get_map_size():
 func get_node_scale():
 	return $Map.node_scale
 
+func hide_UI():
+	$UI/UI_container.hide()
+	$UI/saveUI.hide()
+	$UI/Node_info.hide()
+	
+func show_UI():
+	$UI/UI_container.show()
+	$UI/saveUI.show()
+	$UI/Node_info.show()
+		
+func move_to_export_pos():
+	$Camera2D.move_to_export_pos($Map.position)
+	#$Map_camera.position = Vector2($Map.position.x,$Map.position.y)
+	#$Map_camera.make_current()
+
 func view_mode():
 	$UI/UI_container/generation_UI.hide()

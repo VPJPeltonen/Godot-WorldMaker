@@ -97,7 +97,7 @@ margin_bottom = 164.0
 [node name="map_settings" type="VBoxContainer" parent="UI/UI_container"]
 margin_top = 168.0
 margin_right = 101.0
-margin_bottom = 568.0
+margin_bottom = 592.0
 
 [node name="adjustment_label" type="Label" parent="UI/UI_container/map_settings"]
 margin_right = 101.0
@@ -226,18 +226,26 @@ toggle_mode = true
 group = ExtResource( 4 )
 text = "Climate"
 
-[node name="HSeparator2" type="HSeparator" parent="UI/UI_container/map_settings"]
+[node name="Satellite_mode_button" type="Button" parent="UI/UI_container/map_settings"]
 margin_top = 372.0
 margin_right = 101.0
-margin_bottom = 376.0
+margin_bottom = 392.0
+toggle_mode = true
+group = ExtResource( 4 )
+text = "Satellite"
+
+[node name="HSeparator2" type="HSeparator" parent="UI/UI_container/map_settings"]
+margin_top = 396.0
+margin_right = 101.0
+margin_bottom = 400.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wind_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 380.0
+margin_top = 404.0
 margin_right = 101.0
-margin_bottom = 400.0
+margin_bottom = 424.0
 toggle_mode = true
 text = "Show Wind"
 __meta__ = {
@@ -252,10 +260,10 @@ margin_right = 98.177
 margin_bottom = 597.03
 
 [node name="saveUI" parent="UI" instance=ExtResource( 10 )]
-position = Vector2( -0.0869751, -5.35101 )
+position = Vector2( 232.044, 6.70777 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 640, 400 )
 z_index = 50
 current = true
 script = ExtResource( 11 )
@@ -270,6 +278,11 @@ position = Vector2( 346, 314 )
 z_index = 50
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
+
+[node name="Map_camera" type="Camera2D" parent="."]
+position = Vector2( 104, 4 )
+anchor_mode = 0
+zoom = Vector2( 0.8, 0.8 )
 [connection signal="pressed" from="UI/UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
@@ -285,9 +298,10 @@ script = ExtResource( 8 )
 [connection signal="pressed" from="UI/UI_container/map_settings/Rainfall_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "rainfall" ]]
 [connection signal="pressed" from="UI/UI_container/map_settings/Temperature_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "temperature" ]]
 [connection signal="pressed" from="UI/UI_container/map_settings/Climate_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "climate" ]]
+[connection signal="pressed" from="UI/UI_container/map_settings/Satellite_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "satellite" ]]
 [connection signal="pressed" from="UI/UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/UI_container/generate_button" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="node_info" from="cursor" to="UI/Node_info" method="_on_cursor_node_info"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Node_info.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/node.png" type="Texture" id=2]
 
 [node name="Node_info" type="VBoxContainer"]
 margin_left = 2.00259
@@ -13,7 +14,7 @@ __meta__ = {
 }
 
 [node name="node_info_label" type="Label" parent="."]
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 14.0
 text = "Node Info"
 align = 1
@@ -23,31 +24,31 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="."]
 margin_top = 18.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 22.0
 
 [node name="climate_label" type="Label" parent="."]
 margin_top = 26.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 40.0
 text = "Climate:"
 align = 1
 
 [node name="climate_text" type="Label" parent="."]
 margin_top = 44.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 58.0
-text = "asd"
+text = "Subtropical Woodlands"
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="."]
 margin_top = 62.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 66.0
 
 [node name="nodeheight" type="HBoxContainer" parent="."]
 margin_top = 70.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 84.0
 
 [node name="height_label" type="Label" parent="nodeheight"]
@@ -63,7 +64,7 @@ text = "0"
 
 [node name="nodetemperature" type="HBoxContainer" parent="."]
 margin_top = 88.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 102.0
 
 [node name="temperature_label" type="Label" parent="nodetemperature"]
@@ -79,7 +80,7 @@ text = "0"
 
 [node name="noderainfall" type="HBoxContainer" parent="."]
 margin_top = 106.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 120.0
 
 [node name="rainfall_label" type="Label" parent="noderainfall"]
@@ -95,7 +96,7 @@ text = "0"
 
 [node name="nodeXY" type="HBoxContainer" parent="."]
 margin_top = 124.0
-margin_right = 98.0
+margin_right = 146.0
 margin_bottom = 138.0
 
 [node name="x_label" type="Label" parent="nodeXY"]
@@ -120,3 +121,10 @@ margin_left = 43.0
 margin_right = 51.0
 margin_bottom = 14.0
 text = "0"
+
+[node name="back_ground" type="Sprite" parent="."]
+self_modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
+position = Vector2( 73.2812, 67.3395 )
+scale = Vector2( 75.4139, 70.5792 )
+z_index = -1
+texture = ExtResource( 2 )

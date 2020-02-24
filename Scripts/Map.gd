@@ -18,8 +18,8 @@ var map_generated = false
 
 var continents = 9
 var sea_level = 9
-var width = 116
-var height = 76
+var width = 128
+var height = 80
 
 func _ready():
 	rng.randomize()

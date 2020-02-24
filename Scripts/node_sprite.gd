@@ -92,7 +92,6 @@ func color_mode(mode,value):
 				5.0: set_self_modulate(Color("fc8d59"))
 				6.0: set_self_modulate(Color("d73027"))
 		"climate":
-			#if get_parent().ground_level < 0: return
 			match value:
 				"Sea": return
 				"Polar Desert": set_self_modulate(Color("5a5a5a"))
@@ -102,6 +101,7 @@ func color_mode(mode,value):
 				"Polar Wetlands": set_self_modulate(Color("60497b"))
 				"Cool Desert": set_self_modulate(Color("953735"))
 				"Steppe": set_self_modulate(Color("948b54"))
+				"Boreal Forest": set_self_modulate(Color("9db195"))
 				"Temperate Woodlands": set_self_modulate(Color("f2dddc"))
 				"Temperate Forest": set_self_modulate(Color("dbeef3"))
 				"Temperate Wet Forest": set_self_modulate(Color("93cddd"))
@@ -120,3 +120,32 @@ func color_mode(mode,value):
 				"Tropical Dry Forest": set_self_modulate(Color("ccff33"))
 				"Tropical Wet Forest": set_self_modulate(Color("75923c"))
 				"Tropical Wetlands": set_self_modulate(Color("4f6228"))
+		"satellite":
+			match value:
+				"Sea": return
+				"Polar Desert": set_self_modulate(Color("54534c"))
+				"Ice Cap": set_self_modulate(Color("e7e7e8"))
+				"Tundra": set_self_modulate(Color("5a5e52"))
+				"Wet Tundra": set_self_modulate(Color("5d614f"))
+				"Polar Wetlands": set_self_modulate(Color("5d614f"))
+				"Cool Desert": set_self_modulate(Color("c8bba4"))
+				"Steppe": set_self_modulate(Color("827d69"))
+				"Boreal Forest": set_self_modulate(Color("2f432e"))
+				"Temperate Woodlands": set_self_modulate(Color("5c6e55"))
+				"Temperate Forest": set_self_modulate(Color("2b4334"))
+				"Temperate Wet Forest": set_self_modulate(Color("2b4334"))
+				"Temperate Wetlands": set_self_modulate(Color("213a22"))
+				"Extreme Desert": set_self_modulate(Color("e1ba90"))
+				"Desert": set_self_modulate(Color("ddc6ae"))
+				"Subtropical Scrup": set_self_modulate(Color("6d715d"))
+				"Subtropical Woodlands": set_self_modulate(Color("6d715d"))
+				"Mediterranean": set_self_modulate(Color("5b7458"))
+				"Subtropical Dry Forest": set_self_modulate(Color("27472d"))
+				"Subtropical Forest": set_self_modulate(Color("203a21"))
+				"Subtropical Wet Forest": set_self_modulate(Color("213d26"))
+				"Subtropical Wetlands": set_self_modulate(Color("213d26"))
+				"Tropical Scrup": set_self_modulate(Color("757863"))
+				"Tropical Woodlands": set_self_modulate(Color("5c6e53"))
+				"Tropical Dry Forest": set_self_modulate(Color("5c6e53"))
+				"Tropical Wet Forest": set_self_modulate(Color("2a4b34"))
+				"Tropical Wetlands": set_self_modulate(Color("2a4b34"))
