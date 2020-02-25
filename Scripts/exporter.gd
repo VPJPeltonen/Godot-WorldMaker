@@ -7,9 +7,9 @@ func _ready():
 	main = get_parent().get_parent()
 
 func get_map_size():
-	var map_scale = get_parent().get_node_scale()
-	var map_width = get_parent().get_map_width()*map_scale
-	var map_height = get_parent().get_map_height()*map_scale
+	var map_scale = main.get_node_scale()
+	var map_width = main.get_map_width()*map_scale
+	var map_height = main.get_map_height()*map_scale
 	return Vector2(map_width,map_height)
 
 func make_map_folder():
@@ -22,7 +22,8 @@ func make_map_folder():
 func save_map(map):
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
-	image.crop(1024,640)
+	var shot_size = get_map_size()
+	image.crop(shot_size.x+250,max(shot_size.y,540))#1024+250,640)23
 	image.save_png("user://"+$save_box/map_name_input.text+"/"+map+".png")
 
 func show_info(info):
@@ -36,6 +37,7 @@ func _on_save_button_pressed():
 		main.hide_UI()
 		main.move_to_export_pos()
 		main.toggle_shadows(false)
+		main.lock_camera()
 		save_stage = "start"
 		$hide_timer.start()
 
@@ -71,3 +73,4 @@ func _on_hide_timer_timeout():
 			show_info("Map saved succefully")
 			main.toggle_shadows(true)
 			main.show_UI()
+			main.unlock_camera()

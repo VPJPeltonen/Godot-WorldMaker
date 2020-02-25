@@ -23,9 +23,16 @@ func get_node_scale():
 
 func color_nodes(mode):
 	$Map.color_nodes(mode)
+	$Map/guide.view(mode)
 
 func toggle_shadows(on):
 	$Map.toggle_shadows(on)
+
+func lock_camera():
+	$Camera2D.locked = true
+
+func unlock_camera():
+	$Camera2D.locked = false
 
 func hide_UI():
 	$UI/UI_container.hide()

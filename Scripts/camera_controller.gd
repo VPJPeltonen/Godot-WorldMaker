@@ -3,8 +3,11 @@ extends Camera2D
 onready var screen_edges = get_viewport().size
 var scroll_speed = 25
 var scroll_distance = 50
+var locked = false
 
 func _process(delta):
+	if locked:
+		return
 	var x_distance = get_viewport().size.x - get_viewport().get_mouse_position().x
 	var y_distance = get_viewport().size.y - get_viewport().get_mouse_position().y
 	var mouse_position = get_global_mouse_position()
@@ -39,5 +42,5 @@ func _on_Map_map_generated():
 	var main = get_parent()
 	var map_size = main.get_map_size()
 	var node_scale = main.get_node_scale()
-	screen_edges.x = map_size.x * node_scale + 200
+	screen_edges.x = map_size.x * node_scale + 450
 	screen_edges.y = map_size.y * node_scale + 200

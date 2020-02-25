@@ -261,7 +261,7 @@ margin_right = 98.177
 margin_bottom = 597.03
 
 [node name="saveUI" parent="UI" instance=ExtResource( 10 )]
-position = Vector2( 232.044, 6.70777 )
+position = Vector2( 222.478, 705.072 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 400 )
@@ -272,6 +272,12 @@ script = ExtResource( 11 )
 [node name="Map" parent="." instance=ExtResource( 1 )]
 position = Vector2( 104, 4 )
 continent = ExtResource( 3 )
+
+[node name="guide" parent="Map" instance=ExtResource( 12 )]
+margin_left = 1025.09
+margin_top = -0.195484
+margin_right = 1125.09
+margin_bottom = 299.805
 
 [node name="cursor" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
@@ -284,8 +290,6 @@ script = ExtResource( 8 )
 position = Vector2( 104, 4 )
 anchor_mode = 0
 zoom = Vector2( 0.8, 0.8 )
-
-[node name="guide" parent="." instance=ExtResource( 12 )]
 [connection signal="pressed" from="UI/UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]

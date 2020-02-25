@@ -21,3 +21,7 @@ func get_color(mode,value):
 	var colors = node_colors[mode]
 	var color = colors[value]
 	return color
+
+func get_colors(mode):
+	var colors = node_colors[mode]
+	return colors

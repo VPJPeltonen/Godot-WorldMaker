@@ -205,6 +205,7 @@ func _on_generate_button_pressed():
 
 func _on_color_mode_button_pressed(mode):
 	color_nodes(mode)
+	$guide.view(mode)
 	
 func _on_smooth_button_pressed():
 	erosion()
