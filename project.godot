@@ -19,6 +19,10 @@ config/name="World Maker"
 run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+json_reader="*res://Scripts/json_reader.gd"
+
 [display]
 
 window/size/width=1280

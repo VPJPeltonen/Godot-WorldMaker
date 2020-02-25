@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/node.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/guide.gd" type="Script" id=2]
+
+[node name="guide" type="Sprite"]
+position = Vector2( 1193.27, 329.642 )
+scale = Vector2( 50, 200 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
