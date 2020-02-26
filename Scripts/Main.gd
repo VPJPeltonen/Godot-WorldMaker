@@ -46,8 +46,6 @@ func show_UI():
 		
 func move_to_export_pos():
 	$Camera2D.move_to_export_pos($Map.position)
-	#$Map_camera.position = Vector2($Map.position.x,$Map.position.y)
-	#$Map_camera.make_current()
 
 func view_mode():
 	$UI/UI_container/generation_UI.hide()

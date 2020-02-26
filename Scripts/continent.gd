@@ -13,10 +13,8 @@ func _ready():
 
 func init(new_id,new_source):
 	id_number = new_id
-	#base_elevation = rng.randi_range(6,9)
 	nodes.append(new_source)
 	spreadable_nodes.append(new_source)
-	#new_source.elevation += base_elevation
 	float_direction = rng.randi_range(1,8)
 
 func spread():
@@ -30,7 +28,6 @@ func spread():
 				var flip = rng.randi_range(0,1)
 				if flip == 1:
 					node.set_continent(id_number)
-					#node.elevation += base_elevation
 					node.slide_direction = float_direction
 					new_nodes.append(node)
 		if !spreadable:

@@ -19,10 +19,8 @@ script = ExtResource( 5 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="UI_container" type="VBoxContainer" parent="UI"]
-margin_left = -1.19501
-margin_top = -0.919006
-margin_right = 99.805
-margin_bottom = 567.081
+margin_right = 101.0
+margin_bottom = 592.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -153,7 +151,6 @@ margin_top = 154.0
 margin_right = 101.0
 margin_bottom = 174.0
 toggle_mode = true
-group = ExtResource( 4 )
 text = "Apply"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -175,7 +172,6 @@ margin_top = 204.0
 margin_right = 101.0
 margin_bottom = 224.0
 toggle_mode = true
-pressed = true
 group = ExtResource( 4 )
 text = "Continent"
 
@@ -200,6 +196,7 @@ margin_top = 276.0
 margin_right = 101.0
 margin_bottom = 296.0
 toggle_mode = true
+pressed = true
 group = ExtResource( 4 )
 text = "Sea"
 

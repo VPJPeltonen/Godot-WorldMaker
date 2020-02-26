@@ -6,8 +6,7 @@ var scroll_distance = 50
 var locked = false
 
 func _process(delta):
-	if locked:
-		return
+	if locked: return
 	var x_distance = get_viewport().size.x - get_viewport().get_mouse_position().x
 	var y_distance = get_viewport().size.y - get_viewport().get_mouse_position().y
 	var mouse_position = get_global_mouse_position()

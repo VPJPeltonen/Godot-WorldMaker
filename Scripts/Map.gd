@@ -6,6 +6,8 @@ signal node_action(action,data)
 export(Resource) var node
 export(Resource) var continent
 
+var creation_thread
+
 var nodes = []
 var nodes_2 = []
 var nodes_3 = []
@@ -16,7 +18,7 @@ var node_scale = 8
 var rng = RandomNumberGenerator.new()
 var map_generated = false
 
-var continents = 9
+var continents
 var sea_level = 9
 var width = 128
 var height = 80
@@ -148,13 +150,20 @@ func _on_generate_button_pressed():
 	if map_generated:
 		get_tree().reload_current_scene()
 	else:
-		make_nodes()
-		make_geology()
-		make_climate()
-		color_nodes("sea")
-		get_parent().view_mode()
-		map_generated = true
-		emit_signal("map_generated")
+		creation_thread = Thread.new()
+		creation_thread.start(self, "_creation")
+
+func _creation(userdata):
+	make_nodes()
+	make_geology()
+	make_climate()
+	color_nodes("sea")
+	get_parent().view_mode()
+	map_generated = true
+	emit_signal("map_generated")
+
+func _exit_tree():
+	creation_thread.wait_to_finish()
 
 func _on_color_mode_button_pressed(mode):
 	color_nodes(mode)
