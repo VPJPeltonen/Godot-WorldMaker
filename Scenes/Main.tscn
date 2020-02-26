@@ -285,11 +285,6 @@ position = Vector2( 346, 314 )
 z_index = 50
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
-
-[node name="Map_camera" type="Camera2D" parent="."]
-position = Vector2( 104, 4 )
-anchor_mode = 0
-zoom = Vector2( 0.8, 0.8 )
 [connection signal="pressed" from="UI/UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
