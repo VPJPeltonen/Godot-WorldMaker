@@ -47,5 +47,8 @@ func show_UI():
 func move_to_export_pos():
 	$Camera2D.move_to_export_pos($Map.position)
 
+func set_info_label(info):
+	$UI/info_label.text = info
+
 func view_mode():
 	$UI/UI_container/generation_UI.hide()

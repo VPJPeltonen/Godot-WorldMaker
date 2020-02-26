@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/generate_button.gd" type="Script" id=2]
@@ -12,6 +12,13 @@
 [ext_resource path="res://Scenes/saveUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/camera_controller.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/guide.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Fonts/Pixel Digivolve.otf" type="DynamicFontData" id=13]
+[ext_resource path="res://Sprites/node.png" type="Texture" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 2
+font_data = ExtResource( 13 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 5 )
@@ -260,6 +267,20 @@ margin_bottom = 597.03
 [node name="saveUI" parent="UI" instance=ExtResource( 10 )]
 position = Vector2( 222.478, 705.072 )
 
+[node name="info_label" type="Label" parent="UI"]
+margin_left = 454.199
+margin_top = 367.74
+margin_right = 817.199
+margin_bottom = 424.74
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0.780392, 0.772549, 0.537255, 1 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 400 )
 z_index = 50
@@ -282,6 +303,13 @@ position = Vector2( 346, 314 )
 z_index = 50
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
+
+[node name="node" type="Sprite" parent="."]
+self_modulate = Color( 0.360784, 0.345098, 0.219608, 1 )
+position = Vector2( 672.817, 404.03 )
+scale = Vector2( 2000, 2000 )
+z_index = -2
+texture = ExtResource( 14 )
 [connection signal="pressed" from="UI/UI_container/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/UI_container/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]

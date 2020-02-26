@@ -8,6 +8,8 @@ export(Resource) var continent
 
 var creation_thread
 
+var state = "none"
+
 var nodes = []
 var nodes_2 = []
 var nodes_3 = []
@@ -26,6 +28,13 @@ var height = 80
 func _ready():
 	rng.randomize()
 
+func _process(delta):
+	match state:
+		"start generating":
+			creation_thread = Thread.new()
+			creation_thread.start(self, "_creation")
+			state = "generating"
+			
 func get_quarter(quarter):
 	match quarter:
 		1: return nodes
@@ -59,7 +68,7 @@ func get_node_info(nodeX,nodeY):
 	else:
 		return 0
 			
-func make_quarter(imod,jmod,quarter):
+func make_quarter(imod,jmod,quarter,nodescale):
 	var quarter_nodes = []
 	for i in range(width/2):
 		var slice = []
@@ -67,20 +76,12 @@ func make_quarter(imod,jmod,quarter):
 			var elevation = rng.randf_range(0,2)
 			var new_node = node.instance()
 			add_child(new_node)
-			new_node.init(i+imod,j+jmod,node_scale,quarter,elevation)
+			new_node.init(i+imod,j+jmod,nodescale,quarter,elevation)
 			connect('node_action', new_node, '_on_node_action')
 			slice.append(new_node)
 		quarter_nodes.append(slice)
 	return quarter_nodes
 	
-func make_nodes():
-	nodes = make_quarter(0,0,1)
-	nodes_2 = make_quarter((width/2),0,2)
-	nodes_3 = make_quarter(0,(height/2),3)
-	nodes_4 = make_quarter((width/2),(height/2),4)
-	emit_signal("node_action","find_neighbours","none")
-	make_continents()	
-				
 func make_continents():
 	continents = get_parent().get_continent_amount()
 	for i in range(continents):
@@ -146,20 +147,33 @@ func make_climate():
 	smooth_node_values("set_wind_temperature",7)
 	emit_signal("node_action", "set_climate", "none")
 
+func make_nodes():
+	nodes = make_quarter(0,0,1,node_scale)
+	nodes_2 = make_quarter((width/2),0,2,node_scale)
+	nodes_3 = make_quarter(0,(height/2),3,node_scale)
+	nodes_4 = make_quarter((width/2),(height/2),4,node_scale)
+	
 func _on_generate_button_pressed():
-	if map_generated:
-		get_tree().reload_current_scene()
-	else:
-		creation_thread = Thread.new()
-		creation_thread.start(self, "_creation")
-
+	if map_generated: get_tree().reload_current_scene()
+	elif state == "none": state = "start generating"
+	
 func _creation(userdata):
+	get_parent().set_info_label("Building Map Nodes")
 	make_nodes()
+	emit_signal("node_action","find_neighbours","none")
+	get_parent().set_info_label("Making Continents")
+	make_continents()
+	color_nodes("continent")
+	get_parent().set_info_label("Making Geology")
 	make_geology()
-	make_climate()
+	get_parent().set_info_label("Making Climate")
 	color_nodes("sea")
+	make_climate()
+	get_parent().set_info_label("")
+	color_nodes("satellite")
 	get_parent().view_mode()
 	map_generated = true
+	state = "none"
 	emit_signal("map_generated")
 
 func _exit_tree():
