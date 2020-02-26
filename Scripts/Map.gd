@@ -112,25 +112,12 @@ func find_empty(i):
 		if node.continent == null:
 			node.set_continent(i)
 			return node
-			
 
-func smooth_elevations_differences():
-	for i in range(0,30):
-		var min_ele = 30-i-0.5
-		var max_ele = 30-i+0.5
-		emit_signal("node_action","smooth_elevation_differences",[min_ele,max_ele])
-
-func set_wind_rainfall():
-	for i in range(0,20):
-		var min_value = 20-i-0.5
-		var max_value = 20-i+0.5
-		emit_signal("node_action","set_wind_rainfall",[min_value,max_value])
-		
-func set_wind_temperature():
-	for i in range(0,7):
-		var min_value = 7-i-0.5
-		var max_value = 7-i+0.5
-		emit_signal("node_action","set_wind_temperature",[min_value,max_value])
+func smooth_node_values(target,top_value):
+	for i in range(0,top_value):
+		var min_ele = top_value-i-0.5
+		var max_ele = top_value-i+0.5
+		emit_signal("node_action",target,[min_ele,max_ele])
 		
 func set_winds():
 	emit_signal("node_action","set_winds","none")
@@ -165,17 +152,10 @@ func set_climate():
 func toggle_shadows(on):
 	emit_signal("node_action", "toggle_shadows", on)
 
-func spread_rainfall():
-	for i in range(0,12):
-		var min_value = 12-i-0.5
-		var max_value = 12-i+0.5
-		emit_signal("node_action", "spread_rainfall",[min_value,max_value])
-
 func make_geology():
-	smooth_elevations_differences()
+	smooth_node_values("smooth_elevation_differences",30)
 	for i in range(3):
 		erosion()
-	#color_nodes("sea")
 	for i in range(5):
 		water_erosion()
 	erosion()
@@ -185,10 +165,10 @@ func make_climate():
 	set_sea_rainfall()
 	set_mountain_rainfall()
 	set_winds()
-	set_wind_rainfall()
-	spread_rainfall()
+	smooth_node_values("set_wind_rainfall",20)
+	smooth_node_values("spread_rainfall",12)
 	set_temperatures()
-	set_wind_temperature()
+	smooth_node_values("set_wind_temperature",7)
 	set_climate()
 
 func _on_generate_button_pressed():
@@ -212,7 +192,7 @@ func _on_smooth_button_pressed():
 	color_nodes("elevation")
 	
 func _on_smooth_ele_button_pressed():
-	smooth_elevations_differences()
+	smooth_node_values("smooth_elevation_differences",30)
 	color_nodes("elevation")
 	
 func _on_water_erosion_button_pressed():
