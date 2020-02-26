@@ -76,7 +76,7 @@ func make_nodes():
 	nodes_2 = make_quarter((width/2),0,2)
 	nodes_3 = make_quarter(0,(height/2),3)
 	nodes_4 = make_quarter((width/2),(height/2),4)
-	set_neighbours()
+	emit_signal("node_action","find_neighbours","none")
 	make_continents()	
 				
 func make_continents():
@@ -118,36 +118,9 @@ func smooth_node_values(target,top_value):
 		var min_ele = top_value-i-0.5
 		var max_ele = top_value-i+0.5
 		emit_signal("node_action",target,[min_ele,max_ele])
-		
-func set_winds():
-	emit_signal("node_action","set_winds","none")
-
-func erosion():
-	emit_signal("node_action","erosion","none")
-
-func water_erosion():
-	emit_signal("node_action","water_erosion","none")
-
-func set_sea_rainfall():
-	emit_signal("node_action","set_sea_rainfall","none")
-
-func set_mountain_rainfall():
-	emit_signal("node_action","set_mountain_rainfall","none")
-
-func set_temperatures():
-	emit_signal("node_action","set_basic_temperature","none")
-
-func set_neighbours():
-	emit_signal("node_action","find_neighbours","none")
 
 func color_nodes(mode):
 	emit_signal("node_action","change_color_mode",mode)
-
-func set_ground_level():
-	emit_signal("node_action", "set_ground_level","none")
-
-func set_climate():
-	emit_signal("node_action", "set_climate", "none")
 
 func toggle_shadows(on):
 	emit_signal("node_action", "toggle_shadows", on)
@@ -155,21 +128,21 @@ func toggle_shadows(on):
 func make_geology():
 	smooth_node_values("smooth_elevation_differences",30)
 	for i in range(3):
-		erosion()
+		emit_signal("node_action","erosion","none")
 	for i in range(5):
-		water_erosion()
-	erosion()
-	set_ground_level()
+		emit_signal("node_action","water_erosion","none")
+	emit_signal("node_action","erosion","none")
+	emit_signal("node_action", "set_ground_level","none")
 
 func make_climate():
-	set_sea_rainfall()
-	set_mountain_rainfall()
-	set_winds()
+	emit_signal("node_action","set_sea_rainfall","none")
+	emit_signal("node_action","set_mountain_rainfall","none")
+	emit_signal("node_action","set_winds","none")
 	smooth_node_values("set_wind_rainfall",20)
 	smooth_node_values("spread_rainfall",12)
-	set_temperatures()
+	emit_signal("node_action","set_basic_temperature","none")
 	smooth_node_values("set_wind_temperature",7)
-	set_climate()
+	emit_signal("node_action", "set_climate", "none")
 
 func _on_generate_button_pressed():
 	if map_generated:
@@ -188,7 +161,7 @@ func _on_color_mode_button_pressed(mode):
 	$guide.view(mode)
 	
 func _on_smooth_button_pressed():
-	erosion()
+	emit_signal("node_action","erosion","none")
 	color_nodes("elevation")
 	
 func _on_smooth_ele_button_pressed():
@@ -196,12 +169,12 @@ func _on_smooth_ele_button_pressed():
 	color_nodes("elevation")
 	
 func _on_water_erosion_button_pressed():
-	water_erosion()
+	emit_signal("node_action","water_erosion","none")
 	color_nodes("sea")
 	
 func _on_apply_settings_button_pressed():
 	sea_level = get_parent().get_sea_level()
-	set_ground_level()
+	emit_signal("node_action", "set_ground_level","none")
 	color_nodes("sea")
 
 func _on_size_button_pressed(size):
