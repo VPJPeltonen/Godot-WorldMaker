@@ -176,9 +176,6 @@ func _creation(userdata):
 	state = "none"
 	emit_signal("map_generated")
 
-func _exit_tree():
-	creation_thread.wait_to_finish()
-
 func _on_color_mode_button_pressed(mode):
 	color_nodes(mode)
 	$guide.view(mode)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/map.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/generate_button.gd" type="Script" id=2]
@@ -14,6 +14,10 @@
 [ext_resource path="res://Scenes/guide.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Fonts/Pixel Digivolve.otf" type="DynamicFontData" id=13]
 [ext_resource path="res://Sprites/node.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/headline_font.tres" type="DynamicFont" id=15]
+[ext_resource path="res://UI/button_background.tres" type="StyleBox" id=16]
+[ext_resource path="res://UI/button_pressed.tres" type="StyleBox" id=17]
+[ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=18]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -26,25 +30,30 @@ script = ExtResource( 5 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="UI_container" type="VBoxContainer" parent="UI"]
-margin_right = 101.0
-margin_bottom = 592.0
+margin_left = 4.0
+margin_right = 107.0
+margin_bottom = 628.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="generation_UI" type="VBoxContainer" parent="UI/UI_container"]
-margin_right = 101.0
-margin_bottom = 132.0
+margin_right = 103.0
+margin_bottom = 135.0
 
 [node name="map_size_label" type="Label" parent="UI/UI_container/generation_UI"]
-margin_right = 101.0
-margin_bottom = 14.0
+margin_right = 103.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 15 )
 text = "Map Size"
 
 [node name="small_size_button" type="Button" parent="UI/UI_container/generation_UI"]
-margin_top = 18.0
-margin_right = 101.0
-margin_bottom = 38.0
+margin_top = 24.0
+margin_right = 103.0
+margin_bottom = 41.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 6 )
 text = "Small"
@@ -53,9 +62,12 @@ __meta__ = {
 }
 
 [node name="medium_size_button" type="Button" parent="UI/UI_container/generation_UI"]
-margin_top = 42.0
-margin_right = 101.0
+margin_top = 45.0
+margin_right = 103.0
 margin_bottom = 62.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 pressed = true
 group = ExtResource( 6 )
@@ -66,8 +78,11 @@ __meta__ = {
 
 [node name="large_size_button" type="Button" parent="UI/UI_container/generation_UI"]
 margin_top = 66.0
-margin_right = 101.0
-margin_bottom = 86.0
+margin_right = 103.0
+margin_bottom = 83.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 6 )
 text = "Large"
@@ -76,77 +91,93 @@ __meta__ = {
 }
 
 [node name="continents_label" type="Label" parent="UI/UI_container/generation_UI"]
-margin_top = 90.0
-margin_right = 101.0
-margin_bottom = 104.0
+margin_top = 87.0
+margin_right = 103.0
+margin_bottom = 107.0
+custom_fonts/font = ExtResource( 15 )
 text = "Continents"
 
 [node name="continents_box" type="SpinBox" parent="UI/UI_container/generation_UI"]
-margin_top = 108.0
-margin_right = 101.0
-margin_bottom = 132.0
+margin_top = 111.0
+margin_right = 103.0
+margin_bottom = 135.0
 min_value = 2.0
 value = 12.0
 
 [node name="generate_button" type="Button" parent="UI/UI_container"]
-margin_top = 136.0
-margin_right = 101.0
+margin_top = 139.0
+margin_right = 103.0
 margin_bottom = 156.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 text = "Generate"
 script = ExtResource( 2 )
 
 [node name="HSeparator2" type="HSeparator" parent="UI/UI_container"]
 margin_top = 160.0
-margin_right = 101.0
+margin_right = 103.0
 margin_bottom = 164.0
 
 [node name="map_settings" type="VBoxContainer" parent="UI/UI_container"]
 margin_top = 168.0
-margin_right = 101.0
-margin_bottom = 592.0
+margin_right = 103.0
+margin_bottom = 577.0
 
 [node name="adjustment_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_right = 101.0
-margin_bottom = 14.0
+margin_right = 103.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 15 )
 text = "Adjust"
 
 [node name="smooth_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 18.0
-margin_right = 101.0
-margin_bottom = 38.0
+margin_top = 24.0
+margin_right = 103.0
+margin_bottom = 41.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 text = "Erode"
 script = ExtResource( 2 )
 
 [node name="smooth_ele_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 42.0
-margin_right = 101.0
+margin_top = 45.0
+margin_right = 103.0
 margin_bottom = 62.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 text = "Smooth"
 script = ExtResource( 2 )
 
 [node name="water_erosion_button" type="Button" parent="UI/UI_container/map_settings"]
 margin_top = 66.0
-margin_right = 101.0
-margin_bottom = 86.0
+margin_right = 103.0
+margin_bottom = 83.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 text = "Sea Erode"
 script = ExtResource( 2 )
 
 [node name="settings_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 90.0
-margin_right = 101.0
-margin_bottom = 104.0
+margin_top = 87.0
+margin_right = 103.0
+margin_bottom = 107.0
+custom_fonts/font = ExtResource( 15 )
 text = "Settings"
 
 [node name="Sea_level_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 108.0
-margin_right = 101.0
-margin_bottom = 122.0
+margin_top = 111.0
+margin_right = 103.0
+margin_bottom = 131.0
+custom_fonts/font = ExtResource( 15 )
 text = "Sea Level"
 
 [node name="sea_level_box" type="SpinBox" parent="UI/UI_container/map_settings"]
-margin_top = 126.0
-margin_right = 101.0
-margin_bottom = 150.0
+margin_top = 135.0
+margin_right = 103.0
+margin_bottom = 159.0
 min_value = 2.0
 value = 9.0
 __meta__ = {
@@ -154,9 +185,12 @@ __meta__ = {
 }
 
 [node name="apply_settings_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 154.0
-margin_right = 101.0
-margin_bottom = 174.0
+margin_top = 163.0
+margin_right = 103.0
+margin_bottom = 180.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 text = "Apply"
 __meta__ = {
@@ -164,44 +198,57 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="UI/UI_container/map_settings"]
-margin_top = 178.0
-margin_right = 101.0
-margin_bottom = 182.0
+margin_top = 184.0
+margin_right = 103.0
+margin_bottom = 188.0
 
 [node name="modes_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 186.0
-margin_right = 101.0
-margin_bottom = 200.0
+margin_top = 192.0
+margin_right = 103.0
+margin_bottom = 212.0
+custom_fonts/font = ExtResource( 15 )
 text = "Map Modes"
 
 [node name="Continent_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 204.0
-margin_right = 101.0
-margin_bottom = 224.0
+margin_top = 216.0
+margin_right = 103.0
+margin_bottom = 233.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Continent"
 
 [node name="Conflict_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 228.0
-margin_right = 101.0
-margin_bottom = 248.0
+margin_top = 237.0
+margin_right = 103.0
+margin_bottom = 254.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Conflict"
 
 [node name="Elevation_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 252.0
-margin_right = 101.0
-margin_bottom = 272.0
+margin_top = 258.0
+margin_right = 103.0
+margin_bottom = 275.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Elevation"
 
 [node name="Sea_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 276.0
-margin_right = 101.0
+margin_top = 279.0
+margin_right = 103.0
 margin_bottom = 296.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 pressed = true
 group = ExtResource( 4 )
@@ -209,48 +256,63 @@ text = "Sea"
 
 [node name="Rainfall_mode_button" type="Button" parent="UI/UI_container/map_settings"]
 margin_top = 300.0
-margin_right = 101.0
-margin_bottom = 320.0
+margin_right = 103.0
+margin_bottom = 317.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Rainfall"
 
 [node name="Temperature_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 324.0
-margin_right = 101.0
-margin_bottom = 344.0
+margin_top = 321.0
+margin_right = 103.0
+margin_bottom = 338.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Temperature"
 
 [node name="Climate_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 348.0
-margin_right = 101.0
-margin_bottom = 368.0
+margin_top = 342.0
+margin_right = 103.0
+margin_bottom = 359.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Climate"
 
 [node name="Satellite_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 372.0
-margin_right = 101.0
-margin_bottom = 392.0
+margin_top = 363.0
+margin_right = 103.0
+margin_bottom = 380.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 group = ExtResource( 4 )
 text = "Satellite"
 
 [node name="HSeparator2" type="HSeparator" parent="UI/UI_container/map_settings"]
-margin_top = 396.0
-margin_right = 101.0
-margin_bottom = 400.0
+margin_top = 384.0
+margin_right = 103.0
+margin_bottom = 388.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wind_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 404.0
-margin_right = 101.0
-margin_bottom = 424.0
+margin_top = 392.0
+margin_right = 103.0
+margin_bottom = 409.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
 toggle_mode = true
 text = "Show Wind"
 __meta__ = {
@@ -293,9 +355,10 @@ continent = ExtResource( 3 )
 
 [node name="guide" parent="Map" instance=ExtResource( 12 )]
 margin_left = 1025.09
-margin_top = -0.195484
-margin_right = 1125.09
-margin_bottom = 299.805
+margin_top = -4.0
+margin_right = 1275.09
+margin_bottom = -4.0
+color = Color( 0.184314, 0.184314, 0.184314, 1 )
 
 [node name="cursor" type="Sprite" parent="."]
 modulate = Color( 1, 0, 0, 1 )
@@ -304,8 +367,8 @@ z_index = 50
 texture = ExtResource( 7 )
 script = ExtResource( 8 )
 
-[node name="node" type="Sprite" parent="."]
-self_modulate = Color( 0.360784, 0.345098, 0.219608, 1 )
+[node name="background" type="Sprite" parent="."]
+self_modulate = Color( 0.494118, 0.486275, 0.45098, 1 )
 position = Vector2( 672.817, 404.03 )
 scale = Vector2( 2000, 2000 )
 z_index = -2
