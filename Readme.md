@@ -1,7 +1,16 @@
 # World Maker
-Little project for fun that generates a world map. 
+Little project for fun that generates a world map with elevation, temperatures and climates.  
 
-At this point it generates elevation, rainfall, temperature and climate. You can also export these maps.
+Currently it can generate elevation, rainfall, temperature and climate maps. You can also export these maps as png files.
 
 ![Screenshot](/Screenshots/screen1.png?raw=true "Screenshot")
-Builds in releases page
+
+## Instructions
+
+You can download a working version in releases page.
+
+On left panel you can pick size of map generate. Larger maps will take longer to generate but will be more detailed. You can also adjust amount of continental plates in the world. More plates generally mean more mountains. 
+
+After generating you can use the controls in lower left corner to save maps. Just give the map a name and press save. Saved maps are found in: C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker
+
+Also after generating there are buttons to adjust map with additional erosion etc. These only work for the elevation at the moment
