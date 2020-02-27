@@ -259,10 +259,10 @@ __meta__ = {
 
 [node name="Node_info" parent="UI" instance=ExtResource( 9 )]
 visible = false
-margin_left = 0.177002
-margin_top = 459.03
-margin_right = 98.177
-margin_bottom = 597.03
+margin_left = 5.0
+margin_top = 630.0
+margin_right = 184.0
+margin_bottom = 789.0
 
 [node name="saveUI" parent="UI" instance=ExtResource( 10 )]
 position = Vector2( 222.478, 705.072 )
@@ -329,6 +329,6 @@ texture = ExtResource( 14 )
 [connection signal="pressed" from="UI/UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/UI_container/generate_button" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="node_info" from="cursor" to="UI/Node_info" method="_on_cursor_node_info"]

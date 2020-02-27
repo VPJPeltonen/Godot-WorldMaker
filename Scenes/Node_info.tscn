@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Node_info.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/node.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=3]
 
 [node name="Node_info" type="VBoxContainer"]
 margin_left = 2.00259
@@ -14,8 +15,9 @@ __meta__ = {
 }
 
 [node name="node_info_label" type="Label" parent="."]
-margin_right = 146.0
-margin_bottom = 14.0
+margin_right = 179.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Node Info"
 align = 1
 __meta__ = {
@@ -23,108 +25,120 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 18.0
-margin_right = 146.0
-margin_bottom = 22.0
+margin_top = 21.0
+margin_right = 179.0
+margin_bottom = 25.0
 
 [node name="climate_label" type="Label" parent="."]
-margin_top = 26.0
-margin_right = 146.0
-margin_bottom = 40.0
+margin_top = 29.0
+margin_right = 179.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 3 )
 text = "Climate:"
 align = 1
 
 [node name="climate_text" type="Label" parent="."]
-margin_top = 44.0
-margin_right = 146.0
-margin_bottom = 58.0
+margin_top = 50.0
+margin_right = 179.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 3 )
 text = "Subtropical Woodlands"
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="."]
-margin_top = 62.0
-margin_right = 146.0
-margin_bottom = 66.0
+margin_top = 71.0
+margin_right = 179.0
+margin_bottom = 75.0
 
 [node name="nodeheight" type="HBoxContainer" parent="."]
-margin_top = 70.0
-margin_right = 146.0
-margin_bottom = 84.0
+margin_top = 79.0
+margin_right = 179.0
+margin_bottom = 96.0
 
 [node name="height_label" type="Label" parent="nodeheight"]
-margin_right = 46.0
-margin_bottom = 14.0
+margin_right = 50.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Height:"
 
 [node name="height_number" type="Label" parent="nodeheight"]
-margin_left = 50.0
-margin_right = 58.0
-margin_bottom = 14.0
+margin_left = 54.0
+margin_right = 63.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 
 [node name="nodetemperature" type="HBoxContainer" parent="."]
-margin_top = 88.0
-margin_right = 146.0
-margin_bottom = 102.0
+margin_top = 100.0
+margin_right = 179.0
+margin_bottom = 117.0
 
 [node name="temperature_label" type="Label" parent="nodetemperature"]
-margin_right = 86.0
-margin_bottom = 14.0
+margin_right = 100.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Temperature:"
 
 [node name="temperature_number" type="Label" parent="nodetemperature"]
-margin_left = 90.0
-margin_right = 98.0
-margin_bottom = 14.0
+margin_left = 104.0
+margin_right = 113.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 
 [node name="noderainfall" type="HBoxContainer" parent="."]
-margin_top = 106.0
-margin_right = 146.0
-margin_bottom = 120.0
+margin_top = 121.0
+margin_right = 179.0
+margin_bottom = 138.0
 
 [node name="rainfall_label" type="Label" parent="noderainfall"]
-margin_right = 50.0
-margin_bottom = 14.0
+margin_right = 66.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Rainfall:"
 
 [node name="rainfall_number" type="Label" parent="noderainfall"]
-margin_left = 54.0
-margin_right = 62.0
-margin_bottom = 14.0
+margin_left = 70.0
+margin_right = 79.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 
 [node name="nodeXY" type="HBoxContainer" parent="."]
-margin_top = 124.0
-margin_right = 146.0
-margin_bottom = 138.0
+margin_top = 142.0
+margin_right = 179.0
+margin_bottom = 159.0
 
 [node name="x_label" type="Label" parent="nodeXY"]
-margin_right = 12.0
-margin_bottom = 14.0
+margin_right = 11.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "X:"
 
 [node name="x_number" type="Label" parent="nodeXY"]
-margin_left = 16.0
+margin_left = 15.0
 margin_right = 24.0
-margin_bottom = 14.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 
 [node name="y_label" type="Label" parent="nodeXY"]
 margin_left = 28.0
 margin_right = 39.0
-margin_bottom = 14.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "Y:"
 
 [node name="y_number" type="Label" parent="nodeXY"]
 margin_left = 43.0
-margin_right = 51.0
-margin_bottom = 14.0
+margin_right = 52.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
 text = "0"
 
 [node name="back_ground" type="Sprite" parent="."]
-self_modulate = Color( 0.317647, 0.317647, 0.317647, 1 )
-position = Vector2( 73.2812, 67.3395 )
-scale = Vector2( 75.4139, 70.5792 )
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 91.9158, 79.1745 )
+scale = Vector2( 94.0485, 82.4142 )
 z_index = -1
 texture = ExtResource( 2 )
