@@ -1,8 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=1]
 
 [node name="guide_label" type="Label"]
 margin_right = 40.0
 margin_bottom = 14.0
+custom_fonts/font = ExtResource( 1 )
 text = "swadasdadssds"
 __meta__ = {
 "_edit_use_anchors_": false

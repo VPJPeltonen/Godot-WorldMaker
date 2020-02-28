@@ -15,6 +15,7 @@ func view(mode):
 		add_child(new_node)
 		new_node.position = Vector2(20,0+y_pos)
 		new_node.set_self_modulate(Color(options[type]))
+		
 		var new_label = label.instance()
 		add_child(new_label)
 		new_label.rect_position  = Vector2(40,0+y_pos-6)
