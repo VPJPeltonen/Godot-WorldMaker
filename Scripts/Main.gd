@@ -38,11 +38,13 @@ func hide_UI():
 	$UI/UI_container.hide()
 	$UI/saveUI.hide()
 	$UI/Node_info.hide()
+	$UI/help_controller.hide()
 	
 func show_UI():
 	$UI/UI_container.show()
 	$UI/saveUI.show()
 	$UI/Node_info.show()
+	$UI/help_controller.show()
 		
 func disable_buttons():
 	$UI/UI_container/map_settings/smooth_button.disabled = true
