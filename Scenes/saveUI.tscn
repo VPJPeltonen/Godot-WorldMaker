@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/exporter.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/headline_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Sprites/node.png" type="Texture" id=4]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.0901961, 0.0901961, 0.0901961, 1 )
 
 [sub_resource type="StyleBoxFlat" id=2]
@@ -42,7 +43,7 @@ text = "Map Name"
 margin_top = 24.0
 margin_right = 86.0
 margin_bottom = 41.0
-custom_styles/normal = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
 custom_fonts/font = ExtResource( 2 )
 caret_blink = true
 caret_blink_speed = 0.5
@@ -61,5 +62,12 @@ __meta__ = {
 [node name="hide_timer" type="Timer" parent="."]
 wait_time = 0.1
 one_shot = true
+
+[node name="node" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 979.486, 37.6685 )
+scale = Vector2( 46, 34 )
+z_index = -1
+texture = ExtResource( 4 )
 [connection signal="pressed" from="save_box/save_button" to="." method="_on_save_button_pressed"]
 [connection signal="timeout" from="hide_timer" to="." method="_on_hide_timer_timeout"]

@@ -6,6 +6,8 @@ signal node_action(action,data)
 export(Resource) var node
 export(Resource) var continent
 
+onready var main = get_parent()
+
 var creation_thread
 
 var state = "none"
@@ -83,7 +85,7 @@ func make_quarter(imod,jmod,quarter,nodescale):
 	return quarter_nodes
 	
 func make_continents():
-	continents = get_parent().get_continent_amount()
+	continents = main.get_continent_amount()
 	for i in range(continents):
 		var source = find_empty(i)
 		var new_continent = continent.instance()
@@ -154,32 +156,32 @@ func make_nodes():
 	nodes_4 = make_quarter((width/2),(height/2),4,node_scale)
 
 func _creation(userdata):
-	get_parent().set_info_label("Building Map Nodes")
+	main.set_info_label("Building Map Nodes")
 	make_nodes()
 	emit_signal("node_action","find_neighbours","none")
-	get_parent().set_info_label("Making Continents")
+	main.set_info_label("Making Continents")
 	make_continents()
 	color_nodes("continent")
-	get_parent().set_info_label("Making Geology")
+	main.set_info_label("Making Geology")
 	make_geology()
-	get_parent().set_info_label("Making Climate")
+	main.set_info_label("Making Climate")
 	color_nodes("sea")
 	make_climate()
-	get_parent().set_info_label("")
+	main.set_info_label("")
 	color_nodes("satellite")
-	get_parent().view_mode()
+	main.view_mode()
 	map_generated = true
 	state = "none"
 	emit_signal("map_generated")
 
 func _adjust(userdata):
-	get_parent().disable_buttons()
+	main.disable_buttons()
 	emit_signal("node_action",userdata[0],"none")
 	emit_signal("node_action","reset","none")
 	emit_signal("node_action", "set_ground_level","none")
 	make_climate()
 	color_nodes(userdata[1])
-	get_parent().enable_buttons()
+	main.enable_buttons()
 
 func _on_generate_button_pressed():
 	if map_generated: get_tree().reload_current_scene()
@@ -202,7 +204,7 @@ func _on_water_erosion_button_pressed():
 	creation_thread.start(self, "_adjust",["water_erosion","sea"])
 	
 func _on_apply_settings_button_pressed():
-	sea_level = get_parent().get_sea_level()
+	sea_level = main.get_sea_level()
 	emit_signal("node_action", "set_ground_level","none")
 	color_nodes("sea")
 

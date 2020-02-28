@@ -17,5 +17,6 @@ func _on_cursor_node_info(info, X, Y):
 		$noderainfall/rainfall_number.text = "0"
 		$nodeXY/x_number.text = "-"
 		$nodeXY/y_number.text = "-"
+		
 func _on_Map_map_generated():
 	show()
