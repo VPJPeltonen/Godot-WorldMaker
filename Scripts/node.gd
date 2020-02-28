@@ -136,7 +136,7 @@ func set_wind_temperature(min_value,max_value):
 func set_basic_temperature():
 	var world_height = get_parent().height
 	var slice = world_height/14
-	if (Y > slice and Y <= slice*2) or (Y > world_height - (slice*2) and Y <= world_height - slice):
+	if (Y >= 0 and Y <= slice*2) or (Y >= world_height - slice*2):
 		temperature = 0.0
 	elif (Y > slice*2 and Y <= slice*3) or (Y > world_height - (slice*3) and Y <= world_height - slice*2):
 		temperature = 1.0
@@ -148,7 +148,7 @@ func set_basic_temperature():
 		temperature = 4.0		
 	elif (Y > slice*6 and Y <= slice*7) or (Y > world_height - (slice*7) and Y <= world_height - slice*6):
 		temperature = 5.0		
-	elif (Y > slice*7 and Y <= slice*9):
+	else:
 		temperature = 6.0
 	elevation_temperature_adjustment()
 
