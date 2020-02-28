@@ -24,6 +24,7 @@ arrow = ExtResource( 3 )
 diagonal_arrow = ExtResource( 5 )
 
 [node name="elevation_shadow" type="Sprite" parent="."]
+visible = false
 self_modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 0.2, 0.2 )
 scale = Vector2( 1.1, 1.1 )
@@ -32,6 +33,7 @@ texture = ExtResource( 1 )
 script = ExtResource( 7 )
 
 [node name="overlay_shadow" type="Sprite" parent="."]
+visible = false
 self_modulate = Color( 0, 0, 0, 0 )
 z_index = 1
 texture = ExtResource( 1 )

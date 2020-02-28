@@ -122,18 +122,18 @@ margin_bottom = 164.0
 [node name="map_settings" type="VBoxContainer" parent="UI/UI_container"]
 margin_top = 168.0
 margin_right = 103.0
-margin_bottom = 577.0
+margin_bottom = 459.0
 
 [node name="adjustment_label" type="Label" parent="UI/UI_container/map_settings"]
+visible = false
 margin_right = 103.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 15 )
 text = "Adjust"
 
 [node name="smooth_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 24.0
 margin_right = 103.0
-margin_bottom = 41.0
+margin_bottom = 17.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -141,9 +141,10 @@ text = "Erode"
 script = ExtResource( 2 )
 
 [node name="smooth_ele_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 45.0
+visible = false
+margin_top = 21.0
 margin_right = 103.0
-margin_bottom = 62.0
+margin_bottom = 38.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -151,33 +152,46 @@ text = "Smooth"
 script = ExtResource( 2 )
 
 [node name="water_erosion_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 66.0
+margin_top = 21.0
 margin_right = 103.0
-margin_bottom = 83.0
+margin_bottom = 38.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
 text = "Sea Erode"
 script = ExtResource( 2 )
 
-[node name="settings_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 87.0
+[node name="reset_nodes_button" type="Button" parent="UI/UI_container/map_settings"]
+visible = false
+margin_top = 21.0
 margin_right = 103.0
-margin_bottom = 107.0
+margin_bottom = 38.0
+custom_styles/pressed = ExtResource( 17 )
+custom_styles/normal = ExtResource( 16 )
+custom_fonts/font = ExtResource( 18 )
+text = "Reset Nodes"
+script = ExtResource( 2 )
+
+[node name="settings_label" type="Label" parent="UI/UI_container/map_settings"]
+margin_top = 42.0
+margin_right = 103.0
+margin_bottom = 62.0
 custom_fonts/font = ExtResource( 15 )
 text = "Settings"
 
 [node name="Sea_level_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 111.0
+visible = false
+margin_top = 24.0
 margin_right = 103.0
-margin_bottom = 131.0
+margin_bottom = 44.0
 custom_fonts/font = ExtResource( 15 )
 text = "Sea Level"
 
 [node name="sea_level_box" type="SpinBox" parent="UI/UI_container/map_settings"]
-margin_top = 135.0
+visible = false
+margin_top = 48.0
 margin_right = 103.0
-margin_bottom = 159.0
+margin_bottom = 72.0
 min_value = 2.0
 value = 9.0
 __meta__ = {
@@ -185,9 +199,10 @@ __meta__ = {
 }
 
 [node name="apply_settings_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 163.0
+visible = false
+margin_top = 76.0
 margin_right = 103.0
-margin_bottom = 180.0
+margin_bottom = 93.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -198,21 +213,21 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="UI/UI_container/map_settings"]
-margin_top = 184.0
+margin_top = 66.0
 margin_right = 103.0
-margin_bottom = 188.0
+margin_bottom = 70.0
 
 [node name="modes_label" type="Label" parent="UI/UI_container/map_settings"]
-margin_top = 192.0
+margin_top = 74.0
 margin_right = 103.0
-margin_bottom = 212.0
+margin_bottom = 94.0
 custom_fonts/font = ExtResource( 15 )
 text = "Map Modes"
 
 [node name="Continent_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 216.0
+margin_top = 98.0
 margin_right = 103.0
-margin_bottom = 233.0
+margin_bottom = 115.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -221,9 +236,9 @@ group = ExtResource( 4 )
 text = "Continent"
 
 [node name="Conflict_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 237.0
+margin_top = 119.0
 margin_right = 103.0
-margin_bottom = 254.0
+margin_bottom = 136.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -232,9 +247,9 @@ group = ExtResource( 4 )
 text = "Conflict"
 
 [node name="Elevation_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 258.0
+margin_top = 140.0
 margin_right = 103.0
-margin_bottom = 275.0
+margin_bottom = 157.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -243,9 +258,9 @@ group = ExtResource( 4 )
 text = "Elevation"
 
 [node name="Sea_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 279.0
+margin_top = 161.0
 margin_right = 103.0
-margin_bottom = 296.0
+margin_bottom = 178.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -255,9 +270,9 @@ group = ExtResource( 4 )
 text = "Sea"
 
 [node name="Rainfall_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 300.0
+margin_top = 182.0
 margin_right = 103.0
-margin_bottom = 317.0
+margin_bottom = 199.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -266,9 +281,9 @@ group = ExtResource( 4 )
 text = "Rainfall"
 
 [node name="Temperature_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 321.0
+margin_top = 203.0
 margin_right = 103.0
-margin_bottom = 338.0
+margin_bottom = 220.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -277,9 +292,9 @@ group = ExtResource( 4 )
 text = "Temperature"
 
 [node name="Climate_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 342.0
+margin_top = 224.0
 margin_right = 103.0
-margin_bottom = 359.0
+margin_bottom = 241.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -288,9 +303,9 @@ group = ExtResource( 4 )
 text = "Climate"
 
 [node name="Satellite_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 363.0
+margin_top = 245.0
 margin_right = 103.0
-margin_bottom = 380.0
+margin_bottom = 262.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -299,17 +314,17 @@ group = ExtResource( 4 )
 text = "Satellite"
 
 [node name="HSeparator2" type="HSeparator" parent="UI/UI_container/map_settings"]
-margin_top = 384.0
+margin_top = 266.0
 margin_right = 103.0
-margin_bottom = 388.0
+margin_bottom = 270.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Wind_mode_button" type="Button" parent="UI/UI_container/map_settings"]
-margin_top = 392.0
+margin_top = 274.0
 margin_right = 103.0
-margin_bottom = 409.0
+margin_bottom = 291.0
 custom_styles/pressed = ExtResource( 17 )
 custom_styles/normal = ExtResource( 16 )
 custom_fonts/font = ExtResource( 18 )
@@ -380,6 +395,7 @@ texture = ExtResource( 14 )
 [connection signal="pressed" from="UI/UI_container/map_settings/smooth_button" to="Map" method="_on_smooth_button_pressed"]
 [connection signal="pressed" from="UI/UI_container/map_settings/smooth_ele_button" to="Map" method="_on_smooth_ele_button_pressed"]
 [connection signal="pressed" from="UI/UI_container/map_settings/water_erosion_button" to="Map" method="_on_water_erosion_button_pressed"]
+[connection signal="pressed" from="UI/UI_container/map_settings/reset_nodes_button" to="Map" method="_on_reset_nodes_button_pressed"]
 [connection signal="pressed" from="UI/UI_container/map_settings/apply_settings_button" to="Map" method="_on_apply_settings_button_pressed"]
 [connection signal="pressed" from="UI/UI_container/map_settings/Continent_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continent" ]]
 [connection signal="pressed" from="UI/UI_container/map_settings/Conflict_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "continentconflict" ]]
@@ -392,6 +408,6 @@ texture = ExtResource( 14 )
 [connection signal="pressed" from="UI/UI_container/map_settings/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/UI_container/generate_button" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/UI_container/generate_button" method="_on_Map_map_generated"]
 [connection signal="node_info" from="cursor" to="UI/Node_info" method="_on_cursor_node_info"]

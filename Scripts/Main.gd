@@ -44,6 +44,16 @@ func show_UI():
 	$UI/saveUI.show()
 	$UI/Node_info.show()
 		
+func disable_buttons():
+	$UI/UI_container/map_settings/smooth_button.disabled = true
+	$UI/UI_container/map_settings/smooth_ele_button.disabled = true
+	$UI/UI_container/map_settings/water_erosion_button.disabled = true
+
+func enable_buttons():
+	$UI/UI_container/map_settings/smooth_button.disabled = false
+	$UI/UI_container/map_settings/smooth_ele_button.disabled = false
+	$UI/UI_container/map_settings/water_erosion_button.disabled = false
+
 func move_to_export_pos():
 	$Camera2D.move_to_export_pos($Map.position)
 

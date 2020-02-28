@@ -356,7 +356,13 @@ func set_z(value):
 	var alpha = 1-max(((modifier*2)/100)+0.4,0)
 	z_index = modifier
 	$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
-		
+
+func reset():
+	rainfall = 0
+	ground_level = 0
+	temperature = 0
+	climate = "Sea"
+
 func _on_node_action(action,data):
 	match action:
 		"find_neighbours": find_neighbours()
@@ -376,3 +382,4 @@ func _on_node_action(action,data):
 		"erosion": erosion()
 		"smooth_elevation_differences": smooth_elevation_differences(data[0],data[1])
 		"show_wind": $wind_arrow.visible = !$wind_arrow.visible
+		"reset": reset()

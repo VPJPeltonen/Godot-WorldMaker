@@ -152,11 +152,7 @@ func make_nodes():
 	nodes_2 = make_quarter((width/2),0,2,node_scale)
 	nodes_3 = make_quarter(0,(height/2),3,node_scale)
 	nodes_4 = make_quarter((width/2),(height/2),4,node_scale)
-	
-func _on_generate_button_pressed():
-	if map_generated: get_tree().reload_current_scene()
-	elif state == "none": state = "start generating"
-	
+
 func _creation(userdata):
 	get_parent().set_info_label("Building Map Nodes")
 	make_nodes()
@@ -176,21 +172,34 @@ func _creation(userdata):
 	state = "none"
 	emit_signal("map_generated")
 
+func _adjust(userdata):
+	get_parent().disable_buttons()
+	emit_signal("node_action",userdata[0],"none")
+	emit_signal("node_action","reset","none")
+	emit_signal("node_action", "set_ground_level","none")
+	make_climate()
+	color_nodes(userdata[1])
+	get_parent().enable_buttons()
+
+func _on_generate_button_pressed():
+	if map_generated: get_tree().reload_current_scene()
+	elif state == "none": state = "start generating"
+	
 func _on_color_mode_button_pressed(mode):
 	color_nodes(mode)
 	$guide.view(mode)
 	
 func _on_smooth_button_pressed():
-	emit_signal("node_action","erosion","none")
-	color_nodes("elevation")
+	creation_thread = Thread.new()
+	creation_thread.start(self, "_adjust",["erosion","sea"])
 	
 func _on_smooth_ele_button_pressed():
 	smooth_node_values("smooth_elevation_differences",30)
 	color_nodes("elevation")
 	
 func _on_water_erosion_button_pressed():
-	emit_signal("node_action","water_erosion","none")
-	color_nodes("sea")
+	creation_thread = Thread.new()
+	creation_thread.start(self, "_adjust",["water_erosion","sea"])
 	
 func _on_apply_settings_button_pressed():
 	sea_level = get_parent().get_sea_level()
@@ -211,3 +220,7 @@ func _on_size_button_pressed(size):
 
 func _on_Wind_mode_button_pressed():
 	emit_signal("node_action","show_wind","none")
+
+
+func _on_reset_nodes_button_pressed():
+	emit_signal("node_action","reset","none")
