@@ -13,4 +13,6 @@ On left panel you can pick size of map generate. Larger maps will take longer to
 
 After generating you can use the controls in lower left corner to save maps. Just give the map a name and press save. Saved maps are found in: C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker
 
-Also after generating there are buttons to adjust map with additional erosion etc. These only work for the elevation at the moment
+Also after generating there are buttons to adjust map with additional erosion etc.
+
+You can get some instructions by clicking the questionmark
