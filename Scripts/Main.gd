@@ -7,7 +7,7 @@ func get_continent_amount():
 	return $UI/generation_UI/continents_box.value
 
 func get_sea_level():
-	return $UI/map_settings/sea_level_box.value
+	return $UI/UI_container/map_settings/sea_level_box.value
 
 func get_map_width():
 	return $Map.width
@@ -48,11 +48,13 @@ func disable_buttons():
 	$UI/UI_container/map_settings/smooth_button.disabled = true
 	$UI/UI_container/map_settings/smooth_ele_button.disabled = true
 	$UI/UI_container/map_settings/water_erosion_button.disabled = true
+	$UI/UI_container/map_settings/apply_settings_button.disabled = true
 
 func enable_buttons():
 	$UI/UI_container/map_settings/smooth_button.disabled = false
 	$UI/UI_container/map_settings/smooth_ele_button.disabled = false
 	$UI/UI_container/map_settings/water_erosion_button.disabled = false
+	$UI/UI_container/map_settings/apply_settings_button.disabled = false
 
 func move_to_export_pos():
 	$Camera2D.move_to_export_pos($Map.position)

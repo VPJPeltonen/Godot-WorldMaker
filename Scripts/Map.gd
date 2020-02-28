@@ -183,6 +183,15 @@ func _adjust(userdata):
 	color_nodes(userdata[1])
 	main.enable_buttons()
 
+func _change_sealevel(userdata):
+	main.disable_buttons()
+	sea_level = main.get_sea_level()
+	emit_signal("node_action","reset","none")
+	emit_signal("node_action", "set_ground_level","none")
+	make_climate()
+	color_nodes("sea")
+	main.enable_buttons()
+	
 func _on_generate_button_pressed():
 	if map_generated: get_tree().reload_current_scene()
 	elif state == "none": state = "start generating"
@@ -204,9 +213,11 @@ func _on_water_erosion_button_pressed():
 	creation_thread.start(self, "_adjust",["water_erosion","sea"])
 	
 func _on_apply_settings_button_pressed():
-	sea_level = main.get_sea_level()
-	emit_signal("node_action", "set_ground_level","none")
-	color_nodes("sea")
+	creation_thread = Thread.new()
+	creation_thread.start(self, "_change_sealevel")
+#	sea_level = main.get_sea_level()
+#	emit_signal("node_action", "set_ground_level","none")
+#	color_nodes("sea")
 
 func _on_size_button_pressed(size):
 	match size:
