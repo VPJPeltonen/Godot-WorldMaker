@@ -12,6 +12,7 @@ var ground_level = 0.0
 var sea_level = 0.0
 var climate = ""
 var river = "none"
+var lake = false
 
 var X
 var Y
@@ -166,7 +167,9 @@ func set_climate():
 		else:
 			climate = "Sea"
 	else:
-		if temperature == 0:
+		if lake:
+			climate = "Lake"
+		elif temperature == 0:
 			if rainfall <= 1: climate = "Polar Desert"
 			elif rainfall <= 2: climate = "Polar Desert"
 			elif rainfall <= 3: climate = "Polar Desert"
@@ -330,8 +333,7 @@ func color_mode(mode):
 			set_z(ground_level)
 			$node_sprite.color_mode("elevation",elevation)	
 		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
-		"satellite":
-			$node_sprite.color_mode("satellite",climate)
+		"satellite": $node_sprite.color_mode("satellite",climate)
 		"sea": 
 			set_z(ground_level)
 			$node_sprite.color_mode("sea",ground_level)
@@ -367,10 +369,8 @@ func reset():
 
 func create_rivers(min_rain,max_rain):
 	for node in neighbours:
-		if node.ground_level <= 0:
-			return
-		if node.river != "none":
-			return
+		if node.ground_level <= 0: return
+		if node.river != "none": return
 	if rainfall > min_rain and rainfall <= max_rain and river == "none":
 		get_parent().new_river(self)
 
