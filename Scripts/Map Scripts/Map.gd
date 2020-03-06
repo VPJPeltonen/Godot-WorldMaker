@@ -2,6 +2,7 @@ extends Node2D
 
 signal map_generated
 signal node_action(action,data)
+signal show_river
 
 export(Resource) var node
 export(Resource) var continent
@@ -144,11 +145,12 @@ func make_geology():
 func new_river(node):
 	var new_river = river.instance()
 	add_child(new_river)
-	new_river.init(0,node)
+	new_river.init(0,node,global_position)
+	connect('show_river', new_river, '_on_show_river')
 	rivers_array.append(new_river)
 
 func make_rivers():
-	for i in range(6,12):
+	for i in range(0,9):
 		var min_ele = 12-i-0.5
 		var max_ele = 12-i+0.5
 		emit_signal("node_action","create_rivers",[min_ele,max_ele])
@@ -251,4 +253,4 @@ func _on_reset_nodes_button_pressed():
 	emit_signal("node_action","reset","none")
 
 func _on_show_rivers_button_pressed():
-	emit_signal("node_action","show_rivers","none")
+	emit_signal("show_river")

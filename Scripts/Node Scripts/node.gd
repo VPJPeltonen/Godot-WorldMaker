@@ -18,6 +18,7 @@ var Y
 var quarter
 var neighbours = []
 var neighbours_directions = []
+var node_scale = 8
 
 func get_neighbours():
 	return neighbours
@@ -368,13 +369,14 @@ func create_rivers(min_rain,max_rain):
 	for node in neighbours:
 		if node.ground_level <= 0:
 			return
+		if node.river != "none":
+			return
 	if rainfall > min_rain and rainfall <= max_rain and river == "none":
 		get_parent().new_river(self)
 
 func toggle_river():
 	if river != "none":
-		if $river.visible: $river.hide()
-		else: $river.show()
+		$river.show_river(1,5,node_scale)
 
 func _on_node_action(action,data):
 	match action:
