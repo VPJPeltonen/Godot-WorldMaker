@@ -11,6 +11,7 @@ var elevation = 0.0
 var ground_level = 0.0
 var sea_level = 0.0
 var climate = ""
+var river = "none"
 
 var X
 var Y
@@ -319,21 +320,21 @@ func set_continent(new_continent):
 
 func color_mode(mode):
 	match mode:
+		"climate": 
+			set_z(ground_level)
+			$node_sprite.color_mode("climate",climate)
 		"continent": $node_sprite.color_mode("continent",continent)
 		"continentconflict": $node_sprite.color_mode("continentconflict",conflictzone)
 		"elevation": 
 			set_z(ground_level)
 			$node_sprite.color_mode("elevation",elevation)	
 		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
+		"satellite":
+			$node_sprite.color_mode("satellite",climate)
 		"sea": 
 			set_z(ground_level)
 			$node_sprite.color_mode("sea",ground_level)
 		"temperature": $node_sprite.color_mode("temperature",temperature)
-		"climate": 
-			set_z(ground_level)
-			$node_sprite.color_mode("climate",climate)
-		"satellite":
-			$node_sprite.color_mode("satellite",climate)
 
 func set_z(value):
 	if ground_level < 0: return
@@ -363,10 +364,23 @@ func reset():
 	temperature = 0
 	climate = "Sea"
 
+func create_rivers(min_rain,max_rain):
+	for node in neighbours:
+		if node.ground_level <= 0:
+			return
+	if rainfall > min_rain and rainfall <= max_rain and river == "none":
+		get_parent().new_river(self)
+
+func toggle_river():
+	if river != "none":
+		if $river.visible: $river.hide()
+		else: $river.show()
+
 func _on_node_action(action,data):
 	match action:
 		"find_neighbours": find_neighbours()
 		"change_color_mode": color_mode(data)
+		"create_rivers": create_rivers(data[0],data[1])
 		"set_basic_temperature": set_basic_temperature()
 		"set_climate": set_climate()
 		"set_conflictzone": set_conflictzone()
@@ -376,6 +390,7 @@ func _on_node_action(action,data):
 		"set_wind_rainfall": set_wind_rain(data[0],data[1])
 		"set_wind_temperature": set_wind_temperature(data[0],data[1])
 		"set_winds": set_wind()
+		"show_rivers": toggle_river()
 		"spread_rainfall": spread_rainfall(data[0],data[1])
 		"toggle_shadows": toggle_shadows(data)
 		"water_erosion": water_erosion()

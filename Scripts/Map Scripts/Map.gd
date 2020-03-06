@@ -5,6 +5,7 @@ signal node_action(action,data)
 
 export(Resource) var node
 export(Resource) var continent
+export(Resource) var river
 
 onready var main = get_parent()
 
@@ -17,6 +18,7 @@ var nodes_2 = []
 var nodes_3 = []
 var nodes_4 = []
 var continents_array = []
+var rivers_array = []
 
 var node_scale = 8
 var rng = RandomNumberGenerator.new()
@@ -139,11 +141,24 @@ func make_geology():
 	emit_signal("node_action","erosion","none")
 	emit_signal("node_action", "set_ground_level","none")
 
+func new_river(node):
+	var new_river = river.instance()
+	add_child(new_river)
+	new_river.init(0,node)
+	rivers_array.append(new_river)
+
+func make_rivers():
+	for i in range(6,12):
+		var min_ele = 12-i-0.5
+		var max_ele = 12-i+0.5
+		emit_signal("node_action","create_rivers",[min_ele,max_ele])
+
 func make_climate():
 	emit_signal("node_action","set_sea_rainfall","none")
 	emit_signal("node_action","set_mountain_rainfall","none")
 	emit_signal("node_action","set_winds","none")
 	smooth_node_values("set_wind_rainfall",20)
+	make_rivers()
 	smooth_node_values("spread_rainfall",12)
 	emit_signal("node_action","set_basic_temperature","none")
 	smooth_node_values("set_wind_temperature",7)
@@ -215,9 +230,6 @@ func _on_water_erosion_button_pressed():
 func _on_apply_settings_button_pressed():
 	creation_thread = Thread.new()
 	creation_thread.start(self, "_change_sealevel")
-#	sea_level = main.get_sea_level()
-#	emit_signal("node_action", "set_ground_level","none")
-#	color_nodes("sea")
 
 func _on_size_button_pressed(size):
 	match size:
@@ -237,3 +249,6 @@ func _on_Wind_mode_button_pressed():
 
 func _on_reset_nodes_button_pressed():
 	emit_signal("node_action","reset","none")
+
+func _on_show_rivers_button_pressed():
+	emit_signal("node_action","show_rivers","none")
