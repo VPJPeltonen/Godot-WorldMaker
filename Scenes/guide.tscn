@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/guide_label.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/guide.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI Scripts/guide.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/guide_node.tscn" type="PackedScene" id=3]
+
 
 [node name="guide" type="ColorRect"]
 margin_right = 250.0
