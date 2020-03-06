@@ -85,6 +85,10 @@
 		"6": "d73027"
     },
     "climate":{
+        "Deep Sea":"08519c",
+        "Sea":"3182bd",
+        "Coastal Sea":"6baed6",
+		"Lake":"6baed6",
     	"Polar Desert": "5a5a5a",
     	"Ice Cap": "ffffff",
     	"Tundra": "bfbfbf",
@@ -113,6 +117,9 @@
     	"Tropical Wetlands": "4f6228"
     },
     "satellite":{
+        "Deep Sea":"08519c",
+        "Sea":"3182bd",
+        "Coastal Sea":"6baed6",
 		"Lake":"6baed6",
         "Polar Desert": "54534c",
         "Ice Cap": "e7e7e8",

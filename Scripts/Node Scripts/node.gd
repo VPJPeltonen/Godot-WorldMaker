@@ -165,7 +165,9 @@ func set_climate():
 		if temperature == 0 and rainfall >= 3:
 			climate = "Ice Cap"
 		else:
-			climate = "Sea"
+			if ground_level >= -1: climate = "Coastal Sea"
+			elif ground_level >= -2: climate = "Sea"
+			else: climate = "Deep Sea"
 	else:
 		if lake:
 			climate = "Lake"
@@ -366,6 +368,8 @@ func reset():
 	ground_level = 0
 	temperature = 0
 	climate = "Sea"
+	river = "none"
+	lake = false
 
 func create_rivers(min_rain,max_rain):
 	for node in neighbours:

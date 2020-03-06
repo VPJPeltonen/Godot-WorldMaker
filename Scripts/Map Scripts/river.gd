@@ -51,3 +51,7 @@ func show_rivers():
 
 func _on_show_river():
 	show_rivers()
+
+func _on_reset_river():
+	river_nodes = []
+	river_drawn = false

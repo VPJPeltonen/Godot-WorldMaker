@@ -3,6 +3,7 @@ extends Node2D
 signal map_generated
 signal node_action(action,data)
 signal show_river
+signal reset_river
 
 export(Resource) var node
 export(Resource) var continent
@@ -11,8 +12,10 @@ export(Resource) var river
 onready var main = get_parent()
 
 var creation_thread
+var adjust_thread
 
 var state = "none"
+var display_mode
 
 var nodes = []
 var nodes_2 = []
@@ -129,6 +132,7 @@ func smooth_node_values(target,top_value):
 
 func color_nodes(mode):
 	emit_signal("node_action","change_color_mode",mode)
+	display_mode = mode
 
 func toggle_shadows(on):
 	emit_signal("node_action", "toggle_shadows", on)
@@ -147,6 +151,7 @@ func new_river(node):
 	add_child(new_river)
 	new_river.init(0,node,global_position)
 	connect('show_river', new_river, '_on_show_river')
+	connect('reset_river', new_river, '_on_reset_river')
 	rivers_array.append(new_river)
 
 func make_rivers():
@@ -204,9 +209,10 @@ func _change_sealevel(userdata):
 	main.disable_buttons()
 	sea_level = main.get_sea_level()
 	emit_signal("node_action","reset","none")
+	emit_signal("reset_river")
 	emit_signal("node_action", "set_ground_level","none")
 	make_climate()
-	color_nodes("sea")
+	color_nodes(display_mode)
 	main.enable_buttons()
 	
 func _on_generate_button_pressed():
@@ -230,8 +236,13 @@ func _on_water_erosion_button_pressed():
 	creation_thread.start(self, "_adjust",["water_erosion","sea"])
 	
 func _on_apply_settings_button_pressed():
-	creation_thread = Thread.new()
-	creation_thread.start(self, "_change_sealevel")
+	if !creation_thread.is_active():
+		creation_thread = Thread.new()
+		creation_thread.start(self, "_change_sealevel")
+	else:
+		
+		adjust_thread = Thread.new()
+		adjust_thread.start(self, "_change_sealevel")
 
 func _on_size_button_pressed(size):
 	match size:
