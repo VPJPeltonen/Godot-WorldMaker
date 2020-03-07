@@ -33,7 +33,6 @@ func _on_save_button_pressed():
 	else:
 		main.hide_UI()
 		main.move_to_export_pos()
-		#main.toggle_shadows(false)
 		main.lock_camera()
 		save_stage = "start"
 		$hide_timer.start()
@@ -44,6 +43,7 @@ func _on_hide_timer_timeout():
 		"start": #for some reason first pass still had UI. added this empty. should figure out at some point
 			save_stage = "sea"
 			main.color_nodes("sea")
+			main.toggle_rivers(false)
 			$hide_timer.start()
 		"sea":
 			save_map(save_stage)
@@ -62,15 +62,22 @@ func _on_hide_timer_timeout():
 			$hide_timer.start()
 		"rainfall":
 			save_map(save_stage)
+			save_stage = "rivers"
+			main.color_nodes("rivers")
+			main.toggle_rivers(true)
+			$hide_timer.start()
+		"rivers":
+			#main.toggle_rivers(true)
+			save_map(save_stage)
 			save_stage = "satellite"
 			main.color_nodes("satellite")
 			$hide_timer.start()
 		"satellite":
 			save_map(save_stage)
 			show_info("Map saved succefully at C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker")
-			#main.toggle_shadows(true)
 			main.show_UI()
 			main.unlock_camera()
+		
 
 func _on_Map_map_generated():
 	show()

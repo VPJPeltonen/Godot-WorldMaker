@@ -40,18 +40,28 @@ func find_sea():
 		else:
 			next_node.river = river_name
 
-func show_rivers():
-	if visible: hide()
-	else:
+func show_rivers(toggle):
+	if toggle:
 		show()
 		if !river_drawn:
 			for node in river_nodes:
 				$river_line.add_point(node.position)
 			river_drawn = true
+	else: hide()
+#	if visible: hide()
+#	else:
+#		show()
+#		if !river_drawn:
+#			for node in river_nodes:
+#				$river_line.add_point(node.position)
+#			river_drawn = true
 
-func _on_show_river():
-	show_rivers()
+func _on_show_river(toggle):
+	show_rivers(toggle)
 
 func _on_reset_river():
 	river_nodes = []
 	river_drawn = false
+	if visible:
+		hide()
+		show()

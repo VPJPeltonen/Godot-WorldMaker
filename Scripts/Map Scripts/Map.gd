@@ -2,7 +2,7 @@ extends Node2D
 
 signal map_generated
 signal node_action(action,data)
-signal show_river
+signal show_river(toggle)
 signal reset_river
 
 export(Resource) var node
@@ -263,5 +263,9 @@ func _on_Wind_mode_button_pressed():
 func _on_reset_nodes_button_pressed():
 	emit_signal("node_action","reset","none")
 
-func _on_show_rivers_button_pressed():
-	emit_signal("show_river")
+#func _on_show_rivers_button_pressed():
+#	emit_signal("show_river")
+
+
+func _on_show_rivers_button_toggled(button_pressed):
+	emit_signal("show_river",button_pressed)

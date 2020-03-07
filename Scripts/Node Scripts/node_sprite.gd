@@ -42,12 +42,15 @@ func color_mode(mode,value):
 			var color = Color(json_reader.get_color(mode,str(rounded)))
 			set_self_modulate(color)
 		"climate":
-			#if value == "Sea":
-			#	return
 			var color = Color(json_reader.get_color(mode,value))
 			set_self_modulate(color)
 		"satellite":
-			#if value == "Sea":
-			#	return
 			var color = Color(json_reader.get_color(mode,value))
+			set_self_modulate(color)
+		"rivers":
+			var color
+			if value >= 0:
+				color = Color(json_reader.get_color(mode,"Land"))
+			else:
+				color = Color(json_reader.get_color(mode,"Sea"))
 			set_self_modulate(color)

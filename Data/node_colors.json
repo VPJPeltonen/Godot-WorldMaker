@@ -147,5 +147,9 @@
         "Tropical Dry Forest": "5c6e53",
         "Tropical Wet Forest": "2a4b34",
         "Tropical Wetlands": "2a4b34"
-    }
+    },
+	"rivers":{
+		"Land":"000000",
+		"Sea":"6baed6"
+	}
 }

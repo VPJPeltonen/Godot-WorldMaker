@@ -1,5 +1,9 @@
 extends Node2D
 
+#
+# This mostly passes info and methods between nodes
+#
+
 func get_node_info(X,Y):
 	return $Map.get_node_info(X,Y)
 
@@ -24,6 +28,9 @@ func get_node_scale():
 func color_nodes(mode):
 	$Map.color_nodes(mode)
 	$Map/guide.view(mode)
+
+func toggle_rivers(toggle):
+	$Map.emit_signal("show_river", toggle)
 
 func toggle_shadows(on):
 	$Map.toggle_shadows(on)

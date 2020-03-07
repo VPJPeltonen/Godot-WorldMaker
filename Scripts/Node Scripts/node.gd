@@ -340,6 +340,7 @@ func color_mode(mode):
 			set_z(ground_level)
 			$node_sprite.color_mode("sea",ground_level)
 		"temperature": $node_sprite.color_mode("temperature",temperature)
+		"rivers": $node_sprite.color_mode("rivers",ground_level)
 
 func set_z(value):
 	if ground_level < 0: return
