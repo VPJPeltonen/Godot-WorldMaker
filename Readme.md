@@ -1,7 +1,14 @@
 # World Maker
-Little project for fun that generates a world map with elevation, temperatures and climates.  
+Little project for fun that generates a world map.
 
-Currently it can generate elevation, rainfall, temperature and climate maps. You can also export these maps as png files.
+Currently generates: 
+- elevation 
+- temperatures
+- rainfall
+- rivers and lakes
+- climates  
+
+You can also export these maps as png files.
 
 ![Screenshot](/Screenshots/screen1.png?raw=true "Screenshot")
 
