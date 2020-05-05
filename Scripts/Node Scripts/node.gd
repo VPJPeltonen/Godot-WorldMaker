@@ -336,10 +336,9 @@ func color_mode(mode):
 	match mode:
 		"civilizations":
 			if owning_civ == null:
-				set_z(ground_level)
-				$node_sprite.color_mode("sea",ground_level)
+				$node_sprite.color_mode("blank",ground_level)
 			else:
-				$node_sprite.color_mode("continent",owning_civ.civ_color)
+				$node_sprite.color_mode("civilization",owning_civ.civ_color)
 		"climate": 
 			set_z(ground_level)
 			$node_sprite.color_mode("climate",climate)

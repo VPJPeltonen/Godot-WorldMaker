@@ -2,7 +2,16 @@ extends Sprite
 
 func color_mode(mode,value):
 	match mode:
+		"blank":
+			var color
+			if value >= 0:
+				color = Color(json_reader.get_color("blank","Land"))
+			else:
+				color = Color(json_reader.get_color("blank","Sea"))
+			set_self_modulate(color)
 		"civilization":
+			while value >= 16:
+				value -= 16
 			var color = Color(json_reader.get_color("continent",str(value)))
 			set_self_modulate(color)
 		"continent":
@@ -53,7 +62,7 @@ func color_mode(mode,value):
 		"rivers":
 			var color
 			if value >= 0:
-				color = Color(json_reader.get_color(mode,"Land"))
+				color = Color(json_reader.get_color("blank","Land"))
 			else:
-				color = Color(json_reader.get_color(mode,"Sea"))
+				color = Color(json_reader.get_color("blank","Sea"))
 			set_self_modulate(color)

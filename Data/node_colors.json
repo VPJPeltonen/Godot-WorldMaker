@@ -167,7 +167,7 @@
         "Tropical Wet Forest": "2a4b34",
         "Tropical Wetlands": "2a4b34"
     },
-	"rivers":{
+	"blank":{
 		"Land":"000000",
 		"Sea":"6baed6"
 	}

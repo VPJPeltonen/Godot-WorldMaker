@@ -1,17 +1,26 @@
 extends Node2D
 
 export(Resource) var civ
+signal show_civs
+
+var civs = []
+var rng = RandomNumberGenerator.new()
+var creation_thread
+var civs_amount
 
 onready var map = get_parent()
-var rng = RandomNumberGenerator.new()
 
 func make_civs(amount):
-	for i in range(amount):
+	civs_amount = amount
+	for i in range(civs_amount):
 		var new_civ = civ.instance()
 		var start_node = find_empty(i)
 		add_child(new_civ)
 		new_civ.init_civ(start_node,i)
-		
+		civs.append(new_civ)
+	spread_civs()
+
+
 func find_empty(i):
 	while true:
 		var quarter = rng.randi_range(1,4)
@@ -26,3 +35,13 @@ func find_empty(i):
 		var node = row[b]
 		if node.owning_civ == null and node.ground_level >= 0:
 			return node
+
+func spread_civs():
+	var spreading = true
+	while spreading:
+		spreading = false
+		for c in civs:
+			if c.spread():
+				spreading = true
+	emit_signal("show_civs")
+		
