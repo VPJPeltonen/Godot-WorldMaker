@@ -4,6 +4,7 @@ var continent
 var slide_direction = 0
 var conflictzone = false
 
+# climate stuff
 var arability = 0.0
 var rainfall = 0.0
 var wind_direction = 0
@@ -14,6 +15,9 @@ var sea_level = 0.0
 var climate = ""
 var river = "none"
 var lake = false
+
+# civ stuff
+var owning_civ
 
 var X
 var Y
@@ -330,6 +334,12 @@ func set_continent(new_continent):
 
 func color_mode(mode):
 	match mode:
+		"civilizations":
+			if owning_civ == null:
+				set_z(ground_level)
+				$node_sprite.color_mode("sea",ground_level)
+			else:
+				$node_sprite.color_mode("continent",owning_civ.civ_color)
 		"climate": 
 			set_z(ground_level)
 			$node_sprite.color_mode("climate",climate)

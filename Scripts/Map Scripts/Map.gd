@@ -53,7 +53,7 @@ func get_quarter(quarter):
 func get_sea_level():
 	return sea_level
 	
-func get_node_info(nodeX,nodeY):
+func get_map_node(nodeX,nodeY):
 	if map_generated:
 		var quarter
 		if nodeX < width/2 and nodeY < height/2-1:
@@ -70,9 +70,16 @@ func get_node_info(nodeX,nodeY):
 			quarter = get_quarter(4)
 		var row = quarter[nodeX]
 		if nodeY+1 <= row.size():
-			return row[nodeY].get_info()
+			return row[nodeY]
 		else:
 			return 0
+	else:
+		return 0
+	
+func get_node_info(nodeX,nodeY):
+	var n = get_map_node(nodeX,nodeY)
+	if typeof(n) == 17:
+		return n.get_info()
 	else:
 		return 0
 			
@@ -259,13 +266,12 @@ func _on_size_button_pressed(size):
 func _on_Wind_mode_button_pressed():
 	emit_signal("node_action","show_wind","none")
 
-
 func _on_reset_nodes_button_pressed():
 	emit_signal("node_action","reset","none")
 
-#func _on_show_rivers_button_pressed():
-#	emit_signal("show_river")
-
-
 func _on_show_rivers_button_toggled(button_pressed):
 	emit_signal("show_river",button_pressed)
+
+func _on_init_civs_pressed():
+	var amount = main.get_civ_amount()
+	get_node("Civilizations").make_civs(amount)

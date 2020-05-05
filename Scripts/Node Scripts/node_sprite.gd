@@ -2,6 +2,9 @@ extends Sprite
 
 func color_mode(mode,value):
 	match mode:
+		"civilization":
+			var color = Color(json_reader.get_color("continent",str(value)))
+			set_self_modulate(color)
 		"continent":
 			var color = Color(json_reader.get_color(mode,str(value)))
 			set_self_modulate(color)
