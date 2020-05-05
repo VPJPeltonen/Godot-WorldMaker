@@ -4,6 +4,7 @@ var continent
 var slide_direction = 0
 var conflictzone = false
 
+var arability = 0.0
 var rainfall = 0.0
 var wind_direction = 0
 var temperature = 0
@@ -146,11 +147,11 @@ func set_basic_temperature():
 	elif (Y > slice*3 and Y <= slice*4) or (Y > world_height - (slice*4) and Y <= world_height - slice*3):
 		temperature = 2.0
 	elif (Y > slice*4 and Y <= slice*5) or (Y > world_height - (slice*5) and Y <= world_height - slice*4):
-		temperature = 3.0		
+		temperature = 3.0
 	elif (Y > slice*5 and Y <= slice*6) or (Y > world_height - (slice*6) and Y <= world_height - slice*5):
-		temperature = 4.0		
+		temperature = 4.0
 	elif (Y > slice*6 and Y <= slice*7) or (Y > world_height - (slice*7) and Y <= world_height - slice*6):
-		temperature = 5.0		
+		temperature = 5.0
 	else:
 		temperature = 6.0
 	elevation_temperature_adjustment()
@@ -158,6 +159,9 @@ func set_basic_temperature():
 func elevation_temperature_adjustment():
 	if ground_level > 2:
 		temperature -= ground_level/2
+
+func set_arability():
+	arability = 0.0
 
 # climate
 func set_climate():
