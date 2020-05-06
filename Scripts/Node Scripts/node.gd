@@ -61,10 +61,10 @@ func set_wind():
 		wind_direction = 8
 	else:
 		wind_direction = 4
-	set_wind_arrow()
+	#set_wind_arrow()
 
 func set_wind_arrow():
-	$wind_arrow.set_direction(wind_direction)
+	pass #$wind_arrow.set_direction(wind_direction)
 	
 # elevation
 func set_ground_level():
@@ -375,7 +375,7 @@ func set_z(value):
 	else: modifier = -4.0
 	var alpha = 1-max(((modifier*2)/100)+0.4,0)
 	z_index = modifier
-	$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
+	#$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
 
 func reset():
 	rainfall = 0
@@ -416,5 +416,5 @@ func _on_node_action(action,data):
 		"water_erosion": water_erosion()
 		"erosion": erosion()
 		"smooth_elevation_differences": smooth_elevation_differences(data[0],data[1])
-		"show_wind": $wind_arrow.visible = !$wind_arrow.visible
+		"show_wind": pass#$wind_arrow.visible = !$wind_arrow.visible
 		"reset": reset()

@@ -24,7 +24,7 @@ var nodes_4 = []
 var continents_array = []
 var rivers_array = []
 
-var node_scale = 8
+var node_scale = 32
 var rng = RandomNumberGenerator.new()
 var map_generated = false
 
@@ -247,7 +247,6 @@ func _on_apply_settings_button_pressed():
 		creation_thread = Thread.new()
 		creation_thread.start(self, "_change_sealevel")
 	else:
-		
 		adjust_thread = Thread.new()
 		adjust_thread.start(self, "_change_sealevel")
 
