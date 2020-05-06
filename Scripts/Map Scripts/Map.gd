@@ -221,7 +221,14 @@ func _change_sealevel(userdata):
 	make_climate()
 	color_nodes(display_mode)
 	main.enable_buttons()
-	
+
+func _add_detail(userdata):
+	main.disable_buttons()
+	main.set_info_label("Adding Detail")
+	emit_signal("node_action","add_detail","none")
+	main.set_info_label(" ")
+	main.enable_buttons()
+
 func _on_generate_button_pressed():
 	if map_generated: get_tree().reload_current_scene()
 	elif state == "none": state = "start generating"
@@ -274,3 +281,11 @@ func _on_show_rivers_button_toggled(button_pressed):
 func _on_init_civs_pressed():
 	var amount = main.get_civ_amount()
 	get_node("Civilizations").make_civs(amount)
+
+func _on_adjust_done_button_pressed():
+	if !creation_thread.is_active():
+		creation_thread = Thread.new()
+		creation_thread.start(self, "_add_detail")
+	else:
+		adjust_thread = Thread.new()
+		adjust_thread.start(self, "_add_detail")

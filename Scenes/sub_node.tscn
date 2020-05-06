@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Node Scripts/sub_sprite.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/node.png" type="Texture" id=2]
+
+[node name="sub_node" type="Sprite"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )

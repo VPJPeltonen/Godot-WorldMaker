@@ -4,7 +4,6 @@
 [ext_resource path="res://Sprites/node.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=3]
 
-
 [node name="Node_info" type="VBoxContainer"]
 margin_left = 2.00259
 margin_top = 526.755

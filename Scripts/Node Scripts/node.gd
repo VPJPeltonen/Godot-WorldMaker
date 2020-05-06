@@ -1,5 +1,7 @@
 extends Sprite
 
+export(Resource) var sub_node
+
 var continent
 var slide_direction = 0
 var conflictzone = false
@@ -19,6 +21,7 @@ var lake = false
 # civ stuff
 var owning_civ
 
+var creation_thread
 var X
 var Y
 var quarter
@@ -49,6 +52,17 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	Y = y_pos
 	quarter = Quarter
 	elevation = new_elevation
+
+func add_detail():
+	for i in range(4):
+		var new_node = sub_node.instance()
+		add_child(new_node)
+		match i:
+			0: new_node.set_global_position(Vector2(position.x+96,position.y-4))
+			1: new_node.set_global_position(Vector2(position.x+112,position.y-4))
+			2: new_node.set_global_position(Vector2(position.x+96,position.y+12))
+			3: new_node.set_global_position(Vector2(position.x+112,position.y+12))
+		
 
 # wind
 func set_wind():
@@ -374,7 +388,7 @@ func set_z(value):
 	elif value >= -2: modifier = -2.0
 	else: modifier = -4.0
 	var alpha = 1-max(((modifier*2)/100)+0.4,0)
-	z_index = modifier
+	#z_index = modifier
 	#$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
 
 func reset():
@@ -398,6 +412,7 @@ func toggle_river():
 
 func _on_node_action(action,data):
 	match action:
+		"add_detail": add_detail()
 		"find_neighbours": find_neighbours()
 		"change_color_mode": color_mode(data)
 		"create_rivers": create_rivers(data[0],data[1])

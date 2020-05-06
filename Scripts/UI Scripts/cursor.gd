@@ -13,7 +13,7 @@ func _process(delta):
 	if !map_generated:
 		hide()
 		return
-	position.x = get_global_mouse_position().x - fmod(get_global_mouse_position().x,node_size)
+	position.x = get_global_mouse_position().x - fmod(get_global_mouse_position().x,node_size) + 8
 	position.y = get_global_mouse_position().y - fmod(get_global_mouse_position().y,node_size) + 4
 	var X = (position.x-104)/32
 	var Y = (position.y-4)/32
