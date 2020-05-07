@@ -63,11 +63,10 @@ func _on_hide_timer_timeout():
 		"rainfall":
 			save_map(save_stage)
 			save_stage = "rivers"
-			main.color_nodes("rivers")
+			main.color_nodes("blank")
 			main.toggle_rivers(true)
 			$hide_timer.start()
 		"rivers":
-			#main.toggle_rivers(true)
 			save_map(save_stage)
 			save_stage = "satellite"
 			main.color_nodes("satellite")

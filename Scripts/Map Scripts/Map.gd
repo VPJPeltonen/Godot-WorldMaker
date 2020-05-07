@@ -24,7 +24,7 @@ var nodes_4 = []
 var continents_array = []
 var rivers_array = []
 
-var node_scale = 32
+var node_scale = 8
 var rng = RandomNumberGenerator.new()
 var map_generated = false
 

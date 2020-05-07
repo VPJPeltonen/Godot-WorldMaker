@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/sub_node.tscn" type="PackedScene" id=4]
 
 [node name="node" type="Sprite"]
-scale = Vector2( 4, 4 )
 script = ExtResource( 1 )
 sub_node = ExtResource( 4 )
 

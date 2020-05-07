@@ -63,10 +63,10 @@ func add_detail():
 		var new_node = sub_node.instance()
 		get_node("node_sprite").add_child(new_node)
 		match i:
-			0: new_node.set_global_position(Vector2(position.x+96,position.y-4))
-			1: new_node.set_global_position(Vector2(position.x+112,position.y-4))
-			2: new_node.set_global_position(Vector2(position.x+96,position.y+12))
-			3: new_node.set_global_position(Vector2(position.x+112,position.y+12))
+			0: new_node.set_global_position(Vector2(position.x+102,position.y+1))
+			1: new_node.set_global_position(Vector2(position.x+106,position.y+1))
+			2: new_node.set_global_position(Vector2(position.x+102,position.y+5))
+			3: new_node.set_global_position(Vector2(position.x+106,position.y+5))
 		new_node.init_sub_sprite(self)
 
 # wind
@@ -372,7 +372,7 @@ func color_mode(mode):
 			set_z(ground_level)
 			$node_sprite.color_mode("sea",ground_level)
 		"temperature": $node_sprite.color_mode("temperature",temperature)
-		"rivers": $node_sprite.color_mode("rivers",ground_level)
+		"blank": $node_sprite.color_mode("blank",ground_level)
 
 func set_z(value):
 	if ground_level < 0: return

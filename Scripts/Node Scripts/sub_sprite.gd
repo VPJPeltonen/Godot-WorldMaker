@@ -184,7 +184,7 @@ func color_mode(mode):
 			color = Color(json_reader.get_color(mode,climate))
 			set_self_modulate(color)
 		"rivers":
-			if climate >= 0:
+			if ground_level >= 0:
 				color = Color(json_reader.get_color("blank","Land"))
 			else:
 				color = Color(json_reader.get_color("blank","Sea"))
