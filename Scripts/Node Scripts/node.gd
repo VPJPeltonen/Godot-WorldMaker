@@ -29,6 +29,11 @@ var neighbours = []
 var neighbours_directions = []
 var node_scale = 8
 
+func set_civ(new_owner):
+	owning_civ = new_owner
+	for node in get_node("node_sprite").get_children():
+		node.owning_civ = new_owner
+
 func get_neighbours():
 	return neighbours
 

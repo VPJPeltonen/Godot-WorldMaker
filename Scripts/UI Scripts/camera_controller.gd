@@ -1,7 +1,7 @@
 extends Camera2D
 
 onready var screen_edges = get_viewport().size
-var scroll_speed = 25
+var scroll_speed = 100
 var scroll_distance = 50
 var locked = false
 

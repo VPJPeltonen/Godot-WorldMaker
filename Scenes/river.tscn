@@ -7,6 +7,6 @@ script = ExtResource( 1 )
 
 [node name="river_line" type="Line2D" parent="."]
 z_index = 100
-width = 1.0
+width = 2.0
 default_color = Color( 0.419608, 0.682353, 0.839216, 0.607843 )
 joint_mode = 2

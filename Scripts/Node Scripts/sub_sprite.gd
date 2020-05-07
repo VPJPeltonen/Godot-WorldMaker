@@ -45,7 +45,7 @@ func set_values():
 	
 func set_climate():
 	if ground_level < 0:
-		if temperature == 0 and rainfall >= 3:
+		if temperature <= 0.1 and rainfall >= 3:
 			climate = "Ice Cap"
 		else:
 			if ground_level >= -1: climate = "Coastal Sea"
@@ -54,7 +54,7 @@ func set_climate():
 	else:
 		if lake:
 			climate = "Lake"
-		elif temperature == 0:
+		elif temperature <= 0.1:
 			if rainfall <= 1: climate = "Polar Desert"
 			elif rainfall <= 2: climate = "Polar Desert"
 			elif rainfall <= 3: climate = "Polar Desert"
@@ -128,9 +128,13 @@ func color_mode(mode):
 				color = Color(json_reader.get_color("blank","Sea"))
 			set_self_modulate(color)
 		"civilization":
-			while owning_civ >= 16:
-				owning_civ -= 16
-			color = Color(json_reader.get_color("continent",str(owning_civ)))
+			if ground_level >= 0:
+				var value = owning_civ.civ_color
+				while value >= 16:
+					value -= 16
+				color = Color(json_reader.get_color("continent",str(value)))
+			else:
+				color = Color(json_reader.get_color("blank","Sea"))
 			set_self_modulate(color)
 		"continent":
 			color = Color(json_reader.get_color(mode,str(continent)))
