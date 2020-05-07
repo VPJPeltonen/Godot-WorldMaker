@@ -56,13 +56,13 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 func add_detail():
 	for i in range(4):
 		var new_node = sub_node.instance()
-		add_child(new_node)
+		get_node("node_sprite").add_child(new_node)
 		match i:
 			0: new_node.set_global_position(Vector2(position.x+96,position.y-4))
 			1: new_node.set_global_position(Vector2(position.x+112,position.y-4))
 			2: new_node.set_global_position(Vector2(position.x+96,position.y+12))
 			3: new_node.set_global_position(Vector2(position.x+112,position.y+12))
-		
+		new_node.init_sub_sprite(self)
 
 # wind
 func set_wind():

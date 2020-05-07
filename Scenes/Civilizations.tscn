@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Civ Scripts/Civilizations.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Civilization.tscn" type="PackedScene" id=2]
+
+[node name="Civilizations" type="Node2D"]
+position = Vector2( -104, -4 )
+script = ExtResource( 1 )
+civ = ExtResource( 2 )

@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 [autoload]
 
 json_reader="*res://Scripts/json_reader.gd"
+randomizer="*res://Scripts/randomizer.gd"
 
 [display]
 
