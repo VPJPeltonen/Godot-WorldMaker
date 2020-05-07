@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI Scripts/UI_container.gd" type="Script" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://UI/map_mode_group.tres" type="ButtonGroup" id=10]
 [ext_resource path="res://Scenes/Node_info.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/saveUI.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Fonts/Pixel Digivolve.otf" type="DynamicFontData" id=13]
+[ext_resource path="res://Fonts/big_font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://Scripts/UI Scripts/generation_UI.gd" type="Script" id=14]
 [ext_resource path="res://UI/map_size_buttongroup.tres" type="ButtonGroup" id=15]
 [ext_resource path="res://Sprites/help_button.png" type="Texture" id=16]
@@ -28,11 +28,6 @@
 [ext_resource path="res://Sprites/node.png" type="Texture" id=26]
 [ext_resource path="res://Scripts/UI Scripts/show_rivers_button.gd" type="Script" id=27]
 [ext_resource path="res://Scenes/Civilizations.tscn" type="PackedScene" id=28]
-
-[sub_resource type="DynamicFont" id=1]
-size = 48
-outline_size = 2
-font_data = ExtResource( 13 )
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -61,10 +56,10 @@ text = "Adjust"
 
 [node name="help_text5" type="Label" parent="UI/UI_container/adjustments/adjustment_label"]
 visible = false
-margin_left = 110.225
-margin_top = 22.8554
-margin_right = 478.225
-margin_bottom = 88.8554
+margin_left = 121.225
+margin_top = 24.8554
+margin_right = 489.225
+margin_bottom = 90.8554
 custom_fonts/font = ExtResource( 4 )
 text = "Erode will make mountains less sharp
 Sea Erode will make coasts less sharp"
@@ -184,10 +179,10 @@ text = "Map Modes"
 
 [node name="help_text7" type="Label" parent="UI/UI_container/modes_list/modes_label"]
 visible = false
-margin_left = 116.057
-margin_top = 18.6436
-margin_right = 495.057
-margin_bottom = 84.6436
+margin_left = 119.838
+margin_top = 23.6856
+margin_right = 498.839
+margin_bottom = 167.686
 custom_fonts/font = ExtResource( 4 )
 text = "Show continental plates
 Heightmap of the world
@@ -195,7 +190,9 @@ Heightmap with seas
 Amount of Rain
 How hot it is
 Types of climates
-More realistic looking climates"
+More realistic looking climates
+Borders Of civilizations
+Toggle Rivers Visible"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -445,13 +442,8 @@ margin_top = 18.6436
 margin_right = 495.057
 margin_bottom = 84.6436
 custom_fonts/font = ExtResource( 4 )
-text = "Show continental plates
-Heightmap of the world
-Heightmap with seas
-Amount of Rain
-How hot it is
-Types of climates
-More realistic looking climates"
+text = "Finish Adjusting map, add detail
+and move to adding civilizations"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -497,10 +489,12 @@ __meta__ = {
 
 [node name="civ_settings" type="VBoxContainer" parent="UI/UI_container"]
 visible = false
+margin_top = 445.0
 margin_right = 118.0
-margin_bottom = 101.0
+margin_bottom = 522.0
 
 [node name="civ_label" type="Label" parent="UI/UI_container/civ_settings"]
+visible = false
 margin_right = 118.0
 margin_bottom = 20.0
 custom_fonts/font = ExtResource( 3 )
@@ -521,38 +515,36 @@ __meta__ = {
 }
 
 [node name="HSeparator3" type="HSeparator" parent="UI/UI_container/civ_settings"]
-margin_top = 24.0
 margin_right = 118.0
-margin_bottom = 28.0
+margin_bottom = 4.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="civ_amount_label" type="Label" parent="UI/UI_container/civ_settings"]
-margin_top = 32.0
+margin_top = 8.0
 margin_right = 118.0
-margin_bottom = 52.0
+margin_bottom = 28.0
 custom_fonts/font = ExtResource( 3 )
 text = "Civilizations"
 
 [node name="help_text6" type="Label" parent="UI/UI_container/civ_settings/civ_amount_label"]
 visible = false
-margin_left = 114.891
-margin_top = 21.4981
-margin_right = 482.891
-margin_bottom = 87.4981
+margin_left = 127.079
+margin_top = 28.1464
+margin_right = 495.079
+margin_bottom = 94.1464
 custom_fonts/font = ExtResource( 4 )
-text = "Set how high the water goes and how big
-the seas are"
+text = "Create civilizations"
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="civ_amount_box" type="SpinBox" parent="UI/UI_container/civ_settings"]
-margin_top = 56.0
+margin_top = 32.0
 margin_right = 118.0
-margin_bottom = 80.0
+margin_bottom = 56.0
 min_value = 2.0
 value = 16.0
 __meta__ = {
@@ -560,9 +552,9 @@ __meta__ = {
 }
 
 [node name="begin_button" type="Button" parent="UI/UI_container/civ_settings"]
-margin_top = 84.0
+margin_top = 60.0
 margin_right = 118.0
-margin_bottom = 101.0
+margin_bottom = 77.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -584,7 +576,7 @@ margin_left = -184.634
 margin_top = 252.724
 margin_right = 178.366
 margin_bottom = 309.724
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = ExtResource( 13 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0.780392, 0.772549, 0.537255, 1 )
 text = "World Maker"
@@ -762,7 +754,6 @@ color = Color( 0.184314, 0.184314, 0.184314, 1 )
 [node name="Civilizations" parent="Map" instance=ExtResource( 28 )]
 
 [node name="cursor" type="Sprite" parent="."]
-modulate = Color( 1, 0, 0, 1 )
 position = Vector2( 346, 314 )
 z_index = 50
 texture = ExtResource( 24 )
@@ -790,30 +781,32 @@ texture = ExtResource( 26 )
 [connection signal="pressed" from="UI/UI_container/modes_list/Civ_mode_button" to="Map" method="_on_color_mode_button_pressed" binds= [ "civilizations" ]]
 [connection signal="toggled" from="UI/UI_container/modes_list/show_rivers_button" to="Map" method="_on_show_rivers_button_toggled"]
 [connection signal="pressed" from="UI/UI_container/modes_list/Wind_mode_button" to="Map" method="_on_Wind_mode_button_pressed"]
-[connection signal="pressed" from="UI/UI_container/done_list/adjust_done_button" to="UI/UI_container" method="_on_done_adjusting"]
 [connection signal="pressed" from="UI/UI_container/done_list/adjust_done_button" to="Map" method="_on_adjust_done_button_pressed"]
-[connection signal="pressed" from="UI/UI_container/civ_settings/begin_button" to="UI/UI_container" method="_on_begin_button_pressed"]
+[connection signal="pressed" from="UI/UI_container/done_list/adjust_done_button" to="UI/UI_container" method="_on_done_adjusting"]
 [connection signal="pressed" from="UI/UI_container/civ_settings/begin_button" to="Map" method="_on_init_civs_pressed"]
+[connection signal="pressed" from="UI/UI_container/civ_settings/begin_button" to="UI/UI_container" method="_on_begin_button_pressed"]
 [connection signal="pressed" from="UI/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
-[connection signal="pressed" from="UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="UI/generate_button" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="Map" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
-[connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/generate_button" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
 [connection signal="reset_river" from="Map" to="UI/UI_container/modes_list/show_rivers_button" method="_on_Map_reset_river"]
 [connection signal="show_civs" from="Map/Civilizations" to="Map" method="_on_color_mode_button_pressed" binds= [ "civilizations" ]]
 [connection signal="node_info" from="cursor" to="UI/Node_info" method="_on_cursor_node_info"]

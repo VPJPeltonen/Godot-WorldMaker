@@ -52,9 +52,14 @@ func _on_hide_timer_timeout():
 			$hide_timer.start()
 		"temperature":
 			save_map(save_stage)
+			save_stage = "civilizations"
+			main.color_nodes("civilizations")
+			$hide_timer.start()
+		"civilizations":
+			save_map(save_stage)
 			save_stage = "climate"
 			main.color_nodes("climate")
-			$hide_timer.start()
+			$hide_timer.start()			
 		"climate":
 			save_map(save_stage)
 			save_stage = "rainfall"

@@ -10,10 +10,13 @@ func color_mode(mode,value):
 				color = Color(json_reader.get_color("blank","Sea"))
 			set_self_modulate(color)
 		"civilization":
-			while value >= 16:
-				value -= 16
-			color = Color(json_reader.get_color("continent",str(value)))
-			set_self_modulate(color)
+			if get_parent().ground_level < 0: 
+				color = Color(json_reader.get_color("blank","Sea"))
+			else:
+				while value >= 16:
+					value -= 16
+				color = Color(json_reader.get_color("continent",str(value)))
+				set_self_modulate(color)
 		"continent":
 			color = Color(json_reader.get_color(mode,str(value)))
 			set_self_modulate(color)

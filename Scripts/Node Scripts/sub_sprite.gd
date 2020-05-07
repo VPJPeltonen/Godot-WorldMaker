@@ -128,13 +128,15 @@ func color_mode(mode):
 				color = Color(json_reader.get_color("blank","Sea"))
 			set_self_modulate(color)
 		"civilization":
-			if ground_level >= 0:
+			if owning_civ == null and ground_level >= 0:
+				color = Color(json_reader.get_color("blank","Land"))
+			elif ground_level >= 0:
 				var value = owning_civ.civ_color
 				while value >= 16:
 					value -= 16
 				color = Color(json_reader.get_color("continent",str(value)))
 			else:
-				color = Color(json_reader.get_color("blank","Sea"))
+				color = Color("#172887")
 			set_self_modulate(color)
 		"continent":
 			color = Color(json_reader.get_color(mode,str(continent)))

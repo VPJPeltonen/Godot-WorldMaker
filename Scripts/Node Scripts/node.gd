@@ -63,10 +63,10 @@ func add_detail():
 		var new_node = sub_node.instance()
 		get_node("node_sprite").add_child(new_node)
 		match i:
-			0: new_node.set_global_position(Vector2(position.x+102,position.y+1))
-			1: new_node.set_global_position(Vector2(position.x+106,position.y+1))
-			2: new_node.set_global_position(Vector2(position.x+102,position.y+5))
-			3: new_node.set_global_position(Vector2(position.x+106,position.y+5))
+			0: new_node.set_global_position(Vector2(position.x+102,position.y+2))
+			1: new_node.set_global_position(Vector2(position.x+106,position.y+2))
+			2: new_node.set_global_position(Vector2(position.x+102,position.y+6))
+			3: new_node.set_global_position(Vector2(position.x+106,position.y+6))
 		new_node.init_sub_sprite(self)
 
 # wind
@@ -355,7 +355,7 @@ func color_mode(mode):
 	match mode:
 		"civilizations":
 			if owning_civ == null:
-				$node_sprite.color_mode("blank",ground_level)
+				$node_sprite.color_mode("civilization",0)
 			else:
 				$node_sprite.color_mode("civilization",owning_civ.civ_color)
 		"climate": 

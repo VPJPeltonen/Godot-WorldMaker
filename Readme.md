@@ -7,10 +7,11 @@ Currently generates:
 - rainfall
 - rivers and lakes
 - climates  
+- basic civilization borders
 
 You can also export these maps as png files.
 
-![Screenshot](/Screenshots/screen1.png?raw=true "Screenshot")
+![Screenshot](/Screenshots/screen.PNG?raw=true "Screenshot")
 
 ## Instructions
 
@@ -21,5 +22,7 @@ On left panel you can pick size of map generate. Larger maps will take longer to
 After generating you can use the controls in lower left corner to save maps. Just give the map a name and press save. Saved maps are found in: C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker
 
 Also after generating there are buttons to adjust map with additional erosion etc.
+
+Once you are done you can move to generating civilizations with done. This also will add detail to the map
 
 You can get some instructions by clicking the questionmark
