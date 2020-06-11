@@ -1,0 +1,41 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scripts/Civ Scripts/flag_generator.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Flagparts/border.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Flagparts/background.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Civ Scripts/Flag/flag_background.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Civ Scripts/Flag/flag_pattern.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/Flagparts/canton.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Flagparts/quadrisection.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Flagparts/pale.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Flagparts/pall.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Flagparts/bend.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Flagparts/chevron.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Flagparts/saltire.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Flagparts/fess.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Flagparts/reverse_quadrisection.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/Civ Scripts/Flag/flag_colors.gd" type="Script" id=15]
+
+[node name="flag" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+script = ExtResource( 4 )
+
+[node name="pattern" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+script = ExtResource( 5 )
+border_sprite = ExtResource( 2 )
+canton_sprite = ExtResource( 6 )
+quadrisection_sprite = ExtResource( 7 )
+reverse_quadrisection_sprite = ExtResource( 14 )
+pale_sprite = ExtResource( 8 )
+fess_sprite = ExtResource( 13 )
+bend_sprite = ExtResource( 10 )
+chevron_sprite = ExtResource( 11 )
+pall_sprite = ExtResource( 9 )
+saltire_sprite = ExtResource( 12 )
+
+[node name="colors" type="Node" parent="."]
+script = ExtResource( 15 )

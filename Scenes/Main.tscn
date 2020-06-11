@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI Scripts/UI_container.gd" type="Script" id=2]
@@ -28,11 +28,14 @@
 [ext_resource path="res://Sprites/node.png" type="Texture" id=26]
 [ext_resource path="res://Scripts/UI Scripts/show_rivers_button.gd" type="Script" id=27]
 [ext_resource path="res://Scenes/Civilizations.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scripts/UI Scripts/UI_controller.gd" type="Script" id=29]
+[ext_resource path="res://Scenes/FlagGenerator.tscn" type="PackedScene" id=30]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 29 )
 
 [node name="UI_container" type="VBoxContainer" parent="UI"]
 visible = false
@@ -587,6 +590,7 @@ __meta__ = {
 }
 
 [node name="generation_UI" type="VBoxContainer" parent="UI"]
+visible = false
 margin_left = 565.0
 margin_top = 315.794
 margin_right = 715.0
@@ -692,6 +696,7 @@ __meta__ = {
 }
 
 [node name="generate_button" type="Button" parent="UI"]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 582.966
@@ -733,6 +738,77 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="OpeningMenu" type="VBoxContainer" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.911
+margin_top = -60.1593
+margin_right = 91.0891
+margin_bottom = 62.8407
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="makemap_button" type="Button" parent="UI/OpeningMenu"]
+margin_top = 27.0
+margin_right = 194.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
+text = "Make World"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="help_text" type="Label" parent="UI/OpeningMenu/makemap_button"]
+visible = false
+margin_left = 138.504
+margin_top = 2.21606
+margin_right = 178.504
+margin_bottom = 16.2161
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.792157, 0.807843, 0.207843, 1 )
+text = "Generate The Map here"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="makeflag_button" type="Button" parent="UI/OpeningMenu"]
+margin_top = 63.0
+margin_right = 194.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
+text = "Make Flag"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="help_text" type="Label" parent="UI/OpeningMenu/makeflag_button"]
+visible = false
+margin_left = 138.504
+margin_top = 2.21606
+margin_right = 178.504
+margin_bottom = 16.2161
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.792157, 0.807843, 0.207843, 1 )
+text = "Generate The Map here"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlagGenerator" parent="UI" instance=ExtResource( 30 )]
+visible = false
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 640, 400 )
 z_index = 50
@@ -761,7 +837,7 @@ script = ExtResource( 25 )
 
 [node name="background" type="Sprite" parent="."]
 self_modulate = Color( 0.494118, 0.486275, 0.45098, 1 )
-position = Vector2( 672.817, 402.67 )
+position = Vector2( 671.589, 402.67 )
 scale = Vector2( 20000, 20000 )
 z_index = -2
 texture = ExtResource( 26 )
@@ -788,23 +864,27 @@ texture = ExtResource( 26 )
 [connection signal="pressed" from="UI/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
-[connection signal="pressed" from="UI/generate_button" to="UI/generate_button" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="Map" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="UI/generate_button" to="UI/generate_button" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makeflag_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makemap_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
-[connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/generate_button" method="_on_Map_map_generated"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/OpeningMenu/makeflag_button" to="UI" method="_on_makeflag_button_pressed"]
+[connection signal="back" from="UI/FlagGenerator" to="UI" method="_on_FlagGenerator_back"]
 [connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/generate_button" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
 [connection signal="reset_river" from="Map" to="UI/UI_container/modes_list/show_rivers_button" method="_on_Map_reset_river"]

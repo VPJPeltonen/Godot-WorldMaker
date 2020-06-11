@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://UI/button_background.tres" type="StyleBox" id=1]
+[ext_resource path="res://UI/button_pressed.tres" type="StyleBox" id=2]
+[ext_resource path="res://Scripts/FlagGenerator.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/UI Scripts/help_text.gd" type="Script" id=4]
+[ext_resource path="res://Fonts/headline_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=6]
+[ext_resource path="res://Scenes/flag.tscn" type="PackedScene" id=7]
+
+[node name="FlagGenerator" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="flag" parent="." instance=ExtResource( 7 )]
+position = Vector2( 644.724, 303.701 )
+scale = Vector2( 10, 10 )
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 588.023
+margin_top = 399.339
+margin_right = 689.023
+margin_bottom = 467.339
+rect_min_size = Vector2( 120, 100 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="generateButton" type="Button" parent="Buttons"]
+margin_right = 120.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "Generate New"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="help_text" type="Label" parent="Buttons/generateButton"]
+visible = false
+margin_left = 138.504
+margin_top = 2.21606
+margin_right = 178.504
+margin_bottom = 16.2161
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.792157, 0.807843, 0.207843, 1 )
+text = "Generate The Map here"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backbutton" type="Button" parent="Buttons"]
+margin_top = 36.0
+margin_right = 120.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 32 )
+custom_styles/pressed = ExtResource( 2 )
+custom_styles/normal = ExtResource( 1 )
+custom_fonts/font = ExtResource( 6 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="help_text" type="Label" parent="Buttons/Backbutton"]
+visible = false
+margin_left = 138.504
+margin_top = 2.21606
+margin_right = 178.504
+margin_bottom = 16.2161
+custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color = Color( 0.792157, 0.807843, 0.207843, 1 )
+text = "Generate The Map here"
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Buttons/generateButton" to="." method="_on_generateButton_pressed"]
+[connection signal="pressed" from="Buttons/Backbutton" to="." method="_on_Backbutton_pressed"]
