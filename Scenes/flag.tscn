@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Civ Scripts/flag_generator.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Flagparts/border.png" type="Texture" id=2]
@@ -15,6 +15,16 @@
 [ext_resource path="res://Sprites/Flagparts/fess.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/Flagparts/reverse_quadrisection.png" type="Texture" id=14]
 [ext_resource path="res://Scripts/Civ Scripts/Flag/flag_colors.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/Civ Scripts/Flag/flag_emblem.gd" type="Script" id=16]
+[ext_resource path="res://Sprites/Flagparts/Emblems/bird.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Flagparts/Emblems/star6.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Flagparts/Emblems/moon.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Flagparts/Emblems/shield.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Flagparts/Emblems/star5.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Flagparts/Emblems/sun.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Flagparts/Emblems/sword.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Flagparts/Emblems/tower.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Flagparts/Emblems/x.png" type="Texture" id=25]
 
 [node name="flag" type="Node2D"]
 script = ExtResource( 1 )
@@ -39,3 +49,16 @@ saltire_sprite = ExtResource( 12 )
 
 [node name="colors" type="Node" parent="."]
 script = ExtResource( 15 )
+
+[node name="emblem" type="Sprite" parent="."]
+texture = ExtResource( 17 )
+script = ExtResource( 16 )
+bird_sprite = ExtResource( 17 )
+moon_sprite = ExtResource( 19 )
+shield_sprite = ExtResource( 20 )
+starfive_sprite = ExtResource( 21 )
+starsix_sprite = ExtResource( 18 )
+sun_sprite = ExtResource( 22 )
+sword_sprite = ExtResource( 23 )
+tower_sprite = ExtResource( 24 )
+x_sprite = ExtResource( 25 )
