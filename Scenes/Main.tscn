@@ -726,6 +726,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="generation_back_button" type="Button" parent="UI"]
+visible = false
+margin_left = 565.0
+margin_top = 506.794
+margin_right = 715.0
+margin_bottom = 523.794
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/normal = ExtResource( 7 )
+custom_fonts/font = ExtResource( 8 )
+text = "Back"
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="help_text" type="Label" parent="UI/generation_back_button"]
+visible = false
+margin_left = 138.504
+margin_top = 2.21606
+margin_right = 178.504
+margin_bottom = 16.2161
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.792157, 0.807843, 0.207843, 1 )
+text = "Generate The Map here"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="help_controller" type="TextureButton" parent="UI"]
 margin_left = 988.0
 margin_top = 7.0
@@ -867,23 +896,25 @@ texture = ExtResource( 26 )
 [connection signal="pressed" from="UI/generate_button" to="Map" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generate_button" to="UI/generate_button" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="UI/generation_back_button" to="UI" method="_on_generation_back_button_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makemap_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makeflag_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/OpeningMenu/makemap_button" to="UI" method="_on_makemap_button_pressed"]
 [connection signal="pressed" from="UI/OpeningMenu/makeflag_button" to="UI" method="_on_makeflag_button_pressed"]
 [connection signal="back" from="UI/FlagGenerator" to="UI" method="_on_FlagGenerator_back"]
-[connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/generate_button" method="_on_Map_map_generated"]
