@@ -1,6 +1,7 @@
 extends Sprite
 
 export(Texture) var bird_sprite
+export(Texture) var crown_sprite
 export(Texture) var moon_sprite
 export(Texture) var shield_sprite
 export(Texture) var starfive_sprite
@@ -18,6 +19,8 @@ func set_emblem(var emblem, var emblem_color):
 	match emblem:
 		"bird":
 			set_texture(bird_sprite)
+		"crown":
+			set_texture(crown_sprite)
 		"moon":
 			set_texture(moon_sprite)
 		"shield":

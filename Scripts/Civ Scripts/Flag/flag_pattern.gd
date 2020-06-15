@@ -2,6 +2,8 @@ extends Sprite
 
 export(Texture) var border_sprite
 export(Texture) var canton_sprite
+export(Texture) var fimbriation_sprite
+export(Texture) var hoist_sprite
 export(Texture) var quadrisection_sprite
 export(Texture) var reverse_quadrisection_sprite
 export(Texture) var pale_sprite
@@ -15,6 +17,10 @@ func set_pattern(var pattern, var pattern_color):
 	match pattern:
 		"border":
 			set_texture(border_sprite)
+		"hoist":
+			set_texture(hoist_sprite)
+		"fimbriation":
+			set_texture(fimbriation_sprite)
 		"canton":
 			set_texture(canton_sprite)
 		"quadrisection":
