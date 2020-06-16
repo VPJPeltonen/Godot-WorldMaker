@@ -16,8 +16,8 @@ func _process(delta):
 		return
 	position.x = get_global_mouse_position().x - fmod(get_global_mouse_position().x,node_size) + 8
 	position.y = get_global_mouse_position().y - fmod(get_global_mouse_position().y,node_size) + 4
-	var X = (position.x-104)/32
-	var Y = (position.y-4)/32
+	var X = (position.x-104)/node_size
+	var Y = (position.y-4)/node_size
 	if position.x > 96 and global_position.x < map_width+1 and global_position.y < map_height-1 and global_position.y > 0:
 		show()
 		var info = main.get_node_info(X,Y)
