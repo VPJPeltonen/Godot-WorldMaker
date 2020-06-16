@@ -8,6 +8,9 @@ func get_civ_amount():
 	
 func get_node_info(X,Y):
 	return $Map.get_node_info(X,Y)
+	
+func get_civ_info(X,Y):
+	return $Map.get_civ_info(X,Y)
 
 func get_continent_amount():
 	return $UI/generation_UI/continents_box.value

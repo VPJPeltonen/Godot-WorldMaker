@@ -1,0 +1,142 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/UI Scripts/civ_info.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/node.png" type="Texture" id=2]
+[ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Scenes/flag.tscn" type="PackedScene" id=4]
+
+[node name="civ_info" type="VBoxContainer"]
+margin_left = 5.0
+margin_top = 630.0
+margin_right = 184.0
+margin_bottom = 789.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="civ_info_label" type="Label" parent="."]
+margin_right = 179.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "Civ Info"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="."]
+margin_top = 21.0
+margin_right = 179.0
+margin_bottom = 25.0
+
+[node name="civ_label" type="Label" parent="."]
+margin_top = 29.0
+margin_right = 179.0
+margin_bottom = 46.0
+custom_fonts/font = ExtResource( 3 )
+text = "Name:"
+align = 1
+
+[node name="civ_text" type="Label" parent="."]
+margin_top = 50.0
+margin_right = 179.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 3 )
+text = "Kingdom Of BLABLA"
+align = 1
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+margin_top = 71.0
+margin_right = 179.0
+margin_bottom = 75.0
+
+[node name="nodetemperature" type="HBoxContainer" parent="."]
+margin_top = 79.0
+margin_right = 179.0
+margin_bottom = 96.0
+
+[node name="temperature_label" type="Label" parent="nodetemperature"]
+margin_right = 80.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "Map color:"
+
+[node name="Sprite" type="Sprite" parent="nodetemperature"]
+position = Vector2( 98.0229, 9.26587 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 2 )
+
+[node name="nodeheight" type="HBoxContainer" parent="."]
+margin_top = 100.0
+margin_right = 179.0
+margin_bottom = 117.0
+
+[node name="height_label" type="Label" parent="nodeheight"]
+margin_right = 36.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "Flag:"
+
+[node name="flag" parent="nodeheight" instance=ExtResource( 4 )]
+position = Vector2( 68.4268, 22.9661 )
+scale = Vector2( 2, 2 )
+
+[node name="noderainfall" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 100.0
+margin_right = 179.0
+margin_bottom = 117.0
+
+[node name="rainfall_label" type="Label" parent="noderainfall"]
+margin_right = 66.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "Rainfall:"
+
+[node name="rainfall_number" type="Label" parent="noderainfall"]
+margin_left = 70.0
+margin_right = 79.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+
+[node name="nodeXY" type="HBoxContainer" parent="."]
+visible = false
+margin_top = 100.0
+margin_right = 179.0
+margin_bottom = 117.0
+
+[node name="x_label" type="Label" parent="nodeXY"]
+margin_right = 11.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "X:"
+
+[node name="x_number" type="Label" parent="nodeXY"]
+margin_left = 15.0
+margin_right = 24.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+
+[node name="y_label" type="Label" parent="nodeXY"]
+margin_left = 28.0
+margin_right = 39.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "Y:"
+
+[node name="y_number" type="Label" parent="nodeXY"]
+margin_left = 43.0
+margin_right = 52.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 3 )
+text = "0"
+
+[node name="back_ground" type="Sprite" parent="."]
+self_modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 91.9158, 79.1745 )
+scale = Vector2( 94.0485, 82.4142 )
+z_index = -1
+texture = ExtResource( 2 )

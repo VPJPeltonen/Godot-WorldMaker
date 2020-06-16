@@ -1,5 +1,7 @@
 extends Node2D
 
+export(Resource) var Flag
+
 var civ_name = "Generic Civ"
 var capital
 var area = []
@@ -13,6 +15,8 @@ func init_civ(node,num):
 	capital.set_civ(self)
 	area.append(node)
 	spreadable_area.append(node)
+	var new_node = Flag.instance()
+	add_child(new_node)
 
 func spread():
 	var new_nodes = []
@@ -35,3 +39,6 @@ func spread():
 		return false
 	else:
 		return true
+
+func get_flag():
+	return get_node("flag")

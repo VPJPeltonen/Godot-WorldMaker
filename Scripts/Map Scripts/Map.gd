@@ -83,6 +83,13 @@ func get_node_info(nodeX,nodeY):
 	else:
 		return 0
 			
+func get_civ_info(nodeX,nodeY):
+	var n = get_map_node(nodeX,nodeY)
+	if typeof(n) == 17:
+		return n.get_civ_info()
+	else:
+		return 0
+
 func make_quarter(imod,jmod,quarter,nodescale):
 	var quarter_nodes = []
 	for i in range(width/2):

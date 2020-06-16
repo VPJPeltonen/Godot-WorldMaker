@@ -12,3 +12,4 @@ func _on_Backbutton_pressed():
 
 func _on_generateButton_pressed():
 	get_node("flag").generate_flag()
+	get_node("flag").show()

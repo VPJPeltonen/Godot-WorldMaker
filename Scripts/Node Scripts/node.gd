@@ -51,6 +51,21 @@ func get_info():
 	}
 	return dict
 
+func get_civ_info():
+	if owning_civ == null:
+		var dict = {
+			"civ name":"ASD",
+			"flag":"ASD"
+		}
+		return dict
+		#return 0
+	else:
+		var dict = {
+			"civ name":owning_civ.civ_name,
+			"flag":owning_civ.get_node("flag")
+		}
+		return dict
+
 func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 	position = Vector2(x_pos*node_scale,y_pos*node_scale)
 	X = x_pos

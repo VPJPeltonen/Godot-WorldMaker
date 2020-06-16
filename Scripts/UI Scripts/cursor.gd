@@ -1,6 +1,7 @@
 extends Sprite
 
 signal node_info(elevation)
+signal civ_info(elevation)
 
 var map_generated = false
 var map_width
@@ -19,8 +20,10 @@ func _process(delta):
 	var Y = (position.y-4)/32
 	if position.x > 96 and global_position.x < map_width+1 and global_position.y < map_height-1 and global_position.y > 0:
 		show()
-		var info = get_parent().get_node_info(X,Y)
+		var info = main.get_node_info(X,Y)
+		var civ_info = main.get_civ_info(X,Y)
 		emit_signal("node_info", info, X, Y)
+		emit_signal("civ_info", civ_info)
 	else:
 		hide()
 		
