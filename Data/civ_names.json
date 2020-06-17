@@ -1,9 +1,50 @@
 {
     "governments":{
-        "0":"Kingdom",
-        "1":"Republic",
-        "2":"Holy Kingdom",
-        "3":"Holy Republic",
-        "4":"Empire"
+        "common":{
+            "0":"Kingdom",
+            "1":"Republic",
+            "2":"Empire"
+        },
+        "rare":{
+            "0":"Holy Kingdom",
+            "1":"Holy Republic",
+            "2":"Clans",
+            "3":"Federation"
+        }
+    },
+    "part one":{
+        "0": "Dark",
+        "1": "White",
+        "2": "Red",
+        "3": "Wind",
+        "4": "South",
+        "5": "East",
+        "6": "West",
+        "7": "North",
+        "8": "Low",
+        "9": "High",
+        "10": "Sun",
+        "11": "Moon",
+        "12": "Star",
+        "13": "Bere",
+        "14": "Ryge"
+    },
+    "part two":{
+        "0": "land",
+        "1": "ia",
+        "2": "river",
+        "3": "hill",
+        "4": "fort",
+        "5": "lands",
+        "6": "mere",
+        "7": "wood",
+        "8": "weald",
+        "9": "holt",
+        "10": "dell",
+        "11": "ham",
+        "12": "lufen",
+        "13": "bold",
+        "14": "torr",
+        "15": "wic"
     }
 }

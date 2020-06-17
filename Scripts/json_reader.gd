@@ -27,3 +27,6 @@ func get_color(mode,value):
 func get_colors(mode):
 	var colors = node_colors[mode]
 	return colors
+
+func get_civ_names():
+	return civ_names

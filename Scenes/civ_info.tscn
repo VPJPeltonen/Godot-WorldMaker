@@ -136,7 +136,7 @@ text = "0"
 
 [node name="back_ground" type="Sprite" parent="."]
 self_modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 91.9158, 79.1745 )
-scale = Vector2( 94.0485, 82.4142 )
+position = Vector2( 88.0144, 75.2731 )
+scale = Vector2( 114.531, 82.4142 )
 z_index = -1
 texture = ExtResource( 2 )

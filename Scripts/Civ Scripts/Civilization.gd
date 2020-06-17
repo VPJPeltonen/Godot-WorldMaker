@@ -14,6 +14,7 @@ func init_civ(node,num):
 	civ_color = num
 	capital.set_civ(self)
 	area.append(node)
+	generate_name()
 	spreadable_area.append(node)
 	var new_node = Flag.instance()
 	add_child(new_node)
@@ -42,3 +43,18 @@ func spread():
 
 func get_flag():
 	return get_node("flag")
+
+func generate_name():
+	civ_name = ""
+	rng.randomize()
+	var names = json_reader.get_civ_names()
+	var type_chance = rng.randi_range(0,3)
+	var governments = names["governments"]
+	if(type_chance == 1):
+		governments = governments["rare"]
+	else:
+		governments = governments["common"]
+	civ_name += governments[str(rng.randi_range(0,governments.size()-1))] + " of "
+	var first_part = names["part one"]
+	var second_part = names["part two"]
+	civ_name += first_part[str(rng.randi_range(0,first_part.size()-1))] + second_part[str(rng.randi_range(0,second_part.size()-1))]
