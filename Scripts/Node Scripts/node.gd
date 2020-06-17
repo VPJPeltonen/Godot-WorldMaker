@@ -53,12 +53,7 @@ func get_info():
 
 func get_civ_info():
 	if owning_civ == null:
-		var dict = {
-			"civ name":"ASD",
-			"flag":"ASD"
-		}
-		return dict
-		#return 0
+		return 0
 	else:
 		var dict = {
 			"civ name":owning_civ.civ_name,

@@ -35,6 +35,7 @@ var colors_array = [
 ]
 
 func get_colors():
+	rng.randomize()
 	var colors = [colors_array[rng.randi_range(0,colors_array.size()-1)]]
 	
 	while(true):

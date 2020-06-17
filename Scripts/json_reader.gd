@@ -1,10 +1,12 @@
 extends Node
 
 var node_colors
+var civ_names
 
 func _ready():
 	node_colors = read_data("res://Data/node_colors.json") 
-
+	civ_names = read_data("res://Data/civ_names.json") 
+	
 func read_data(path):
 	var data_file = File.new()
 	if data_file.open(path, File.READ) != OK:

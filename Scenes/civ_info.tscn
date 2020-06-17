@@ -67,18 +67,18 @@ position = Vector2( 98.0229, 9.26587 )
 scale = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 
-[node name="nodeheight" type="HBoxContainer" parent="."]
+[node name="flag_info" type="HBoxContainer" parent="."]
 margin_top = 100.0
 margin_right = 179.0
 margin_bottom = 117.0
 
-[node name="height_label" type="Label" parent="nodeheight"]
+[node name="flag_label" type="Label" parent="flag_info"]
 margin_right = 36.0
 margin_bottom = 17.0
 custom_fonts/font = ExtResource( 3 )
 text = "Flag:"
 
-[node name="flag" parent="nodeheight" instance=ExtResource( 4 )]
+[node name="flag" parent="flag_info" instance=ExtResource( 4 )]
 position = Vector2( 68.4268, 22.9661 )
 scale = Vector2( 2, 2 )
 
