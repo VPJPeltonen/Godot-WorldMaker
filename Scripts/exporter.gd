@@ -20,7 +20,7 @@ func save_map(map):
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
 	var shot_size = get_map_size()
-	image.crop(shot_size.x+250,max(shot_size.y,540))
+	image.crop(shot_size.x+300,max(shot_size.y,540))
 	image.save_png("user://"+$save_box/map_name_input.text+"/"+map+".png")
 
 func show_info(info):

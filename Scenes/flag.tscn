@@ -28,6 +28,7 @@
 [ext_resource path="res://Sprites/Flagparts/fimbriation.png" type="Texture" id=26]
 
 [node name="flag" type="Node2D"]
+z_index = 1
 script = ExtResource( 1 )
 
 [node name="background" type="Sprite" parent="."]

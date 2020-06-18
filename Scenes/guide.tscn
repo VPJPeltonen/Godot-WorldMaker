@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/guide_label.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/UI Scripts/guide.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/guide_node.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://Scenes/flag.tscn" type="PackedScene" id=4]
 
 [node name="guide" type="ColorRect"]
 margin_right = 250.0
 margin_bottom = 300.0
-rect_min_size = Vector2( 250, 0 )
+rect_min_size = Vector2( 300, 0 )
 color = Color( 0.501961, 0.501961, 0.501961, 1 )
 script = ExtResource( 2 )
 __meta__ = {
@@ -16,3 +16,4 @@ __meta__ = {
 }
 node = ExtResource( 3 )
 label = ExtResource( 1 )
+flag = ExtResource( 4 )

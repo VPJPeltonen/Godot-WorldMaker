@@ -52,7 +52,10 @@ func get_quarter(quarter):
 
 func get_sea_level():
 	return sea_level
-	
+
+func get_civs():
+	return get_node("Civilizations").civs
+
 func get_map_node(nodeX,nodeY):
 	if map_generated:
 		var quarter
