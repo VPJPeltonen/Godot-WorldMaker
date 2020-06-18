@@ -81,7 +81,6 @@ func _on_hide_timer_timeout():
 			show_info("Map saved succefully at C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker")
 			main.show_UI()
 			main.unlock_camera()
-		
 
 func _on_Map_map_generated():
 	show()
