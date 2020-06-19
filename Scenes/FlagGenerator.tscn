@@ -14,7 +14,7 @@
 script = ExtResource( 3 )
 
 [node name="flag" parent="." instance=ExtResource( 7 )]
-position = Vector2( 644.724, 303.701 )
+position = Vector2( 644, 304 )
 scale = Vector2( 10, 10 )
 
 [node name="Buttons" type="VBoxContainer" parent="."]

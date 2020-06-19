@@ -27,13 +27,13 @@ func show_civ_info():
 		
 		var new_flag = flag.instance()
 		add_child(new_flag)
-		new_flag.position = Vector2(50,0+y_pos)
+		new_flag.position = Vector2(40,0+y_pos)
 		new_flag.set_flag(civ.get_node("flag").get_flag_info())
 		new_flag.show()
 		
 		var new_label = label.instance()
 		add_child(new_label)
-		new_label.rect_position = Vector2(80,0+y_pos-6)
+		new_label.rect_position = Vector2(60,0+y_pos-6)
 		new_label.text = civ.civ_name
 		y_pos += 20
 		

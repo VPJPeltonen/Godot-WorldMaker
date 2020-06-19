@@ -50,14 +50,18 @@ func hide_UI():
 	$UI/UI_container.hide()
 	$UI/saveUI.hide()
 	$UI/Node_info.hide()
+	$UI/civ_info.hide()
 	$UI/help_controller.hide()
+	$UI/generate_button.hide()
 	
 func show_UI():
 	$UI/UI_container.show()
 	$UI/saveUI.show()
 	$UI/Node_info.show()
+	$UI/civ_info.show()
 	$UI/help_controller.show()
-		
+	$UI/generate_button.show()
+	
 func disable_buttons():
 	$UI/UI_container/adjustments/smooth_button.disabled = true
 	$UI/UI_container/adjustments/smooth_ele_button.disabled = true
