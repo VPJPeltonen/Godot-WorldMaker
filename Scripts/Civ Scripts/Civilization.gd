@@ -24,13 +24,13 @@ func spread():
 	for node in spreadable_area:
 		var spreadable = false
 		var neighbours = node.get_neighbours()
-		for node in neighbours:
-			if node.owning_civ == null and node.ground_level >= -0.2:
+		for neighbour_node in neighbours:
+			if neighbour_node.owning_civ == null and neighbour_node.ground_level >= -0.2:
 				spreadable = true
 				var flip = rng.randi_range(0,1)
 				if flip == 1:
-					node.set_civ(self)
-					new_nodes.append(node)
+					neighbour_node.set_civ(self)
+					new_nodes.append(neighbour_node)
 		if !spreadable:
 			spreadable_area.remove(spreadable_area.find(node))
 	for node in new_nodes:

@@ -29,6 +29,10 @@ var neighbours = []
 var neighbours_directions = []
 var node_scale = 8
 
+#func _draw():
+#	var rect = Rect2(0,0,20,20)
+#	draw_rect(rect,Color('#ff004f'))
+
 func set_civ(new_owner):
 	owning_civ = new_owner
 	for node in get_node("node_sprite").get_children():
@@ -208,69 +212,12 @@ func set_climate():
 	else:
 		if lake:
 			climate = "Lake"
-		elif temperature == 0:
-			if rainfall <= 1: climate = "Polar Desert"
-			elif rainfall <= 2: climate = "Polar Desert"
-			elif rainfall <= 3: climate = "Polar Desert"
-			elif rainfall <= 4: climate = "Ice Cap"
-			elif rainfall <= 5: climate = "Ice Cap"
-			elif rainfall <= 6: climate = "Ice Cap"
-			elif rainfall <= 7: climate = "Ice Cap"	
-			else: climate = "Ice Cap"
-		elif temperature <= 1:
-			if rainfall <= 1: climate = "Polar Desert"
-			elif rainfall <= 2: climate = "Polar Desert"
-			elif rainfall <= 3: climate = "Polar Desert"
-			elif rainfall <= 4: climate = "Tundra"
-			elif rainfall <= 5: climate = "Tundra"
-			elif rainfall <= 6: climate = "Wet Tundra"
-			elif rainfall <= 7: climate = "Wet Tundra"	
-			else: climate = "Polar Wetlands"
-		elif temperature <= 2:
-			if rainfall <= 1: climate = "Cool Desert"
-			elif rainfall <= 2: climate = "Cool Desert"
-			elif rainfall <= 3: climate = "Steppe"
-			elif rainfall <= 4: climate = "Boreal Forest"
-			elif rainfall <= 5: climate = "Boreal Forest"
-			elif rainfall <= 6: climate = "Boreal Forest"
-			elif rainfall <= 7: climate = "Boreal Forest"	
-			else: climate = "Polar Wetlands"	
-		elif temperature <= 3:
-			if rainfall <= 1: climate = "Cool Desert"
-			elif rainfall <= 2: climate = "Cool Desert"
-			elif rainfall <= 3: climate = "Steppe"
-			elif rainfall <= 4: climate = "Temperate Woodlands"
-			elif rainfall <= 5: climate = "Temperate Woodlands"
-			elif rainfall <= 6: climate = "Temperate Forest"
-			elif rainfall <= 7: climate = "Temperate Wet Forest"
-			else: climate = "Temperate Wetlands"
-		elif temperature <= 4:
-			if rainfall <= 1: climate = "Extreme Desert"
-			elif rainfall <= 2: climate = "Desert"
-			elif rainfall <= 3: climate = "Subtropical Scrub"
-			elif rainfall <= 4: climate = "Subtropical Woodlands"
-			elif rainfall <= 5: climate = "Mediterranean"
-			elif rainfall <= 6: climate = "Temperate Forest"
-			elif rainfall <= 7: climate = "Temperate Wet Forest"
-			else: climate = "Temperate Wetlands"
-		elif temperature <= 5:
-			if rainfall <= 1: climate = "Extreme Desert"
-			elif rainfall <= 2: climate = "Desert"
-			elif rainfall <= 3: climate = "Subtropical Scrub"
-			elif rainfall <= 4: climate = "Subtropical Woodlands"
-			elif rainfall <= 5: climate = "Subtropical Dry Forest"
-			elif rainfall <= 6: climate = "Subtropical Forest"
-			elif rainfall <= 7: climate = "Subtropical Wet Forest"	
-			else: climate = "Subtropical Wetlands"
-		else:
-			if rainfall <= 1: climate = "Extreme Desert"
-			elif rainfall <= 2: climate = "Desert"
-			elif rainfall <= 3: climate = "Tropical Scrub"
-			elif rainfall <= 4: climate = "Tropical Woodlands"
-			elif rainfall <= 5: climate = "Tropical Dry Forest"
-			elif rainfall <= 6: climate = "Tropical Wet Forest"
-			elif rainfall <= 7: climate = "Tropical Wet Forest"	
-			else: climate = "Tropical Wetlands"
+			return
+		var climates = json_reader.get_climates()
+		var temp_temp = round(clamp(temperature,0,6))
+		var temp_rain = round(clamp(rainfall,1,8))
+		climates = climates[ str(int(temp_temp)) ]
+		climate = climates[ str(int(temp_rain)) ]
 
 # node architecture
 func find_neighbours():

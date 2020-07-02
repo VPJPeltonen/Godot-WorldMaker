@@ -2,10 +2,12 @@ extends Node
 
 var node_colors
 var civ_names
+var climates
 
 func _ready():
 	node_colors = read_data("res://Data/node_colors.json") 
 	civ_names = read_data("res://Data/civ_names.json") 
+	climates = read_data("res://Data/climates.json")
 	
 func read_data(path):
 	var data_file = File.new()
@@ -30,3 +32,6 @@ func get_colors(mode):
 
 func get_civ_names():
 	return civ_names
+
+func get_climates():
+	return climates

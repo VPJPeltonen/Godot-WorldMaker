@@ -1,0 +1,73 @@
+{
+    "_comment":"Main categories are temperature and second are rainfall",
+    "0":{
+        "1":"Polar Desert",
+        "2":"Polar Desert",
+        "3":"Polar Desert",
+        "4":"Ice Cap",
+        "5":"Ice Cap",
+        "6":"Ice Cap",
+        "7":"Ice Cap",
+        "8":"Ice Cap"
+    },
+    "1":{
+        "1":"Polar Desert",
+        "2":"Polar Desert",
+        "3":"Polar Desert",
+        "4":"Tundra",
+        "5":"Tundra",
+        "6":"Wet Tundra",
+        "7":"Wet Tundra",
+        "8":"Polar Wetlands"
+    },
+    "2":{
+        "1":"Cool Desert",
+        "2":"Cool Desert",
+        "3":"Steppe",
+        "4":"Boreal Forest",
+        "5":"Boreal Forest",
+        "6":"Boreal Forest",
+        "7":"Boreal Forest",
+        "8":"Polar Wetlands"
+    },
+    "3":{
+        "1":"Cool Desert",
+        "2":"Cool Desert",
+        "3":"Steppe",
+        "4":"Temperate Woodlands",
+        "5":"Temperate Woodlands",
+        "6":"Temperate Forest",
+        "7":"Temperate Wet Forest",
+        "8":"Temperate Wetlands"
+    },
+    "4":{
+        "1":"Extreme Desert",
+        "2":"Desert",
+        "3":"Subtropical Scrub",
+        "4":"Subtropical Woodlands",
+        "5":"Mediterranean",
+        "6":"Temperate Forest",
+        "7":"Temperate Wet Forest",
+        "8":"Temperate Wetlands"
+    },
+    "5":{
+        "1":"Extreme Desert",
+        "2":"Desert",
+        "3":"Subtropical Scrub",
+        "4":"Subtropical Woodlands",
+        "5":"Subtropical Dry Forest",
+        "6":"Subtropical Forest",
+        "7":"Subtropical Wet Forest",
+        "8":"Subtropical Wetlands"
+    },
+    "6":{
+        "1":"Extreme Desert",
+        "2":"Desert",
+        "3":"Tropical Scrub",
+        "4":"Tropical Woodlands",
+        "5":"Tropical Dry Forest",
+        "6":"Tropical Wet Forest",
+        "7":"Tropical Wet Forest",
+        "8":"Tropical Wetlands"
+    }            
+}

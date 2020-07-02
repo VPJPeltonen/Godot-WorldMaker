@@ -22,14 +22,14 @@ func spread():
 	for node in spreadable_nodes:
 		var spreadable = false
 		var neighbours = node.get_neighbours()
-		for node in neighbours:
-			if node.continent == null:
+		for neighbour_node in neighbours:
+			if neighbour_node.continent == null:
 				spreadable = true
 				var flip = rng.randi_range(0,1)
 				if flip == 1:
-					node.set_continent(id_number)
-					node.slide_direction = float_direction
-					new_nodes.append(node)
+					neighbour_node.set_continent(id_number)
+					neighbour_node.slide_direction = float_direction
+					new_nodes.append(neighbour_node)
 		if !spreadable:
 			spreadable_nodes.remove(spreadable_nodes.find(node))
 	for node in new_nodes:
