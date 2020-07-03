@@ -17,7 +17,7 @@ __meta__ = {
 
 [node name="civ_info_label" type="Label" parent="."]
 margin_right = 179.0
-margin_bottom = 17.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 3 )
 text = "Civ Info"
 align = 1
@@ -26,39 +26,39 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="."]
-margin_top = 21.0
+margin_top = 19.0
 margin_right = 179.0
-margin_bottom = 25.0
+margin_bottom = 23.0
 
 [node name="civ_label" type="Label" parent="."]
-margin_top = 29.0
+margin_top = 27.0
 margin_right = 179.0
-margin_bottom = 46.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 3 )
 text = "Name:"
 align = 1
 
 [node name="civ_text" type="Label" parent="."]
-margin_top = 50.0
+margin_top = 46.0
 margin_right = 179.0
-margin_bottom = 67.0
+margin_bottom = 61.0
 custom_fonts/font = ExtResource( 3 )
 text = "Kingdom Of BLABLA"
 align = 1
 
 [node name="HSeparator2" type="HSeparator" parent="."]
-margin_top = 71.0
+margin_top = 65.0
 margin_right = 179.0
-margin_bottom = 75.0
+margin_bottom = 69.0
 
 [node name="nodetemperature" type="HBoxContainer" parent="."]
-margin_top = 79.0
+margin_top = 73.0
 margin_right = 179.0
-margin_bottom = 96.0
+margin_bottom = 88.0
 
 [node name="temperature_label" type="Label" parent="nodetemperature"]
-margin_right = 80.0
-margin_bottom = 17.0
+margin_right = 71.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 3 )
 text = "Map color:"
 
@@ -68,13 +68,13 @@ scale = Vector2( 10, 10 )
 texture = ExtResource( 2 )
 
 [node name="flag_info" type="HBoxContainer" parent="."]
-margin_top = 100.0
+margin_top = 92.0
 margin_right = 179.0
-margin_bottom = 117.0
+margin_bottom = 107.0
 
 [node name="flag_label" type="Label" parent="flag_info"]
-margin_right = 36.0
-margin_bottom = 17.0
+margin_right = 32.0
+margin_bottom = 15.0
 custom_fonts/font = ExtResource( 3 )
 text = "Flag:"
 

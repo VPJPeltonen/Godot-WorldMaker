@@ -17,6 +17,7 @@ var sea_level = 0.0
 var climate = ""
 var river = "none"
 var lake = false
+var sub_data = []
 
 # civ stuff
 var owning_civ
@@ -31,13 +32,21 @@ var node_scale = 8
 var node_color = Color('#000000')
 
 func _draw():
-	var rect = Rect2(-node_scale/2,-node_scale/2,node_scale,node_scale)
-	draw_rect(rect,node_color)
-
+	if sub_data.empty():
+		var rect = Rect2(-node_scale/2,-node_scale/2,node_scale,node_scale)
+		draw_rect(rect,node_color)
+	else:
+		for data in sub_data:
+			var rect = Rect2(-node_scale/4+data.offset.x,-node_scale/4+data.offset.y,node_scale/2,node_scale/2)
+			if data.node_color == null:
+				draw_rect(rect,node_color)
+			else:
+				draw_rect(rect,data.node_color)
+	
 func set_civ(new_owner):
 	owning_civ = new_owner
-	for node in get_node("node_sprite").get_children():
-		node.owning_civ = new_owner
+	for data in sub_data:
+		data.owning_civ = new_owner
 
 func get_neighbours():
 	return neighbours
@@ -75,14 +84,15 @@ func init(x_pos,y_pos,node_scale,Quarter,new_elevation):
 
 func add_detail():
 	for i in range(4):
-		var new_node = sub_node.instance()
-		get_node("node_sprite").add_child(new_node)
+		var data_class = load("res://Scripts/Node Scripts/node_data.gd")
+		var new_data = data_class.new()
+		sub_data.append(new_data)
+		new_data.init_new_node(self)
 		match i:
-			0: new_node.set_global_position(Vector2(position.x+102,position.y+2))
-			1: new_node.set_global_position(Vector2(position.x+106,position.y+2))
-			2: new_node.set_global_position(Vector2(position.x+102,position.y+6))
-			3: new_node.set_global_position(Vector2(position.x+106,position.y+6))
-		new_node.init_sub_sprite(self)
+			0: new_data.set_offset_value(Vector2(-2,-2))
+			1: new_data.set_offset_value(Vector2(2,-2))
+			2: new_data.set_offset_value(Vector2(-2,2))
+			3: new_data.set_offset_value(Vector2(2,2))
 
 # wind
 func set_wind():
@@ -310,54 +320,58 @@ func set_continent(new_continent):
 	continent = new_continent
 
 func color_mode(mode):
-	match mode:
-		"blank":
-			if ground_level >= 0:
-				node_color = Color(json_reader.get_color("blank","Land"))
-			else:
-				node_color = Color(json_reader.get_color("blank","Sea"))
-		"civilization":
-			if ground_level < 0: 
-				node_color = Color(json_reader.get_color("blank","Sea"))
-			else:
-				while owning_civ.civ_color >= 16:
-					owning_civ.civ_color -= 16
-				node_color = Color(json_reader.get_color("continent",str(owning_civ.civ_color)))
-		"continent":
-			node_color = Color(json_reader.get_color(mode,str(continent)))
-		"continentconflict":
-			node_color = Color(json_reader.get_color(mode,str(conflictzone)))
-		"elevation":
-			var rounded = int(round(elevation))
-			if rounded > 16: rounded = 16
-			if rounded < 0: rounded = 0
-			node_color = Color(json_reader.get_color(mode,str(rounded)))
-		"rainfall":
-			if ground_level < 0:
-				return
-			var rounded = int(round(rainfall))
-			if rounded > 10: rounded = 10
-			node_color = Color(json_reader.get_color(mode,str(rounded)))
-		"sea":
-			if ground_level >= 0:
-				var rounded
-				if ground_level < 3: rounded = stepify(ground_level,0.5)
-				else: rounded = int(round(ground_level))
-				if rounded > 12: rounded = 12
+	if sub_data.empty():
+		match mode:
+			"blank":
+				if ground_level >= 0:
+					node_color = Color(json_reader.get_color("blank","Land"))
+				else:
+					node_color = Color(json_reader.get_color("blank","Sea"))
+			"civilization":
+				if ground_level < 0: 
+					node_color = Color(json_reader.get_color("blank","Sea"))
+				else:
+					while owning_civ.civ_color >= 16:
+						owning_civ.civ_color -= 16
+					node_color = Color(json_reader.get_color("continent",str(owning_civ.civ_color)))
+			"continent":
+				node_color = Color(json_reader.get_color(mode,str(continent)))
+			"continentconflict":
+				node_color = Color(json_reader.get_color(mode,str(conflictzone)))
+			"elevation":
+				var rounded = int(round(elevation))
+				if rounded > 16: rounded = 16
+				if rounded < 0: rounded = 0
 				node_color = Color(json_reader.get_color(mode,str(rounded)))
-			else:
-				if ground_level >= -1: node_color = Color(json_reader.get_color(mode,"-1"))
-				elif ground_level >= -2: node_color = Color(json_reader.get_color(mode,"-2"))
-				else: node_color = Color(json_reader.get_color(mode,"-3"))
-		"temperature":
-			if ground_level < 0: return
-			var rounded = int(round(temperature))
-			if rounded < 0: rounded = 0
-			node_color = Color(json_reader.get_color(mode,str(rounded)))
-		"climate":
-			node_color = Color(json_reader.get_color(mode,climate))
-		"satellite":
-			node_color = Color(json_reader.get_color(mode,climate))
+			"rainfall":
+				if ground_level < 0:
+					return
+				var rounded = int(round(rainfall))
+				if rounded > 10: rounded = 10
+				node_color = Color(json_reader.get_color(mode,str(rounded)))
+			"sea":
+				if ground_level >= 0:
+					var rounded
+					if ground_level < 3: rounded = stepify(ground_level,0.5)
+					else: rounded = int(round(ground_level))
+					if rounded > 12: rounded = 12
+					node_color = Color(json_reader.get_color(mode,str(rounded)))
+				else:
+					if ground_level >= -1: node_color = Color(json_reader.get_color(mode,"-1"))
+					elif ground_level >= -2: node_color = Color(json_reader.get_color(mode,"-2"))
+					else: node_color = Color(json_reader.get_color(mode,"-3"))
+			"temperature":
+				if ground_level < 0: return
+				var rounded = int(round(temperature))
+				if rounded < 0: rounded = 0
+				node_color = Color(json_reader.get_color(mode,str(rounded)))
+			"climate":
+				node_color = Color(json_reader.get_color(mode,climate))
+			"satellite":
+				node_color = Color(json_reader.get_color(mode,climate))
+	else:
+		for data in sub_data:
+			data.color_mode(mode)
 	update()
 
 func set_z(value):
