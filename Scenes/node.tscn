@@ -1,14 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Node Scripts/node.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/node_textured.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Node Scripts/node_sprite.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/sub_node.tscn" type="PackedScene" id=4]
 
-[node name="node" type="Sprite"]
+[node name="node" type="Node2D"]
 script = ExtResource( 1 )
 sub_node = ExtResource( 4 )
-
-[node name="node_sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-script = ExtResource( 3 )

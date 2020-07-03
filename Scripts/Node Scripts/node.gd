@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 export(Resource) var sub_node
 
@@ -28,10 +28,11 @@ var quarter
 var neighbours = []
 var neighbours_directions = []
 var node_scale = 8
+var node_color = Color('#000000')
 
-#func _draw():
-#	var rect = Rect2(0,0,20,20)
-#	draw_rect(rect,Color('#ff004f'))
+func _draw():
+	var rect = Rect2(-node_scale/2,-node_scale/2,node_scale,node_scale)
+	draw_rect(rect,node_color)
 
 func set_civ(new_owner):
 	owning_civ = new_owner
@@ -310,26 +311,54 @@ func set_continent(new_continent):
 
 func color_mode(mode):
 	match mode:
-		"civilizations":
-			if owning_civ == null:
-				$node_sprite.color_mode("civilization",0)
+		"blank":
+			if ground_level >= 0:
+				node_color = Color(json_reader.get_color("blank","Land"))
 			else:
-				$node_sprite.color_mode("civilization",owning_civ.civ_color)
-		"climate": 
-			set_z(ground_level)
-			$node_sprite.color_mode("climate",climate)
-		"continent": $node_sprite.color_mode("continent",continent)
-		"continentconflict": $node_sprite.color_mode("continentconflict",conflictzone)
-		"elevation": 
-			set_z(ground_level)
-			$node_sprite.color_mode("elevation",elevation)	
-		"rainfall": $node_sprite.color_mode("rainfall",rainfall)
-		"satellite": $node_sprite.color_mode("satellite",climate)
-		"sea": 
-			set_z(ground_level)
-			$node_sprite.color_mode("sea",ground_level)
-		"temperature": $node_sprite.color_mode("temperature",temperature)
-		"blank": $node_sprite.color_mode("blank",ground_level)
+				node_color = Color(json_reader.get_color("blank","Sea"))
+		"civilization":
+			if ground_level < 0: 
+				node_color = Color(json_reader.get_color("blank","Sea"))
+			else:
+				while owning_civ.civ_color >= 16:
+					owning_civ.civ_color -= 16
+				node_color = Color(json_reader.get_color("continent",str(owning_civ.civ_color)))
+		"continent":
+			node_color = Color(json_reader.get_color(mode,str(continent)))
+		"continentconflict":
+			node_color = Color(json_reader.get_color(mode,str(conflictzone)))
+		"elevation":
+			var rounded = int(round(elevation))
+			if rounded > 16: rounded = 16
+			if rounded < 0: rounded = 0
+			node_color = Color(json_reader.get_color(mode,str(rounded)))
+		"rainfall":
+			if ground_level < 0:
+				return
+			var rounded = int(round(rainfall))
+			if rounded > 10: rounded = 10
+			node_color = Color(json_reader.get_color(mode,str(rounded)))
+		"sea":
+			if ground_level >= 0:
+				var rounded
+				if ground_level < 3: rounded = stepify(ground_level,0.5)
+				else: rounded = int(round(ground_level))
+				if rounded > 12: rounded = 12
+				node_color = Color(json_reader.get_color(mode,str(rounded)))
+			else:
+				if ground_level >= -1: node_color = Color(json_reader.get_color(mode,"-1"))
+				elif ground_level >= -2: node_color = Color(json_reader.get_color(mode,"-2"))
+				else: node_color = Color(json_reader.get_color(mode,"-3"))
+		"temperature":
+			if ground_level < 0: return
+			var rounded = int(round(temperature))
+			if rounded < 0: rounded = 0
+			node_color = Color(json_reader.get_color(mode,str(rounded)))
+		"climate":
+			node_color = Color(json_reader.get_color(mode,climate))
+		"satellite":
+			node_color = Color(json_reader.get_color(mode,climate))
+	update()
 
 func set_z(value):
 	if ground_level < 0: return
@@ -350,8 +379,6 @@ func set_z(value):
 	elif value >= -2: modifier = -2.0
 	else: modifier = -4.0
 	var alpha = 1-max(((modifier*2)/100)+0.4,0)
-	#z_index = modifier
-	#$overlay_shadow.set_self_modulate(Color(0.2,0.2,0.2,alpha))
 
 func reset():
 	rainfall = 0
