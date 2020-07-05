@@ -93,6 +93,7 @@ func add_detail():
 			1: new_data.set_offset_value(Vector2(2,-2))
 			2: new_data.set_offset_value(Vector2(-2,2))
 			3: new_data.set_offset_value(Vector2(2,2))
+	update()
 
 # wind
 func set_wind():

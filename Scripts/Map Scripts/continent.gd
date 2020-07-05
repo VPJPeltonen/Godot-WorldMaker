@@ -3,19 +3,15 @@ extends Node
 var id_number = 0
 var nodes = []
 var spreadable_nodes = []
-var rng = RandomNumberGenerator.new()
 
 var base_elevation = 0
 var float_direction
-
-func _ready():
-	rng.randomize()
 
 func init(new_id,new_source):
 	id_number = new_id
 	nodes.append(new_source)
 	spreadable_nodes.append(new_source)
-	float_direction = rng.randi_range(1,8)
+	float_direction = randomizer.rng.randi_range(1,8)
 
 func spread():
 	var new_nodes = []
@@ -25,7 +21,7 @@ func spread():
 		for neighbour_node in neighbours:
 			if neighbour_node.continent == null:
 				spreadable = true
-				var flip = rng.randi_range(0,1)
+				var flip = randomizer.rng.randi_range(0,1)
 				if flip == 1:
 					neighbour_node.set_continent(id_number)
 					neighbour_node.slide_direction = float_direction
@@ -46,10 +42,10 @@ func set_height():
 	for node in nodes:
 		if node.X == 0 or node.X == max_width-1:
 			edge_continent = true
-	var highlow = rng.randi_range(1,2)
+	var highlow = randomizer.rng.randi_range(1,2)
 	if highlow == 1 and !edge_continent:
-		base_elevation = rng.randi_range(8.5,9)
+		base_elevation = randomizer.rng.randi_range(8.5,9)
 	else:
-		base_elevation = rng.randf_range(5.5,6)
+		base_elevation = randomizer.rng.randf_range(5.5,6)
 	for node in nodes:
 		node.elevation += base_elevation

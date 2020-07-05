@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI Scripts/UI_container.gd" type="Script" id=2]
@@ -31,6 +31,16 @@
 [ext_resource path="res://Scripts/UI Scripts/UI_controller.gd" type="Script" id=29]
 [ext_resource path="res://Scenes/FlagGenerator.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Scenes/civ_info.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Fonts/Pixel Digivolve.otf" type="DynamicFontData" id=32]
+[ext_resource path="res://Sprites/UI/toggle_on.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/UI/toggle_off.png" type="Texture" id=34]
+
+[sub_resource type="DynamicFont" id=2]
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 32 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -50,7 +60,7 @@ __meta__ = {
 
 [node name="adjustments" type="VBoxContainer" parent="UI/UI_container"]
 margin_right = 115.0
-margin_bottom = 167.0
+margin_bottom = 161.0
 
 [node name="adjustment_label" type="Label" parent="UI/UI_container/adjustments"]
 margin_right = 115.0
@@ -75,7 +85,7 @@ __meta__ = {
 [node name="smooth_button" type="Button" parent="UI/UI_container/adjustments"]
 margin_top = 24.0
 margin_right = 115.0
-margin_bottom = 41.0
+margin_bottom = 39.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -94,9 +104,9 @@ text = "Smooth"
 script = ExtResource( 9 )
 
 [node name="water_erosion_button" type="Button" parent="UI/UI_container/adjustments"]
-margin_top = 45.0
+margin_top = 43.0
 margin_right = 115.0
-margin_bottom = 62.0
+margin_bottom = 58.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -115,16 +125,16 @@ text = "Reset Nodes"
 script = ExtResource( 9 )
 
 [node name="settings_label" type="Label" parent="UI/UI_container/adjustments"]
-margin_top = 66.0
+margin_top = 62.0
 margin_right = 115.0
-margin_bottom = 86.0
+margin_bottom = 82.0
 custom_fonts/font = ExtResource( 3 )
 text = "Settings"
 
 [node name="Sea_level_label" type="Label" parent="UI/UI_container/adjustments"]
-margin_top = 90.0
+margin_top = 86.0
 margin_right = 115.0
-margin_bottom = 110.0
+margin_bottom = 106.0
 custom_fonts/font = ExtResource( 3 )
 text = "Sea Level"
 
@@ -143,9 +153,9 @@ __meta__ = {
 }
 
 [node name="sea_level_box" type="SpinBox" parent="UI/UI_container/adjustments"]
-margin_top = 114.0
+margin_top = 110.0
 margin_right = 115.0
-margin_bottom = 138.0
+margin_bottom = 134.0
 min_value = 2.0
 value = 9.0
 __meta__ = {
@@ -153,9 +163,9 @@ __meta__ = {
 }
 
 [node name="apply_settings_button" type="Button" parent="UI/UI_container/adjustments"]
-margin_top = 142.0
+margin_top = 138.0
 margin_right = 115.0
-margin_bottom = 159.0
+margin_bottom = 153.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -166,14 +176,14 @@ __meta__ = {
 }
 
 [node name="HSeparator" type="HSeparator" parent="UI/UI_container/adjustments"]
-margin_top = 163.0
+margin_top = 157.0
 margin_right = 115.0
-margin_bottom = 167.0
+margin_bottom = 161.0
 
 [node name="modes_list" type="VBoxContainer" parent="UI/UI_container"]
-margin_top = 171.0
+margin_top = 165.0
 margin_right = 115.0
-margin_bottom = 388.0
+margin_bottom = 364.0
 
 [node name="modes_label" type="Label" parent="UI/UI_container/modes_list"]
 margin_right = 115.0
@@ -205,7 +215,7 @@ __meta__ = {
 [node name="Continent_mode_button" type="Button" parent="UI/UI_container/modes_list"]
 margin_top = 24.0
 margin_right = 115.0
-margin_bottom = 41.0
+margin_bottom = 39.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -226,9 +236,9 @@ group = ExtResource( 10 )
 text = "Conflict"
 
 [node name="Elevation_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 45.0
+margin_top = 43.0
 margin_right = 115.0
-margin_bottom = 62.0
+margin_bottom = 58.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -237,9 +247,9 @@ group = ExtResource( 10 )
 text = "Elevation"
 
 [node name="Sea_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 66.0
+margin_top = 62.0
 margin_right = 115.0
-margin_bottom = 83.0
+margin_bottom = 77.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -249,9 +259,9 @@ group = ExtResource( 10 )
 text = "Sea"
 
 [node name="Rainfall_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 87.0
+margin_top = 81.0
 margin_right = 115.0
-margin_bottom = 104.0
+margin_bottom = 96.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -260,9 +270,9 @@ group = ExtResource( 10 )
 text = "Rainfall"
 
 [node name="Temperature_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 108.0
+margin_top = 100.0
 margin_right = 115.0
-margin_bottom = 125.0
+margin_bottom = 115.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -271,9 +281,9 @@ group = ExtResource( 10 )
 text = "Temperature"
 
 [node name="Climate_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 129.0
+margin_top = 119.0
 margin_right = 115.0
-margin_bottom = 146.0
+margin_bottom = 134.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -282,9 +292,9 @@ group = ExtResource( 10 )
 text = "Climate"
 
 [node name="Satellite_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 150.0
+margin_top = 138.0
 margin_right = 115.0
-margin_bottom = 167.0
+margin_bottom = 153.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -321,9 +331,9 @@ __meta__ = {
 }
 
 [node name="Civ_mode_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 171.0
+margin_top = 157.0
 margin_right = 115.0
-margin_bottom = 188.0
+margin_bottom = 172.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -360,17 +370,17 @@ __meta__ = {
 }
 
 [node name="HSeparator2" type="HSeparator" parent="UI/UI_container/modes_list"]
-margin_top = 192.0
+margin_top = 176.0
 margin_right = 115.0
-margin_bottom = 196.0
+margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="show_rivers_button" type="Button" parent="UI/UI_container/modes_list"]
-margin_top = 200.0
+margin_top = 184.0
 margin_right = 115.0
-margin_bottom = 217.0
+margin_bottom = 199.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -421,9 +431,9 @@ __meta__ = {
 }
 
 [node name="done_list" type="VBoxContainer" parent="UI/UI_container"]
-margin_top = 392.0
+margin_top = 368.0
 margin_right = 115.0
-margin_bottom = 441.0
+margin_bottom = 415.0
 
 [node name="HSeparator3" type="HSeparator" parent="UI/UI_container/done_list"]
 margin_right = 115.0
@@ -456,7 +466,7 @@ __meta__ = {
 [node name="adjust_done_button" type="Button" parent="UI/UI_container/done_list"]
 margin_top = 32.0
 margin_right = 115.0
-margin_bottom = 49.0
+margin_bottom = 47.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -619,7 +629,7 @@ align = 1
 [node name="small_size_button" type="Button" parent="UI/generation_UI"]
 margin_top = 24.0
 margin_right = 150.0
-margin_bottom = 41.0
+margin_bottom = 39.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -631,9 +641,9 @@ __meta__ = {
 }
 
 [node name="medium_size_button" type="Button" parent="UI/generation_UI"]
-margin_top = 45.0
+margin_top = 43.0
 margin_right = 150.0
-margin_bottom = 62.0
+margin_bottom = 58.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -646,9 +656,9 @@ __meta__ = {
 }
 
 [node name="large_size_button" type="Button" parent="UI/generation_UI"]
-margin_top = 66.0
+margin_top = 62.0
 margin_right = 150.0
-margin_bottom = 83.0
+margin_bottom = 77.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -660,9 +670,9 @@ __meta__ = {
 }
 
 [node name="continents_label" type="Label" parent="UI/generation_UI"]
-margin_top = 87.0
+margin_top = 81.0
 margin_right = 150.0
-margin_bottom = 107.0
+margin_bottom = 101.0
 custom_fonts/font = ExtResource( 3 )
 text = "Continents"
 align = 1
@@ -683,9 +693,9 @@ __meta__ = {
 }
 
 [node name="continents_box" type="SpinBox" parent="UI/generation_UI"]
-margin_top = 111.0
+margin_top = 105.0
 margin_right = 150.0
-margin_bottom = 135.0
+margin_bottom = 129.0
 min_value = 2.0
 value = 12.0
 
@@ -704,14 +714,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="generate_button" type="Button" parent="UI"]
-visible = false
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 582.966
-margin_top = -327.315
-margin_right = 702.966
-margin_bottom = -303.315
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/generation_UI"]
+margin_top = 133.0
+margin_right = 150.0
+margin_bottom = 165.0
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/generation_UI/HBoxContainer"]
+margin_left = 17.0
+margin_top = 6.0
+margin_right = 97.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 2 )
+text = "Use Seed"
+
+[node name="CheckButton" type="CheckButton" parent="UI/generation_UI/HBoxContainer"]
+margin_left = 101.0
+margin_right = 133.0
+margin_bottom = 32.0
+custom_icons/off = ExtResource( 34 )
+custom_icons/on = ExtResource( 33 )
+custom_styles/normal = SubResource( 1 )
+
+[node name="generate_button" type="Button" parent="UI/generation_UI"]
+margin_top = 169.0
+margin_right = 150.0
+margin_bottom = 184.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -721,7 +749,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="help_text" type="Label" parent="UI/generate_button"]
+[node name="help_text" type="Label" parent="UI/generation_UI/generate_button"]
 visible = false
 margin_left = 138.504
 margin_top = 2.21606
@@ -735,12 +763,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="generation_back_button" type="Button" parent="UI"]
-visible = false
-margin_left = 565.0
-margin_top = 506.794
-margin_right = 715.0
-margin_bottom = 523.794
+[node name="generation_back_button" type="Button" parent="UI/generation_UI"]
+margin_top = 188.0
+margin_right = 150.0
+margin_bottom = 203.0
 custom_styles/pressed = ExtResource( 6 )
 custom_styles/normal = ExtResource( 7 )
 custom_fonts/font = ExtResource( 8 )
@@ -750,7 +776,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="help_text" type="Label" parent="UI/generation_back_button"]
+[node name="help_text" type="Label" parent="UI/generation_UI/generation_back_button"]
 visible = false
 margin_left = 138.504
 margin_top = 2.21606
@@ -902,32 +928,31 @@ texture = ExtResource( 26 )
 [connection signal="pressed" from="UI/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
-[connection signal="pressed" from="UI/generate_button" to="Map" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/generate_button" to="UI" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/generate_button" to="UI/generate_button" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
-[connection signal="pressed" from="UI/generation_back_button" to="UI" method="_on_generation_back_button_pressed"]
+[connection signal="pressed" from="UI/generation_UI/generate_button" to="Map" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="UI/generation_UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="UI/generation_UI/generate_button" to="UI/generation_UI/generate_button" method="_on_generate_button_pressed"]
+[connection signal="pressed" from="UI/generation_UI/generation_back_button" to="UI" method="_on_generation_back_button_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generate_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makeflag_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/generate_button/help_text" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makemap_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/OpeningMenu/makemap_button" to="UI" method="_on_makemap_button_pressed"]
 [connection signal="pressed" from="UI/OpeningMenu/makeflag_button" to="UI" method="_on_makeflag_button_pressed"]
 [connection signal="back" from="UI/FlagGenerator" to="UI" method="_on_FlagGenerator_back"]
-[connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/generate_button" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/civ_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/civ_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/generation_UI/generate_button" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]
 [connection signal="reset_river" from="Map" to="UI/UI_container/modes_list/show_rivers_button" method="_on_Map_reset_river"]
 [connection signal="show_civs" from="Map/Civilizations" to="Map" method="_on_color_mode_button_pressed" binds= [ "civilizations" ]]

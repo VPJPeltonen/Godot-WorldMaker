@@ -15,15 +15,7 @@ func _on_FlagGenerator_back():
 func _on_makemap_button_pressed():
 	get_node("OpeningMenu").hide()
 	get_node("generation_UI").show()
-	get_node("generate_button").show()
-	get_node("generation_back_button").show()
 
 func _on_generation_back_button_pressed():
 	get_node("OpeningMenu").show()
 	get_node("generation_UI").hide()
-	get_node("generate_button").hide()
-	get_node("generation_back_button").hide()
-
-
-func _on_generate_button_pressed():
-	get_node("generation_back_button").hide()

@@ -25,16 +25,12 @@ var continents_array = []
 var rivers_array = []
 
 var node_scale = 8
-var rng = RandomNumberGenerator.new()
 var map_generated = false
 
 var continents
 var sea_level = 9
 var width = 128
 var height = 80
-
-func _ready():
-	rng.randomize()
 
 func _process(delta):
 	match state:
@@ -98,7 +94,7 @@ func make_quarter(imod,jmod,quarter,nodescale):
 	for i in range(width/2):
 		var slice = []
 		for j in range(height/2):
-			var elevation = rng.randf_range(0,2)
+			var elevation = randomizer.rng.randf_range(0,2)
 			var new_node = node.instance()
 			add_child(new_node)
 			new_node.init(i+imod,j+jmod,nodescale,quarter,elevation)
@@ -127,9 +123,9 @@ func make_continents():
 	
 func find_empty(i):
 	while true:
-		var quarter = rng.randi_range(1,4)
-		var a = rng.randi_range(0,width/2-1)
-		var b = rng.randi_range(0,height/2-1)
+		var quarter = randomizer.rng.randi_range(1,4)
+		var a = randomizer.rng.randi_range(0,width/2-1)
+		var b = randomizer.rng.randi_range(0,height/2-1)
 		var row 
 		match quarter:
 			1: row = nodes[a]
@@ -238,7 +234,8 @@ func _add_detail(userdata):
 	emit_signal("node_action","add_detail","none")
 	main.set_info_label(" ")
 	main.enable_buttons()
-
+	emit_signal("node_action","change_color_mode","satellite")
+	
 func _on_generate_button_pressed():
 	if map_generated: get_tree().reload_current_scene()
 	elif state == "none": state = "start generating"
