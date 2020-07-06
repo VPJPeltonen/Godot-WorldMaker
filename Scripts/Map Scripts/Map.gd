@@ -191,6 +191,7 @@ func make_nodes():
 	nodes_4 = make_quarter((width/2),(height/2),4,node_scale)
 
 func _creation(userdata):
+	randomizer.set_seed(main.get_map_seed())
 	main.set_info_label("Building Map Nodes")
 	make_nodes()
 	emit_signal("node_action","find_neighbours","none")

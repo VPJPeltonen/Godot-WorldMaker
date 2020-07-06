@@ -35,12 +35,12 @@
 [ext_resource path="res://Sprites/UI/toggle_on.png" type="Texture" id=33]
 [ext_resource path="res://Sprites/UI/toggle_off.png" type="Texture" id=34]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 32 )
 
-[sub_resource type="StyleBoxEmpty" id=1]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 1 )
@@ -58,9 +58,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="adjustments" type="VBoxContainer" parent="UI/UI_container"]
+[node name="MapSeed" type="VBoxContainer" parent="UI/UI_container"]
 margin_right = 115.0
-margin_bottom = 161.0
+margin_bottom = 39.0
+
+[node name="seed_title_label" type="Label" parent="UI/UI_container/MapSeed"]
+margin_right = 115.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 3 )
+text = "Map Seed"
+
+[node name="help_text5" type="Label" parent="UI/UI_container/MapSeed/seed_title_label"]
+visible = false
+margin_left = 121.225
+margin_top = 24.8554
+margin_right = 489.225
+margin_bottom = 90.8554
+custom_fonts/font = ExtResource( 4 )
+text = "Shows seed of current map"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="seed_label" type="Label" parent="UI/UI_container/MapSeed"]
+margin_top = 24.0
+margin_right = 115.0
+margin_bottom = 39.0
+text = "Seed"
+
+[node name="adjustments" type="VBoxContainer" parent="UI/UI_container"]
+margin_top = 43.0
+margin_right = 115.0
+margin_bottom = 204.0
 
 [node name="adjustment_label" type="Label" parent="UI/UI_container/adjustments"]
 margin_right = 115.0
@@ -181,9 +211,9 @@ margin_right = 115.0
 margin_bottom = 161.0
 
 [node name="modes_list" type="VBoxContainer" parent="UI/UI_container"]
-margin_top = 165.0
+margin_top = 208.0
 margin_right = 115.0
-margin_bottom = 364.0
+margin_bottom = 407.0
 
 [node name="modes_label" type="Label" parent="UI/UI_container/modes_list"]
 margin_right = 115.0
@@ -431,9 +461,9 @@ __meta__ = {
 }
 
 [node name="done_list" type="VBoxContainer" parent="UI/UI_container"]
-margin_top = 368.0
+margin_top = 411.0
 margin_right = 115.0
-margin_bottom = 415.0
+margin_bottom = 458.0
 
 [node name="HSeparator3" type="HSeparator" parent="UI/UI_container/done_list"]
 margin_right = 115.0
@@ -714,27 +744,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/generation_UI"]
+[node name="seed_box" type="VBoxContainer" parent="UI/generation_UI"]
 margin_top = 133.0
 margin_right = 150.0
 margin_bottom = 165.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/generation_UI/seed_box"]
+margin_right = 150.0
+margin_bottom = 32.0
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/generation_UI/HBoxContainer"]
+[node name="Label" type="Label" parent="UI/generation_UI/seed_box/HBoxContainer"]
 margin_left = 17.0
 margin_top = 6.0
 margin_right = 97.0
 margin_bottom = 26.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Use Seed"
 
-[node name="CheckButton" type="CheckButton" parent="UI/generation_UI/HBoxContainer"]
+[node name="seed_toggle" type="CheckButton" parent="UI/generation_UI/seed_box/HBoxContainer"]
 margin_left = 101.0
 margin_right = 133.0
 margin_bottom = 32.0
 custom_icons/off = ExtResource( 34 )
 custom_icons/on = ExtResource( 33 )
-custom_styles/normal = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+
+[node name="seed_text" type="TextEdit" parent="UI/generation_UI/seed_box"]
+visible = false
+margin_top = 36.0
+margin_right = 150.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 32, 24 )
+custom_fonts/font = ExtResource( 8 )
+text = "asdasd"
 
 [node name="generate_button" type="Button" parent="UI/generation_UI"]
 margin_top = 169.0
@@ -928,29 +971,32 @@ texture = ExtResource( 26 )
 [connection signal="pressed" from="UI/generation_UI/small_size_button" to="Map" method="_on_size_button_pressed" binds= [ "small" ]]
 [connection signal="pressed" from="UI/generation_UI/medium_size_button" to="Map" method="_on_size_button_pressed" binds= [ "medium" ]]
 [connection signal="pressed" from="UI/generation_UI/large_size_button" to="Map" method="_on_size_button_pressed" binds= [ "large" ]]
+[connection signal="toggled" from="UI/generation_UI/seed_box/HBoxContainer/seed_toggle" to="UI" method="_on_seed_toggle_toggled"]
 [connection signal="pressed" from="UI/generation_UI/generate_button" to="Map" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generation_UI/generate_button" to="UI/generation_UI" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generation_UI/generate_button" to="UI/generation_UI/generate_button" method="_on_generate_button_pressed"]
 [connection signal="pressed" from="UI/generation_UI/generation_back_button" to="UI" method="_on_generation_back_button_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text4" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/modes_label/help_text7" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/done_list/done_label/help_text7" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/modes_list/Satellite_mode_button/help_text3" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/UI_container/civ_settings/civ_amount_label/help_text6" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makeflag_button/help_text" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/generate_button/help_text" method="_on_help_controller_pressed"]
-[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makemap_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/adjustment_label/help_text5" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/adjustments/Sea_level_label/help_text6" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_box/help_text2" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/continents_label/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makeflag_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/OpeningMenu/makemap_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/generation_UI/generate_button/help_text" method="_on_help_controller_pressed"]
+[connection signal="pressed" from="UI/help_controller" to="UI/UI_container/MapSeed/seed_title_label/help_text5" method="_on_help_controller_pressed"]
 [connection signal="pressed" from="UI/OpeningMenu/makemap_button" to="UI" method="_on_makemap_button_pressed"]
 [connection signal="pressed" from="UI/OpeningMenu/makeflag_button" to="UI" method="_on_makeflag_button_pressed"]
 [connection signal="back" from="UI/FlagGenerator" to="UI" method="_on_FlagGenerator_back"]
 [connection signal="map_generated" from="Map" to="Camera2D" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/saveUI" method="_on_Map_map_generated"]
-[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/UI_container" method="_on_Map_map_generated"]
+[connection signal="map_generated" from="Map" to="UI/Node_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/civ_info" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="UI/generation_UI/generate_button" method="_on_Map_map_generated"]
 [connection signal="map_generated" from="Map" to="cursor" method="_on_Map_map_generated"]

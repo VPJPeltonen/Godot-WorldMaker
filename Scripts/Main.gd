@@ -6,6 +6,9 @@ extends Node2D
 func get_civ_amount():
 	return $UI/UI_container/civ_settings/civ_amount_box.value
 	
+func get_map_seed():
+	return $UI.get_map_seed()
+	
 func get_node_info(X,Y):
 	return $Map.get_node_info(X,Y)
 	

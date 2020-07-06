@@ -3,11 +3,13 @@ extends Node
 var node_colors
 var civ_names
 var climates
+var randomizer_data
 
 func _ready():
 	node_colors = read_data("res://Data/node_colors.json") 
 	civ_names = read_data("res://Data/civ_names.json") 
 	climates = read_data("res://Data/climates.json")
+	randomizer_data = read_data("res://Data/randomizer.json")
 	
 func read_data(path):
 	var data_file = File.new()
@@ -35,3 +37,7 @@ func get_civ_names():
 
 func get_climates():
 	return climates
+
+func get_chars():
+	var chars = randomizer_data["chars"]
+	return chars
