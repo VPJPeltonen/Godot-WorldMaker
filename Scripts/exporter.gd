@@ -23,6 +23,13 @@ func save_map(map):
 	image.crop(shot_size.x+250,max(shot_size.y,540))
 	image.save_png("user://"+$save_box/map_name_input.text+"/"+map+".png")
 
+func save_info():
+	var info_file = File.new()
+	info_file.open("user://"+$save_box/map_name_input.text+"/info.txt", File.WRITE)
+	var info_text = main.get_map_info()
+	info_file.store_string(info_text)
+	info_file.close()
+
 func show_info(info):
 	$warning.dialog_text = info
 	$warning.show()
@@ -39,6 +46,7 @@ func _on_save_button_pressed():
 
 func _on_hide_timer_timeout():
 	make_map_folder()
+	save_info()
 	match save_stage:
 		"start": #for some reason first pass still had UI. added this empty. should figure out at some point
 			save_stage = "sea"

@@ -3,6 +3,10 @@ extends Node2D
 #
 # This mostly passes info and methods between nodes
 #
+
+func get_map_info():
+	return $Map.get_map_info()
+
 func get_civ_amount():
 	return $UI/UI_container/civ_settings/civ_amount_box.value
 	
@@ -55,7 +59,7 @@ func hide_UI():
 	$UI/Node_info.hide()
 	$UI/civ_info.hide()
 	$UI/help_controller.hide()
-	$UI/generate_button.hide()
+	$UI/civ_info.hide()
 	
 func show_UI():
 	$UI/UI_container.show()
@@ -63,7 +67,7 @@ func show_UI():
 	$UI/Node_info.show()
 	$UI/civ_info.show()
 	$UI/help_controller.show()
-	$UI/generate_button.show()
+	$UI/civ_info.show()
 	
 func disable_buttons():
 	$UI/UI_container/adjustments/smooth_button.disabled = true

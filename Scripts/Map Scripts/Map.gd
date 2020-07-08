@@ -89,6 +89,13 @@ func get_civ_info(nodeX,nodeY):
 	else:
 		return 0
 
+func get_map_info():
+	var info = "Width: " + str(width)
+	info += "\nHeight: " + str(height)
+	info += "\nSeed: " + str(randomizer.seed_string)
+	info += "\nSea level: " + str(sea_level)
+	return info
+
 func make_quarter(imod,jmod,quarter,nodescale):
 	var quarter_nodes = []
 	for i in range(width/2):

@@ -8,7 +8,7 @@ func _ready():
 	rng.set_seed(123)
 
 func set_seed(new_seed):
-	if new_seed == null:
+	if new_seed == null or new_seed == "":
 		rng.randomize()
 		var chars = json_reader.get_chars()
 		var seed_length = rng.randi_range(4,8)
