@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/UI Scripts/UI_container.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://Fonts/Pixel Digivolve.otf" type="DynamicFontData" id=32]
 [ext_resource path="res://Sprites/UI/toggle_on.png" type="Texture" id=33]
 [ext_resource path="res://Sprites/UI/toggle_off.png" type="Texture" id=34]
+[ext_resource path="res://Fonts/guide_font.tres" type="DynamicFont" id=35]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 2
@@ -919,12 +920,14 @@ margin_left = 635.717
 margin_top = 3.36359
 margin_right = 675.717
 margin_bottom = 17.3636
-text = "asdsd"
+custom_fonts/font = ExtResource( 35 )
+text = "100%"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="pos_text" type="Label" parent="UI"]
+visible = false
 margin_left = 632.889
 margin_top = 37.3047
 margin_right = 672.889

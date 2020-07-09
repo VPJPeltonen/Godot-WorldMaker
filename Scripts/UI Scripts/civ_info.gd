@@ -3,7 +3,8 @@ extends VBoxContainer
 var active = false
 
 func _on_Map_map_generated():
-	show()
+	pass
+	#show()
 
 func _on_cursor_civ_info(info):
 	if typeof(info) == TYPE_DICTIONARY:
