@@ -23,7 +23,20 @@ func _process(delta):
 		position.y += scroll_speed * ((scroll_distance-y_distance)/scroll_distance)
 	if mouse_vieport.y <= scroll_distance and mouse_position.y > 0:
 		position.y -= scroll_speed * ((scroll_distance-mouse_vieport.y)/scroll_distance)
-	emit_signal("camera_position",position)
+		
+	var direction = Vector2()
+	if Input.is_action_pressed("pan_up"):
+		direction.y -= scroll_speed/2
+	elif Input.is_action_pressed("pan_down"):
+		direction.y += scroll_speed/2
+	
+	if Input.is_action_pressed("pan_left"):
+		direction.x -= scroll_speed/2
+	elif Input.is_action_pressed("pan_right"):
+		direction.x += scroll_speed/2
+	
+	position += direction
+	
 
 func move_to_export_pos(map_pos,map_width):
 	if map_width == 192:
