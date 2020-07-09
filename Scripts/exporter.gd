@@ -2,6 +2,8 @@ extends Node2D
 
 onready var main = get_parent().get_parent()
 var save_stage
+var save_path
+var using_custom = false
 
 func get_map_size():
 	var map_scale = main.get_node_scale()
@@ -11,21 +13,19 @@ func get_map_size():
 
 func make_map_folder():
 	var dir = Directory.new()
-	dir.open("user://")
-	if dir.dir_exists($save_box/map_name_input.text): return true
+	dir.open(save_path)
 	dir.make_dir($save_box/map_name_input.text)
-	return false
 
 func save_map(map):
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
 	var shot_size = get_map_size()
 	image.crop(shot_size.x+250,max(shot_size.y,540))
-	image.save_png("user://"+$save_box/map_name_input.text+"/"+map+".png")
+	image.save_png(save_path+$save_box/map_name_input.text+"/"+map+".png")
 
 func save_info():
 	var info_file = File.new()
-	info_file.open("user://"+$save_box/map_name_input.text+"/info.txt", File.WRITE)
+	info_file.open(save_path+$save_box/map_name_input.text+"/info.txt", File.WRITE)
 	var info_text = main.get_map_info()
 	info_file.store_string(info_text)
 	info_file.close()
@@ -35,9 +35,20 @@ func show_info(info):
 	$warning.show()
 		
 func _on_save_button_pressed():
-	if $save_box/map_name_input.text == "": show_info("You need to give the map a name")
-	elif make_map_folder(): show_info("Map already exists")
+	if using_custom:
+		save_path = $save_box/custom_path_input.text
+		save_path = save_path.replace("\\","/")
 	else:
+		save_path = "user://"
+	if $save_box/map_name_input.text == "": show_info("You need to give the map a name")
+	else:
+		var dir = Directory.new()
+		if dir.open(save_path) != OK:
+			show_info("Something wrong with file path")
+			return
+		if dir.dir_exists($save_box/map_name_input.text): 
+			show_info("Map already exists")
+			return
 		main.hide_UI()
 		main.move_to_export_pos()
 		main.lock_camera()
@@ -92,3 +103,11 @@ func _on_hide_timer_timeout():
 
 func _on_Map_map_generated():
 	show()
+
+func _on_custom_toggle_toggled(toggled):
+	if toggled:
+		using_custom = true
+		$save_box/custom_path_input.show()
+	else:
+		using_custom = false
+		$save_box/custom_path_input.hide()
