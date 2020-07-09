@@ -20,7 +20,10 @@ func save_map(map):
 	var image = get_viewport().get_texture().get_data()
 	image.flip_y()
 	var shot_size = get_map_size()
-	image.crop(shot_size.x+250,max(shot_size.y,540))
+	if main.get_map_width() == 192:
+		pass
+	else:
+		image.crop(shot_size.x+250,max(shot_size.y,540))
 	image.save_png(save_path+$save_box/map_name_input.text+"/"+map+".png")
 
 func save_info():

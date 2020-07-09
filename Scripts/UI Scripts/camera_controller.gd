@@ -1,5 +1,8 @@
 extends Camera2D
 
+signal zoom_amount(amount)
+signal camera_position(c_position)
+
 onready var screen_edges = get_viewport().size
 var scroll_speed = 25
 var scroll_distance = 50
@@ -20,10 +23,17 @@ func _process(delta):
 		position.y += scroll_speed * ((scroll_distance-y_distance)/scroll_distance)
 	if mouse_vieport.y <= scroll_distance and mouse_position.y > 0:
 		position.y -= scroll_speed * ((scroll_distance-mouse_vieport.y)/scroll_distance)
+	emit_signal("camera_position",position)
 
-func move_to_export_pos(map_pos):
-	set_zoom(Vector2(1,1))
-	position = Vector2(map_pos.x+(get_viewport().size.x/2)-4,map_pos.y+(get_viewport().size.y/2)-4)
+func move_to_export_pos(map_pos,map_width):
+	if map_width == 192:
+		set_zoom(Vector2(1.5,1.5))
+		position = Vector2(map_pos.x+(get_viewport().size.x/1.32)-4,
+				map_pos.y+(get_viewport().size.y/1.32)-4)
+	else:
+		set_zoom(Vector2(1,1))
+		position = Vector2(map_pos.x+(get_viewport().size.x/2)-4,
+						map_pos.y+(get_viewport().size.y/2)-4)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -36,6 +46,7 @@ func _unhandled_input(event):
 			if event.button_index == BUTTON_WHEEL_DOWN:
 				var value = get_zoom() + Vector2(0.1,0.1)
 				set_zoom(value)
+			emit_signal("zoom_amount",get_zoom())
 			
 func _on_Map_map_generated():
 	var main = get_parent()

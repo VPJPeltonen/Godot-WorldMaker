@@ -60,6 +60,7 @@ func hide_UI():
 	$UI/civ_info.hide()
 	$UI/help_controller.hide()
 	$UI/civ_info.hide()
+	$UI/zoom_text.hide()
 	
 func show_UI():
 	$UI/UI_container.show()
@@ -68,6 +69,7 @@ func show_UI():
 	$UI/civ_info.show()
 	$UI/help_controller.show()
 	$UI/civ_info.show()
+	$UI/zoom_text.show()
 	
 func disable_buttons():
 	$UI/UI_container/adjustments/smooth_button.disabled = true
@@ -82,7 +84,7 @@ func enable_buttons():
 	$UI/UI_container/adjustments/apply_settings_button.disabled = false
 
 func move_to_export_pos():
-	$Camera2D.move_to_export_pos($Map.position)
+	$Camera2D.move_to_export_pos($Map.position,$Map.width)
 
 func set_info_label(info):
 	$UI/info_label.text = info

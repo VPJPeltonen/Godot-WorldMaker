@@ -35,3 +35,11 @@ func _on_seed_toggle_toggled(toggled_on):
 
 func _on_Map_map_generated():
 	$UI_container/MapSeed/seed_label.text = randomizer.seed_string
+
+func _on_Camera2D_zoom_amount(amount):
+	var percentage = round((1/amount.x) * 100)
+	$zoom_text.text = str(percentage) + "%"
+ #0.5
+
+func _on_Camera2D_camera_position(c_position):
+	$pos_text.text = str(c_position)
