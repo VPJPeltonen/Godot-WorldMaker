@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hoist.png-020080162433b67bf2fb0c17513ee441.stex"
+path="res://.import/tiny_starfive.png-653b65c3319be4bf1644f8f353be5795.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Flagparts/hoist.png"
-dest_files=[ "res://.import/hoist.png-020080162433b67bf2fb0c17513ee441.stex" ]
+source_file="res://Sprites/Flagparts/Small Emblems/tiny_starfive.png"
+dest_files=[ "res://.import/tiny_starfive.png-653b65c3319be4bf1644f8f353be5795.stex" ]
 
 [params]
 

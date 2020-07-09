@@ -11,11 +11,27 @@ export(Texture) var sword_sprite
 export(Texture) var tower_sprite
 export(Texture) var x_sprite
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-func set_emblem(emblem, emblem_color):
+func set_emblem(emblem, emblem_color, pattern_type):
+	
+	match pattern_type:
+		"canton":
+			$tiny_emblem2.hide()
+			position = Vector2(-6,-4)
+		"chevron":
+			$tiny_emblem2.hide()
+			position = Vector2(-8,0)
+		"quadricsection":
+			position = Vector2(-6,-4)
+			$tiny_emblem2.show()
+			$tiny_emblem2.set_emblem(emblem, emblem_color, "quadricsection 2")
+		"reverse quadrisection":
+			position = Vector2(6,-4)
+			$tiny_emblem2.show()
+			$tiny_emblem2.set_emblem(emblem, emblem_color, "reverse quadrisection 2")
+		"quadricsection 2":
+			position = Vector2(12,8)
+		"reverse quadrisection 2":
+			position = Vector2(-12,8)
 	match emblem:
 		"bird":
 			set_texture(bird_sprite)

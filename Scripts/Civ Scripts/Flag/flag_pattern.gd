@@ -27,6 +27,8 @@ func set_pattern(var pattern, var pattern_color):
 			set_texture(quadrisection_sprite)
 		"reverse quadrisection":
 			set_texture(reverse_quadrisection_sprite)
+		"hoist":
+			set_texture(hoist_sprite)
 		"pale":
 			set_texture(pale_sprite)
 		"fess":

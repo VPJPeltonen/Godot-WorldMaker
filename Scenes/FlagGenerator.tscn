@@ -2,13 +2,14 @@
 
 [ext_resource path="res://UI/button_background.tres" type="StyleBox" id=1]
 [ext_resource path="res://UI/button_pressed.tres" type="StyleBox" id=2]
-[ext_resource path="res://Scripts/FlagGenerator.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/flag_generator.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/UI Scripts/help_text.gd" type="Script" id=4]
 [ext_resource path="res://Fonts/headline_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Fonts/node_info_font.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Scenes/flag.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Fonts/guide_font.tres" type="DynamicFont" id=8]
 [ext_resource path="res://Scenes/flag_saveUI.tscn" type="PackedScene" id=9]
+
 
 [node name="FlagGenerator" type="Node2D"]
 script = ExtResource( 3 )

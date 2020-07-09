@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hoist.png-020080162433b67bf2fb0c17513ee441.stex"
+path="res://.import/tiny_crown.png-00e6c41038ccc48455b72f848dd10d07.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Flagparts/hoist.png"
-dest_files=[ "res://.import/hoist.png-020080162433b67bf2fb0c17513ee441.stex" ]
+source_file="res://Sprites/Flagparts/Small Emblems/tiny_crown.png"
+dest_files=[ "res://.import/tiny_crown.png-00e6c41038ccc48455b72f848dd10d07.stex" ]
 
 [params]
 

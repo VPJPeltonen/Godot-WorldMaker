@@ -31,6 +31,13 @@ var badges = [
 	"x"
 ]
 
+var has_special_emblem = [
+	"canton",
+	"quadrisection",
+	"reverse quadrisection",
+	"chevron"
+]
+
 #saved flag info
 var background_color
 var pattern_type
@@ -82,7 +89,10 @@ func generate_flag():
 	pattern2_color = colors[2]
 	var has_emblem = rng.randi_range(0,1)
 	if(has_emblem == 1):
-		emblem_type = badges[rng.randi_range(0,badges.size()-1)]
+		if has_special_emblem.has(pattern_type):
+			pass
+		else:
+			emblem_type = badges[rng.randi_range(0,badges.size()-1)]
 	else:
 		emblem_type      = "none"
 	emblem_color = colors[3]
@@ -98,7 +108,14 @@ func show_flag():
 	else:
 		get_node("pattern2").hide()
 	if(emblem_type != "none"):
-		get_node("emblem").show()
-		get_node("emblem").set_emblem(emblem_type,emblem_color)
+		if has_special_emblem.has(pattern_type):
+			get_node("emblem").hide()
+			get_node("tiny_emblem1").show()
+			get_node("tiny_emblem1").set_emblem(emblem_type,emblem_color,pattern_type)
+		else:
+			get_node("tiny_emblem1").hide()
+			get_node("emblem").show()
+			get_node("emblem").set_emblem(emblem_type,emblem_color)
 	else:
 		get_node("emblem").hide()
+		get_node("tiny_emblem1").hide()

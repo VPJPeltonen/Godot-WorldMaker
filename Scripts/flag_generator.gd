@@ -19,6 +19,8 @@ func generate_name():
 	else:
 		governments = governments["common"]
 	civ_name += governments[str(rng.randi_range(0,governments.size()-1))] + " of "
+	names = names["names"]
+	names = names[str(rng.randi_range(0,names.size()-1))]
 	var first_part = names["part one"]
 	var second_part = names["part two"]
 	civ_name += first_part[str(rng.randi_range(0,first_part.size()-1))] + second_part[str(rng.randi_range(0,second_part.size()-1))]

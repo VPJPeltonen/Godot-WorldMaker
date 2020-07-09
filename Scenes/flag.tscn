@@ -1,6 +1,6 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
-[ext_resource path="res://Scripts/Civ Scripts/flag_generator.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Civ Scripts/flag_script.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Flagparts/border.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Flagparts/background.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Civ Scripts/Flag/flag_background.gd" type="Script" id=4]
@@ -26,6 +26,18 @@
 [ext_resource path="res://Sprites/Flagparts/Emblems/tower.png" type="Texture" id=24]
 [ext_resource path="res://Sprites/Flagparts/Emblems/x.png" type="Texture" id=25]
 [ext_resource path="res://Sprites/Flagparts/fimbriation.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/Civ Scripts/Flag/tiny_flag_emblem.gd" type="Script" id=27]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_tower.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_sun.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_crown.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_bird.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_starsix.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_starfive.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_x.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_shield.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_moon.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Flagparts/Small Emblems/tiny_sword.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Flagparts/hoist.png" type="Texture" id=38]
 
 [node name="flag" type="Node2D"]
 z_index = 1
@@ -36,11 +48,12 @@ texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
 [node name="pattern" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 14 )
 script = ExtResource( 5 )
 border_sprite = ExtResource( 2 )
 canton_sprite = ExtResource( 6 )
 fimbriation_sprite = ExtResource( 26 )
+hoist_sprite = ExtResource( 38 )
 quadrisection_sprite = ExtResource( 7 )
 reverse_quadrisection_sprite = ExtResource( 14 )
 pale_sprite = ExtResource( 8 )
@@ -80,3 +93,35 @@ sun_sprite = ExtResource( 22 )
 sword_sprite = ExtResource( 23 )
 tower_sprite = ExtResource( 24 )
 x_sprite = ExtResource( 25 )
+
+[node name="tiny_emblem1" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -5.98646, -3.95318 )
+texture = ExtResource( 28 )
+script = ExtResource( 27 )
+bird_sprite = ExtResource( 31 )
+crown_sprite = ExtResource( 30 )
+moon_sprite = ExtResource( 36 )
+shield_sprite = ExtResource( 35 )
+starfive_sprite = ExtResource( 33 )
+starsix_sprite = ExtResource( 32 )
+sun_sprite = ExtResource( 29 )
+sword_sprite = ExtResource( 37 )
+tower_sprite = ExtResource( 28 )
+x_sprite = ExtResource( 34 )
+
+[node name="tiny_emblem2" type="Sprite" parent="tiny_emblem1"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 12, 8 )
+texture = ExtResource( 28 )
+script = ExtResource( 27 )
+bird_sprite = ExtResource( 31 )
+crown_sprite = ExtResource( 30 )
+moon_sprite = ExtResource( 36 )
+shield_sprite = ExtResource( 35 )
+starfive_sprite = ExtResource( 33 )
+starsix_sprite = ExtResource( 32 )
+sun_sprite = ExtResource( 29 )
+sword_sprite = ExtResource( 37 )
+tower_sprite = ExtResource( 28 )
+x_sprite = ExtResource( 34 )
