@@ -5,9 +5,11 @@ var rng = RandomNumberGenerator.new()
 var seed_string
 
 func _ready():
-	rng.set_seed(123)
+	pass
+	#rng.set_seed(123)
 
 func set_seed(new_seed):
+	new_seed = str(new_seed)
 	if new_seed == null or new_seed == "":
 		rng.randomize()
 		var chars = json_reader.get_chars()
@@ -16,4 +18,4 @@ func set_seed(new_seed):
 		for i in range(seed_length):
 			new_seed += chars[str(rng.randi_range(0,chars.size()-1))]
 	seed_string = new_seed
-	rng.set_seed(new_seed.hash)
+	rng.set_seed(new_seed.hash())

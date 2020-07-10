@@ -198,7 +198,7 @@ func make_nodes():
 	nodes_4 = make_quarter((width/2),(height/2),4,node_scale)
 
 func _creation(userdata):
-	randomizer.set_seed(main.get_map_seed())
+	
 	main.set_info_label("Building Map Nodes")
 	make_nodes()
 	emit_signal("node_action","find_neighbours","none")
@@ -246,7 +246,9 @@ func _add_detail(userdata):
 	
 func _on_generate_button_pressed():
 	if map_generated: get_tree().reload_current_scene()
-	elif state == "none": state = "start generating"
+	elif state == "none": 
+		randomizer.set_seed(main.get_map_seed())
+		state = "start generating"
 	
 func _on_color_mode_button_pressed(mode):
 	color_nodes(mode)
