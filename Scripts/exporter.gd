@@ -100,7 +100,10 @@ func _on_hide_timer_timeout():
 			$hide_timer.start()
 		"satellite":
 			save_map(save_stage)
-			show_info("Map saved succefully at C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker")
+			var final_info = "Map saved succefully at C:/Users/user/AppData/Roaming/Godot/app_userdata/World Maker"
+			if using_custom:
+				final_info = "Map saved succefully at " + str(save_path)
+			show_info(final_info)
 			main.show_UI()
 			main.unlock_camera()
 
